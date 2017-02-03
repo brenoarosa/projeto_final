@@ -178,3 +178,6 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+# SCons state file
+.sconsign.dblite
