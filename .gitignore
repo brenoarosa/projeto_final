@@ -20,11 +20,11 @@
 # *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
-*.bbl
+#*.bbl
 *.bcf
 *.blg
 *-blx.aux
-*-blx.bib
+#*-blx.bib
 *.brf
 *.run.xml
 
@@ -41,7 +41,7 @@
 *.loa
 
 # achemso
-acs-*.bib
+#acs-*.bib
 
 # amsthm
 *.thm
