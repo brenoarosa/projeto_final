@@ -1,0 +1,81 @@
+\section{Aprendizado Supervisionado}
+
+O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa gerar modelos preditores a partir de um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
+
+\subsection{Naive Bayes}
+
+    \textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Esta se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
+
+Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$ é dada pelo teorema de Bayes:
+\begin{equation} \label{eq:bayes}
+    p(c_k \mid \mathbf{x}) = \frac{p(c_k) \ p(\mathbf{x} \mid c_k)}{p(\mathbf{x})}
+\end{equation}
+
+Sendo $\mathbf{x}$ um vetor de $n$ características, ao se assumir independência entre elas obtém-se:
+\begin{equation}
+    p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
+\end{equation}
+
+Logo, pode-se rescrever \ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas características:
+\begin{equation}
+    p(c_k \mid \mathbf{x}) = \frac{p(c_k) \prod_{i=1}^n p(x_i \mid c_k)}{p(\mathbf{x})}
+\end{equation}
+
+Como $p(\mathbf{x})$ será uma constante dado cada exemplo $\mathbf{x}$ esta pode ser desprezada:
+\begin{equation}
+    p(c_k \mid \mathbf{x}) \propto p(c_k) \prod_{i=1}^n p(x_i \mid c_k)
+\end{equation}
+
+Portanto, tem-se que o estimador ótimo $\hat{y}$ escolherá pela classe que atinja maior probabilidade:
+\begin{equation}
+    \hat{y} = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
+\end{equation}
+
+Vê-se então que o modelo de \textit{Naive Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$. Estes parâmetros serão extraídos do conjunto de treino por máxima verosimilhança.
+
+Dado um vetor $\mathbf{y}$ de tamanho $m$ que representa as classificações referentes a $\mathbf{X}$, pode-se estimar $p(c_k)$ pela contagem de vezes que a classe $c_k$ aparece no conjunto de treinamento:
+\begin{equation}
+    \hat{p}(c_k) = \frac{\sum_{i=1}^m [y_i = c_k]}{m}
+\end{equation}
+
+Por sua vez, $p(x_r \mid c_k)$ é estimado utilizando a contagem de vezes que uma característica aparece dividida pelo total de características presentes em $\mathbf{X'}$ que é o subconjunto de treino pertencente a classe $c_k$:
+\begin{equation}
+    \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X'}|}
+\end{equation}
+
+Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são obtidos através de contagens sobre os dados de treinamento e sua predição utiliza apenas multiplicações.
+Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada mesmo em problemas com notória dependência de características como a classificação de texto \cite{mccallum98}.
+
+\subsection{SVM}
+
+\subsection{Redes Neurais}
+
+\subsubsection{Deep Learning}
+
+\subsubsection{Redes Neurais Convolucionais}
+
+\subsection{Regularizadores}
+
+\subsubsection{L2}
+
+\subsubsection{Dropout}
+
+\subsection{Otimizadores}
+
+\subsubsection{Momentum}
+
+\subsubsection{RMSProp}
+
+\subsubsection{Adam}
+
+\section{Supervisão Distante}
+
+\section{Processamento de Linguagem Natural}
+
+\subsection{Tokenizer}
+
+\subsection{Representações Matemáticas}
+
+\subsubsection{One-Hot}
+
+\subsubsection{Word2Vec}
