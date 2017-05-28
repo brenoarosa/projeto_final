@@ -1,35 +1,36 @@
 \section{Tema}
 
-\paragraph{}Falar do que se trata o trabalho usando uma visão macroscópica (tamanho do texto: 1 ou 2 parágrafos no máximo).
-
-\paragraph{}Sobre que grande área de conhecimento você vai falar?
-
-\paragraph{}Dada esta grande área, qual é o subconjunto de conhecimento sobre o qual será o seu trabalho?
-
-\paragraph{}Qual o problema a ser resolvido?
-
+O tema do projeto é o estudo de técnicas de aprendizado de máquina para classificação de sentimento em mensagens de redes sociais, em especial o Twitter. Portanto, o projeto visa criar um modelo capaz de distinguir entre a polaridade, positiva ou negativa, de uma mensagem.
 
 \section{Delimitação}
 
-\paragraph{}Realizar uma delimitação informando de quem é a demanda, em que local, e em que momento no tempo. Eventualmente, pode ser mais fácil começar pensando por exclusão, ou seja, para quem não serve, onde não deve ser aplicado, e em seguida pegar o universo que sobra (tamanho do texto: livre).
-
+O objeto de estudo são \textit{tweets}, mensagens publicadas no Twitter. Serão utilizadas duas bases de dados: a primeira, uma base anotada automaticamente pelo \textit{Sentiment140} \cite{sent140}, o qual é formado por um grupo de alunos de \textit{Stanford University}; e a segunda, uma base com anotação manual, formada pela coletânea de dados disponibilizados anualmente entre 2013 e 2017 pelo \textit{International Workshop on Semantic Evaluation} \cite{semeval17}. A análise de sentimento a ser aplicada terá seu enfoque na polaridade das mensagens, separando-as entre positivas e negativas. Não serão abordadas por esse projeto a objetividade ou neutralidade de um texto. Por fim, o modelo a ser obtido visa a classificação de mensagens escritas em língua inglesa.
 
 \section{Justificativa}
 
-\paragraph{}Apresentar o porquê do tema ser interessante de ser estudado. Cuidado, não é a motivação particular. Devem ser apresentadas razões para que alguém deva se interessar no assunto, e não quais foram suas razões particulares que motivaram você a estudá-lo (tamanho do texto: livre).
+Acompanhamos ao longo da última década a massificação do uso de redes sociais. O Twitter, objeto de nosso estudo, conta com 310 milhões de usuários ativos, gerando um total de meio bilhão de \textit{tweets} por dia. Tais estatísticas provam ser cada vez mais necessário ferramentas capazes de automatizar o processo extração de informação deste mar de dados.
 
+A análise de sentimento neste contexto visa resgatar opinião sobre um assunto, evento ou produto. Os primeiros estudos deste tópico aplicados ao Twitter foram desenvolvidos em 2009 por Go et al., \cite{go09}. Esse grupo de pesquisadores utiliza, em seu artigo, as melhores técnicas de classificação de texto disponíveis na época e ressalta as diferenças de seus resultados comparados a quando aplicadas em textos jornalísticos, resenhas etc.
+
+O campo do processamento de linguagem natural foi fortemente impactado pelo crescimento do \textit{Deep Learning}. Técnicas como Redes Neurais Convolutivas (CNN), a princípio desenvolvidas para processamento de imagens, e \textit{Long Short-Term Memory} (LSTM) propulsionaram o salto de desempenho obtido nos últimos anos. O impacto deste avanço é notório no nosso dia-a-dia. Frequentemente utilizamos essas técnicas como em serviços automatizados de atendimento ao cliente ou em ferramentas de tradução simultânea.
+
+Neste sentido, o presente projeto visa aplicar em \textit{tweets} os procedimentos que compõe o estado da arte em classificação de sentimento.
 
 \section{Objetivos}
 
-\paragraph{}Informar qual é o objetivo geral do trabalho, isto é, aquilo que deve ser atendido e que corresponde ao indicador inequívoco do sucesso do seu trabalho. Pode acontecer que venha a existir um conjunto de objetivos específicos, que complementam o objetivo geral (tamanho do texto: livre, mas cuidado para não fazer uma literatura romanceada, afinal esta seção trata dos objetivos).
-
+O objetivo deste projeto, portanto, consiste em gerar um modelo computacional capaz de sistematizar a classificação de sentimento de \textit{tweets}. Este modelo deve ser independente de uma base de dados anotada manualmente, visto o alto custo desta ser reproduzida.
 
 \section{Metodologia}
 
-\paragraph{}Como é a abordagem do assunto. Como foi feita a pesquisa, se vai houve validação, etc. Em resumo, você de explicar qual foi sua estratégia para atender ao objetivo do trabalho (tamanho do texto: livre).
+Para alcançar esse objetivo, as seguintes etapas serão necessárias: (1) replicar técnicas consolidadas de análise de sentimento para \textit{tweets} e utilizá-las como referência; (2) aplicar nos \textit{tweets} técnicas de \textit{Deep Learning} que vêm obtendo sucesso em processamento de linguagem natural.
+
+A primeira etapa do trabalho será a replicação de estudos desenvolvidos por Go et al., \cite{go09} que aplica técnicas de \textit{Naive Bayes} e \textit{SVM} na classificação de polaridade de \textit{tweets}, sendo seu treinamento feito em cima de uma base de dados com anotação automática, conforme apresentado por Read \cite{read05}. Os resultados obtidos por estas técnicas serão utilizados como patamar para comparação dos modelos a serem gerados.
+
+Posteriormente, serão aplicadas técnicas de \textit{Deep Learning}, como apresentadas por Kim \cite{kim14}, em que se utiliza CNNs para classificação de texto. O treinamento continua sendo feito a partir do banco de dados com anotação semi-supervisionada, o qual foi apresentado anteriormente. Será avaliado o desempenho desta técnica quando aplicada em mensagens do Twitter.
 
 
 \section{Descrição}
+%TODO
 
 \paragraph{}No capítulo 2 será .....
 
