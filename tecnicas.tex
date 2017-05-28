@@ -1,10 +1,10 @@
 \section{Aprendizado Supervisionado}
 
-O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa gerar modelos preditores a partir de um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
+O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa a gerar modelos preditores a partir de um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
 
 \subsection{Naive Bayes}
 
-    \textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Esta se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
+    \textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
 
 Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$ é dada pelo teorema de Bayes:
 \begin{equation} \label{eq:bayes}
@@ -43,7 +43,7 @@ Por sua vez, $p(x_r \mid c_k)$ é estimado utilizando a contagem de vezes que um
     \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X'}|}
 \end{equation}
 
-Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são obtidos através de contagens sobre os dados de treinamento e sua predição utiliza apenas multiplicações.
+Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são obtidos através de contagens sobre os dados de treinamento e que sua predição utiliza apenas multiplicações.
 Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada mesmo em problemas com notória dependência de características como a classificação de texto \cite{mccallum98}.
 
 \subsection{SVM}
