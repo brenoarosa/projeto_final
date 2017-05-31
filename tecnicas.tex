@@ -64,7 +64,7 @@ O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção
 
 Pelo aspecto de se basear nos dados próximos ao limiar de separação das classes o algoritmo passa a ser incapaz de distinguir os casos de classes não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento. Esta variável definirá um número máximo de erros de classificação permitido. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhor a generalização. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}.
 
-Por se basear em vetores de suporte SVMs não são capazes de representação de classes não linearmente separáveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin} onde um SVM treinado para tentar separar classes concêntricas.
+Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin} onde um SVM treinado para tentar separar classes concêntricas.
 
 \begin{figure}
 \begin{center} {
@@ -78,7 +78,7 @@ Por se basear em vetores de suporte SVMs não são capazes de representação de
 \end{center}
 \end{figure}
 
-Para contornar esse impedimento foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis. A figura \ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura \ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
+Para contornar esse impedimento foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis \cite{scholkopf02}. A figura \ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura \ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
 
 \begin{figure}
 \begin{center} {
