@@ -2,7 +2,7 @@ O aprendizado supervisionado é o campo dentro de aprendizado de máquina que vi
 
 \section{Naive Bayes}
 
-\textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
+\textit{Naive Bayes} é uma das técnicas mais simples disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
 
 Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$ é dada pelo teorema de Bayes:
 \begin{equation} \label{eq:bayes}
@@ -14,7 +14,7 @@ Sendo $\mathbf{x}$ um vetor de $n$ características, ao se assumir independênci
     p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
 \end{equation}
 
-Logo, pode-se rescrever \ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas características:
+Logo, pode-se rescrever a equação \ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas características:
 \begin{equation}
     p(c_k \mid \mathbf{x}) = \frac{p(c_k) \prod_{i=1}^n p(x_i \mid c_k)}{p(\mathbf{x})}
 \end{equation}
