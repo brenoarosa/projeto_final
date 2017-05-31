@@ -1,8 +1,6 @@
-\section{Aprendizado Supervisionado}
-
 O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa a gerar modelos preditores a partir de um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
 
-\subsection{Naive Bayes}
+\section{Naive Bayes}
 
 \textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
 
@@ -46,7 +44,7 @@ Por sua vez, $p(x_r \mid c_k)$ é estimado utilizando a contagem de vezes que um
 Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são obtidos através de contagens sobre os dados de treinamento e que sua predição utiliza apenas multiplicações.
 Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada mesmo em problemas com notória dependência de características como a classificação de texto \cite{mccallum98}.
 
-\subsection{SVM}
+\section{SVM}
 
 O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção de um vetor de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura \ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
 
@@ -108,35 +106,24 @@ Neste novo espaço definido pela transformação, os dados são linearmente sepa
 
 Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$ \cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo através da qual tornou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente \cite{suykens99}.
 
-\subsection{Redes Neurais}
+\section{Redes Neurais}
 
-\subsubsection{Deep Learning}
+\subsection{Deep Learning}
 
-\subsubsection{Redes Neurais Convolucionais}
+\subsection{Redes Neurais Convolucionais}
 
-\subsection{Regularizadores} \label{regularizadores}
+\section{Regularizadores} \label{regularizadores}
 
-\subsubsection{L2}
+\subsection{L2}
 
-\subsubsection{Dropout}
+\subsection{Dropout}
 
-\subsection{Otimizadores}
+\section{Otimizadores}
 
-\subsubsection{Momentum}
+\subsection{Momentum}
 
-\subsubsection{RMSProp}
+\subsection{RMSProp}
 
-\subsubsection{Adam}
+\subsection{Adam}
 
 \section{Supervisão Distante}
-
-\section{Processamento de Linguagem Natural}
-
-\subsection{Tokenizer}
-% Stopwords / unicode
-
-\subsection{Representações Matemáticas}
-
-\subsubsection{One-Hot}
-
-\subsubsection{Word2Vec}
