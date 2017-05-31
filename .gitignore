@@ -184,3 +184,6 @@ TSWLatexianTemp*
 
 # SCons state file
 .sconsign.dblite
+
+# compiled result
+!projeto_final.pdf
