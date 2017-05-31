@@ -4,7 +4,7 @@ O aprendizado supervisionado é o campo dentro de aprendizado de máquina que vi
 
 \subsection{Naive Bayes}
 
-    \textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
+\textit{Naive Bayes} é uma das técnicas mais simples a disponíveis nesse contexto. Ela se baseando no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
 
 Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$ é dada pelo teorema de Bayes:
 \begin{equation} \label{eq:bayes}
@@ -48,13 +48,73 @@ Embora se baseie na independência entre características, seu baixo custo opera
 
 \subsection{SVM}
 
+O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção de um vetor de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura \ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.7]{svm.png}
+    \caption{Reta de maior margem entre classes.}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \label{fig:svm}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção \ref{regularizadores}.
+
+Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.7]{svm-lin.png}
+    \caption{SVM em dados não linearmente separáveis.}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \label{fig:svm-lin}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Para contornar esse impedimento, foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis \cite{scholkopf02}. A figura \ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura \ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.7]{svm-rbf.png}
+    \caption{Transformação de dados por função de base radial.}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \label{fig:svm-rbf}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Neste novo espaço definido pela transformação, os dados são linearmente separáveis. Portanto, é possível achar um vetor de suporte que defina um hiperplano de separação das classes. Vemos na figura \ref{fig:svm-rbf-clas} as margens encontradas.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.7]{svm-rbf-clas.png}
+    \caption{SVM com \textit{kernel} de base radial.}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \label{fig:svm-rbf-clas}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$ \cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo através da qual tornou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente \cite{suykens99}.
+
 \subsection{Redes Neurais}
 
 \subsubsection{Deep Learning}
 
 \subsubsection{Redes Neurais Convolucionais}
 
-\subsection{Regularizadores}
+\subsection{Regularizadores} \label{regularizadores}
 
 \subsubsection{L2}
 
@@ -73,6 +133,7 @@ Embora se baseie na independência entre características, seu baixo custo opera
 \section{Processamento de Linguagem Natural}
 
 \subsection{Tokenizer}
+% Stopwords / unicode
 
 \subsection{Representações Matemáticas}
 
