@@ -48,7 +48,7 @@ Embora se baseie na independência entre características, seu baixo custo opera
 
 \subsection{SVM}
 
-O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção de um vetor de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura \ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosas e amarelas, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
+O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção de um vetor de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura \ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
 
 \begin{figure}
 \begin{center} {
@@ -62,9 +62,9 @@ O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção
 \end{center}
 \end{figure}
 
-Pelo aspecto de se basear nos dados próximos ao limiar de separação das classes o algoritmo passa a ser incapaz de distinguir os casos de classes não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento. Esta variável definirá um número máximo de erros de classificação permitido. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhor a generalização. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}.
+Por se basear nos dados próximos ao limiar de separação das classes o algoritmo passa a ser incapaz de distinguir os casos de classes não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento. Esta variável definirá um número máximo de erros de classificação permitido. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}.
 
-Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin} onde um SVM treinado para tentar separar classes concêntricas.
+Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
 
 \begin{figure}
 \begin{center} {
@@ -78,7 +78,7 @@ Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs n
 \end{center}
 \end{figure}
 
-Para contornar esse impedimento foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis \cite{scholkopf02}. A figura \ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura \ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
+Para contornar esse impedimento, foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis \cite{scholkopf02}. A figura \ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura \ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
 
 \begin{figure}
 \begin{center} {
@@ -92,7 +92,7 @@ Para contornar esse impedimento foi elaborado o que se chamou de \textit{kernel 
 \end{center}
 \end{figure}
 
-Neste novo espaço definido pela transformação os dados são linearmente separáveis. Portanto, é possível achar um vetor de suporte que defina um hiperplano de separação das classes. Vemos na figura \ref{fig:svm-rbf-clas} as margens encontradas.
+Neste novo espaço definido pela transformação, os dados são linearmente separáveis. Portanto, é possível achar um vetor de suporte que defina um hiperplano de separação das classes. Vemos na figura \ref{fig:svm-rbf-clas} as margens encontradas.
 
 \begin{figure}
 \begin{center} {
@@ -106,7 +106,7 @@ Neste novo espaço definido pela transformação os dados são linearmente separ
 \end{center}
 \end{figure}
 
-Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$ \cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo tal que se provou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente \cite{suykens99}.
+Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$ \cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo tal que se tornou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente \cite{suykens99}.
 
 \subsection{Redes Neurais}
 
