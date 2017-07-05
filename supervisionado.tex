@@ -60,7 +60,7 @@ O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção
 \end{center}
 \end{figure}
 
-Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção \ref{regularizadores}.
+Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção \ref{sec:regularizadores}.
 
 Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
 
@@ -108,9 +108,20 @@ Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua
 
 \section{Redes Neurais}
 
-Redes Neurais são sistemas computacionais que visam replicam o modelo de processamento do cérebro. Há diversas variações de Redes Neurais, nesta seção abordaremos a mais simples, Redes Neurais FeedForward, apresentaremos Redes Neurais Convolucionais na subseção \ref{convolucionais}.
+Redes Neurais são sistemas computacionais que visam replicam o modelo de processamento do cérebro. Há diversas variações de Redes Neurais, nesta seção será abordada a mais simples, Redes Neurais FeedForward, serão apresentadas Redes Neurais Convolucionais na subseção \ref{sec:convolucionais}.
 
-Redes Neurais FeedForward são compostas de camadas de neurônios interligados por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, \textit{sigmoid}, etc. Nesta categoria
+Redes Neurais FeedForward são compostas de camadas de neurônios sucessivamente interligadas por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, \textit{sigmoid}, etc. Na figura \ref{fig:neural-net} apresenta-se o diagrama da uma rede, esta conta com uma camada de entrada que representa os dados do problema, seguindo tem-se duas camadas intermediarias, comumente chamadas de escondidas, finalizando na camada de saída que terá o resultado final de todo processamento da rede.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.75]{ffnn.png}
+    \caption{Rede Neural FeedFoward}
+    \label{fig:neural-net}
+    \end{center}
+}
+\end{center}
+\end{figure}
 
 Uma de suas principais características é a capacidade de aproximar qualquer função dado que a rede contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não linear \cite{hornik89}.
 
@@ -118,9 +129,9 @@ backprop
 
 \subsection{Deep Learning}
 
-\subsection{Redes Neurais Convolucionais} \label{convolucionais}
+\subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-\section{Regularizadores} \label{regularizadores}
+\section{Regularizadores} \label{sec:regularizadores}
 
 \subsection{L2}
 
