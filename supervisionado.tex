@@ -125,7 +125,7 @@ Redes Neurais FeedForward são compostas de camadas de neurônios sucessivamente
 
 Uma de suas principais características de Redes Neurais é a capacidade de aproximar qualquer função, dado que a rede contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não linear \cite{hornik89}.
 
-Para se simular uma função desejada por Rede Neural precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede em uma boa representação para a função escolhida. Ou seja, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses. Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio padrão inversamente proporcional ao número de dados de treinamento \cite{lecun12}. Após a inicialização utiliza-se os dados de treinamento para obter o erro de aproximação 
+Para se simular uma função desejada por Rede Neural precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede em uma boa representação para a função escolhida. Ou seja, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses. Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio padrão inversamente proporcional ao número de dados de treinamento \cite{lecun12}. Posteriormente é feita uma otimização da representação em função dos pesos. Para realizar esta otimização utiliza-se normalmente \textit{Backpropagation} para encontrar a contribuição de cada sinapse ao erro, uma explicação sucinta deste método é apresentada por Williams e Hinton em \cite{williams86}.
 
 \subsection{Deep Learning}
 
