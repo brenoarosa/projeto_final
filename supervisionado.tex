@@ -62,7 +62,7 @@ O conceito fundamental do \textit{Support Vector Machine} se dá pela obtenção
 
 Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção \ref{sec:regularizadores}.
 
-Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguiveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
+Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguíveis. Podemos observar um exemplo deste caso na figura \ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
 
 \begin{figure}
 \begin{center} {
@@ -129,14 +129,20 @@ Para uma Rede Neural simular uma função precisa-se obter o conjunto de pesos, 
 
 \subsection{Deep Learning}
 
-O sucesso na aplicação de Redes Neurais nas mais diversas áreas levou a sua utilização de redes cada vez mais robustas. Redes Neurais profundas romperam barreiras de performace em problemas como reconhecimento de fala, detecção de objetos, tradução etc \cite{lecun15}. Chamou-se de \textit{Deep Learning} o campo de estudo de Redes Neurais com muitas camadas.
+O sucesso na aplicação de Redes Neurais nas mais diversas áreas levou a sua utilização de redes cada vez mais robustas. Redes Neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de objetos, tradução etc \cite{lecun15}. Chamou-se de \textit{Deep Learning} o campo de estudo de Redes Neurais com muitas camadas.
 
-Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser realizada. O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não observáveis. O aprofundamento das redes visa reduzir ou eliminar a chamada \textit{Feature Engineering}, processo de seleção de características, que usualmente requer expertise no domínio do problema. Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc. Modelos baseados em Redes Neurais profundas são capaz de obter resultados superiores eliminando completamente esta etapa \cite{esteva17}.
+Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser realizada. O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não observáveis. O aprofundamento das redes visa reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de características, que usualmente requer expertise no domínio do problema. Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc. Modelos baseados em Redes Neurais profundas são capaz de obter resultados superiores eliminando completamente esta etapa \cite{esteva17}.
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-\section{Otimizadores}
+A utilização de Redes Neurais FeedForward em imagens sofre limitações. Por cada pixel estar diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede. Redes Neurais Convolucionais são redes cujas conexões são baseadas no funcionamento do córtex visual e visam resolver estes problemas.
 
+Redes Convolucionais são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes Feedforward \cite{goodfellow16}. Para cada exemplo do conjunto de dados o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma os filtros dividem as sinapses entre todo espaço do dado permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros obtendo valores máximos ou médias de partes dos filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado \cite{goodfellow16}.
+
+Apesar de Redes Convolucionais terem sido desenvolvidas visando solucionar problemas de visão computacional estas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais \cite{lecun95}. Tal sucesso pode ser atribuído a insensibilidade da rede a deslocamentos.
+
+\section{Otimizadores}
+% deep learning book
 \subsection{SGD}
 
 \subsection{Momentum}
@@ -146,6 +152,7 @@ Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada
 \subsection{Adam}
 
 \section{Regularizadores} \label{sec:regularizadores}
+% overfit
 
 \subsection{L2}
 
