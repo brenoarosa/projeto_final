@@ -141,6 +141,50 @@ Elas são compostas primariamente de dois tipos de camadas: convolucionais e \te
 
 Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais \cite{lecun95}. Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
 
+\section{Funções Custo} \label{sec:custo}
+
+Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre a resultado obtido pela rede e seu objetivo. Assim, as sinápses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
+
+\subsection{Erro Médio Quadrático}
+
+A função custo mais utilizada é o erro médio quadrático (EMQ). Seu fator quadrático pune mais severamente grandes erros, acelerando o processo de otimização.
+
+A fórmula \ref{eq:mse} mostra a composição do EMQ sendo $n$ o número de pares de exemplos e $\hat{y}$ a predição da rede neural.
+
+\begin{equation} \label{eq:mse}
+    \frac{\displaystyle\sum^n |\hat{\mathbf{y}}_i - \mathbf{y}_i|^2}{n}
+\end{equation}
+
+\subsection{Erro Médio Absoluto}
+
+O erro médio absoluto se assemelha ao EMQ, tendo como diferença a falta do fator quadrático, observa-se na fórmula \ref{eq:mae}.
+
+\begin{equation} \label{eq:mae}
+    \frac{\displaystyle\sum^n |\hat{\mathbf{y}}_i - \mathbf{y}_i|}{n}
+\end{equation}
+
+\subsection{Erro Médio Absoluto Percentual}
+
+Há situações em que se pretende mapear um objetivo com extensão de diferentes ordens de grandeza. O uso de erro médio quadrático ou absoluto nestes casos irá dar menos relevância a entradas pequenas. Para solucionar este problema, o erro médio absoluto percentual é composto, conforme apresentado na fórmula \ref{eq:mape}
+
+\begin{equation} \label{eq:mape}
+    \frac{100}{n}\sum^n \left|\frac{\hat{\mathbf{y}}_i - \mathbf{y}_i}{\mathbf{y}_i}\right|
+\end{equation}
+
+\subsection{Entropia Cruzada}
+
+A entropia cruzada é uma medida de distância entre duas distribuições de probabilidade. Sua formula é apresentada na equação \ref{eq:ce}, na qual $k$ representa cada classe presente nas distribuições $p$ e $q$.
+
+\begin{equation} \label{eq:ce}
+    H(p, q) = -\sum_k p_k \log q_k
+\end{equation}
+
+    \begin{equation} \label{eq:cec}
+    \frac{\displaystyle\sum^n H(\mathbf{y}_i, \hat{\mathbf{y}}_i)}{n}
+\end{equation}
+
+A expressão \ref{eq:cec} mostra o uso da entropia cruzada como função custo. É necessário notar que a sua utilização depende de $\mathbf{y}_i$ e $\hat{\mathbf{y}_i}$ serem limitados entre 0 e 1. Para se adequar a esta limitação, caso a rede neural possua apenas uma saída, se utiliza ativação Sigmoid na última camada. Em caso de múltiplas saídas, se utiliza ativação Softmax.
+
 \section{Otimizadores}
 % deep learning book
 
