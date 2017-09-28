@@ -108,7 +108,7 @@ Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua
 
 \section{Redes Neurais} \label{sec:nn}
 
-redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro. Há diversas variações de redes neurais. Nesta subseção será abordada a mais simples, redes neurais FeedForward, e na subseção \ref{sec:convolucionais} serão apresentadas redes neurais Convolucionais.
+redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro. Há diversas variações de redes neurais. Nesta subseção será abordada a mais simples, redes neurais feedforward, e na subseção \ref{sec:convolucionais} serão apresentadas redes neurais Convolucionais.
 
 Redes neurais feedforward são compostas de camadas de neurônios sucessivamente interligadas por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, logística etc. Como exemplificação, há a figura \ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
 
@@ -116,7 +116,7 @@ Redes neurais feedforward são compostas de camadas de neurônios sucessivamente
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.75]{ffnn.png}
-    \caption{Rede Neural FeedFoward}
+    \caption{Rede Neural Feedforward}
     \label{fig:ff-neural-net}
     \end{center}
 }
@@ -135,7 +135,7 @@ Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede. Pretendendo solucionar estes problemas, foram desenvolvidadas redes neurais Convolucionais, cujas conexões são baseadas no funcionamento do córtex visual.
+A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede. Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais Convolucionais, cujas conexões são baseadas no funcionamento do córtex visual.
 
 Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes feedforward \cite{goodfellow16}. Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado \cite{goodfellow16}.
 
@@ -143,7 +143,7 @@ Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de 
 
 \section{Funções Custo} \label{sec:custo}
 
-Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre a resultado obtido pela rede e seu objetivo. Assim, as sinápses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
+Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre a resultado obtido pela rede e seu objetivo. Assim, as sinapses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
 
 \subsection{Erro Médio Quadrático}
 
