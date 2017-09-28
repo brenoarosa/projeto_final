@@ -179,14 +179,38 @@ A entropia cruzada é uma medida de distância entre duas distribuições de pro
     H(p, q) = -\sum_k p_k \log q_k
 \end{equation}
 
-    \begin{equation} \label{eq:cec}
+\begin{equation} \label{eq:cec}
     \frac{\displaystyle\sum^n H(\mathbf{y}_i, \hat{\mathbf{y}}_i)}{n}
 \end{equation}
 
 A expressão \ref{eq:cec} mostra o uso da entropia cruzada como função custo. É necessário notar que a sua utilização depende de $\mathbf{y}_i$ e $\hat{\mathbf{y}_i}$ serem limitados entre 0 e 1. Para se adequar a esta limitação, caso a rede neural possua apenas uma saída, se utiliza ativação Sigmoid na última camada. Em caso de múltiplas saídas, se utiliza ativação Softmax.
 
 \section{Otimizadores}
-% deep learning book
+
+Definidas as funções custo, nesta seção serão abordados os algoritmos responsáveis por sua minimização. Embora a área de otimização apresente uma vasta gama de opções, sua utilização em aprendizado de máquina costuma se restringir a algoritmos de primeira ordem, como o gradiente descendente, principalmente por seu menor custo computacional. O método do gradiente, primeiramente apresentado por Cauchy em 1847 \cite{cauchy1847}, consiste em minimizar a função custo por meio de atualizações iterativas de parâmetros do modelo a partir da derivada da própria função custo em relação aos parâmetros.
+
+Redes neurais, em geral, possuem funções custo não convexas. Assim sendo, o algoritmo de gradiente descendente não garante convergência ao mínimo global. A convergência à mínimos locais torna o modelo sensível a parâmetros como funções de ativação, número de neurônios, etc e a inicialização dos pesos como mostra Glorot em seu artigo que apresenta um método de inicialização de pesos homônimo \cite{glorot10}. O problema de convergência não se limita a mínimos locais, Dauphin \cite{dauphin14} mostra que quanto maior o número de variáveis latentes do modelo, maior a proporção de pontos de sela em relação a mínimos locais e que os mínimos locais estão mais propensos a aparecer em pontos críticos com baixo custo enquanto pontos de sela costumam aparecer em pontos de alto custo. Goodfellow \cite{goodfellow14} apresenta resultados empíricos da efetividade do método do gradiente na fuga dos pontos de sela.
+
+O algoritmo \ref{al:grad-desc} descreve a forma tradicional do gradiente descente, dado que $L$ é a função custo adotada e $\mathbf{\hat{y}}$ é o mapeamento obtido pela rede neural a partir dos dados $\mathbf{x}$ e pesos $\boldsymbol{\theta}$. Observa-se que $\mathbf{\hat{g}}$ é a estimativa do gradiente dos pesos obtida a partir dos dados de treinamento.
+
+\begin{algorithm}
+    \caption{Gradiente Descendente}
+    \label{al:grad-desc}
+    \begin{algorithmic}
+        \Require Taxa de treinamento $\alpha$
+        \Require Pesos iniciais $\boldsymbol{\theta}$
+        \Require Número de iterações $n$
+
+        \State $k \gets 0$
+        \While {$k < n$}
+            \State $\mathbf{\hat{g}} \gets \frac{1}{m} \nabla_{\boldsymbol{\theta}} \sum_i^m L(\mathbf{\hat{y}}^{(i)}, \mathbf{y}^{(i)})$
+            \State $\boldsymbol{\theta} \gets \boldsymbol{\theta} - \alpha \mathbf{\hat{g}}$
+            \State $k \gets k + 1$
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+Serão apresentadas nas próximas subseções as variações do método do gradiente mais notórias no treinamento de redes neurais.
 
 \subsection{SGD}
 
