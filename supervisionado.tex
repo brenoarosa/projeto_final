@@ -143,7 +143,7 @@ Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de 
 
 \section{Funções Custo} \label{sec:custo}
 
-Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre a resultado obtido pela rede e seu objetivo. Assim, as sinapses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
+Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre o resultado obtido pela rede e seu objetivo. Assim, as sinapses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
 
 \subsection{Erro Médio Quadrático}
 
@@ -157,7 +157,7 @@ A fórmula \ref{eq:mse} mostra a composição do EMQ sendo $n$ o número de pare
 
 \subsection{Erro Médio Absoluto}
 
-O erro médio absoluto se assemelha ao EMQ, tendo como diferença a falta do fator quadrático, observa-se na fórmula \ref{eq:mae}.
+O erro médio absoluto se assemelha ao EMQ, tendo como diferença a falta do fator quadrático, conforme observa-se na fórmula \ref{eq:mae}.
 
 \begin{equation} \label{eq:mae}
     \frac{\displaystyle\sum^n |\hat{\mathbf{y}}_i - \mathbf{y}_i|}{n}
@@ -165,7 +165,7 @@ O erro médio absoluto se assemelha ao EMQ, tendo como diferença a falta do fat
 
 \subsection{Erro Médio Absoluto Percentual}
 
-Há situações em que se pretende mapear um objetivo com extensão de diferentes ordens de grandeza. O uso de erro médio quadrático ou absoluto nestes casos irá dar menos relevância a entradas pequenas. Para solucionar este problema, o erro médio absoluto percentual é composto, conforme apresentado na fórmula \ref{eq:mape}
+Há situações em que se pretende mapear um objetivo com extensão de diferentes ordens de grandeza. O uso de erro médio quadrático ou absoluto nestes casos irá dar menos relevância a entradas pequenas. Para solucionar este problema, o erro médio absoluto percentual é composto conforme apresentado na fórmula \ref{eq:mape}
 
 \begin{equation} \label{eq:mape}
     \frac{100}{n}\sum^n \left|\frac{\hat{\mathbf{y}}_i - \mathbf{y}_i}{\mathbf{y}_i}\right|
