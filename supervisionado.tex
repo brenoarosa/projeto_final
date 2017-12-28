@@ -2,19 +2,19 @@ O aprendizado supervisionado é o campo dentro de aprendizado de máquina que vi
 
 \section{Naive Bayes}
 
-\textit{Naive Bayes} é uma das técnicas mais simples disponíveis nesse contexto. Ela se baseia no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Abaixo veremos sua formulação matemática como descrita por Schütze \cite{schutze08}.
+\textit{Naive Bayes} é uma das técnicas mais simples disponíveis nesse contexto. Ela se baseia no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o dado. Será apresentado a seguir sua formulação matemática como descrita por Schütze~\cite{schutze08}.
 
-Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$ é dada pelo teorema de Bayes:
+Tendo $\mathbf{x}$ tal que $\mathbf{x} \in \mathbf{X}$ em que $\mathbf{X}$ é o conjunto de dados de treinamento, a sua probabilidade de pertencer a classe $c_k \in \mathbf{c}$, sendo $\mathbf{c}$ o conjunto de classes, é dada pelo teorema de Bayes:
 \begin{equation} \label{eq:bayes}
     p(c_k \mid \mathbf{x}) = \frac{p(c_k) \ p(\mathbf{x} \mid c_k)}{p(\mathbf{x})}
 \end{equation}
 
-Sendo $\mathbf{x}$ um vetor de $n$ características, ao se assumir independência entre elas obtém-se:
+No qual $\mathbf{x}$ é um vetor de $n$ características, ao se assumir independência entre elas obtém-se:
 \begin{equation}
     p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
 \end{equation}
 
-Logo, pode-se rescrever a equação~\ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas características:
+Logo, pode-se reescrever a equação~\ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas características:
 \begin{equation}
     p(c_k \mid \mathbf{x}) = \frac{p(c_k) \prod_{i=1}^n p(x_i \mid c_k)}{p(\mathbf{x})}
 \end{equation}
@@ -29,38 +29,38 @@ Portanto, tem-se que o estimador ótimo $\hat{y}$ escolherá pela classe que ati
     \hat{y} = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
 \end{equation}
 
-Vê-se então que o modelo de \textit{Naive Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$. Estes parâmetros serão extraídos do conjunto de treino por máxima verosimilhança.
+Vê-se então que o modelo de \textit{Naive Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$. Estes parâmetros serão extraídos do conjunto de treino por máxima verossimilhança.
 
 Dado um vetor $\mathbf{y}$ de tamanho $m$ que representa as classificações referentes a $\mathbf{X}$, pode-se estimar $p(c_k)$ pela contagem de vezes que a classe $c_k$ aparece no conjunto de treinamento:
 \begin{equation}
     \hat{p}(c_k) = \frac{\sum_{i=1}^m [y_i = c_k]}{m}
 \end{equation}
 
-Por sua vez, $p(x_r \mid c_k)$ é estimado utilizando a contagem de vezes que uma característica aparece dividida pelo total de características presentes em $\mathbf{X'}$ que é o subconjunto de treino pertencente a classe $c_k$:
+Por sua vez, $p(x_r \mid c_k)$ é estimado utilizando a contagem de vezes que uma característica aparece dividida pelo total de características presentes no subconjunto $\mathbf{X'}$, subconjunto de dados de treinamento pertencentes a classe $c_k$:
 \begin{equation}
     \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X'}|}
 \end{equation}
 
 Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são obtidos através de contagens sobre os dados de treinamento e que sua predição utiliza apenas multiplicações.
-Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada mesmo em problemas com notória dependência de características como a classificação de texto \cite{mccallum98}.
+Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada mesmo em problemas com notória dependência entre características como a classificação de texto~\cite{mccallum98}.
 
 \section{Support Vector Machine}
 
-O conceito fundamental do \textit{Support Vector Machine} (SVM) se dá pela obtenção de um vetor de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura~\ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
+O conceito fundamental do \textit{Support Vector Machine} (SVM) se dá pela obtenção de vetores de suporte que melhor separe as classes. Esta separação é feita de maneira que se maximize a margem entre as classes. A figura~\ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada pelos dados de cada classe mais próximos a ela.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.7]{svm.png}
     \caption{Reta de maior margem entre classes.}
-    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
     \label{fig:svm}
     \end{center}
 }
 \end{center}
 \end{figure}
 
-Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em \cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção~\ref{sec:generalizacao}.
+Por se basear nos dados próximos ao limiar de separação das classes, o algoritmo passa a ser incapaz de distinguir os casos de classes que não são separáveis sem erros. A solução desse problema foi a criação de uma variável de relaxamento que define um número máximo de erros de classificação permitido. Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em~\cite{cortes95}. Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização. Outros exemplos de regularizadores, como este, serão apresentados na subseção~\ref{sec:generalizacao}.
 
 Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs não são capazes de segregar classes não linearmente distinguíveis. Podemos observar um exemplo deste caso na figura~\ref{fig:svm-lin}, na qual um SVM treinado tenta separar classes concêntricas.
 
@@ -69,21 +69,21 @@ Como utilizam vetores de suporte para definir hiperplanos de separação, SVMs n
     \begin{center}
     \includegraphics[scale=0.7]{svm-lin.png}
     \caption{SVM em dados não linearmente separáveis.}
-    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
     \label{fig:svm-lin}
     \end{center}
 }
 \end{center}
 \end{figure}
 
-Para contornar esse impedimento, foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis \cite{scholkopf02}. A figura~\ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura~\ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
+Para contornar esse impedimento, foi elaborado o que se chamou de \textit{kernel trick}. Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente separáveis~\cite{scholkopf02}. A figura~\ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura~\ref{fig:svm-lin} após seu mapeamento por uma função de base radial.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.7]{svm-rbf.png}
     \caption{Transformação de dados por função de base radial.}
-    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
     \label{fig:svm-rbf}
     \end{center}
 }
@@ -97,49 +97,52 @@ Neste novo espaço definido pela transformação, os dados são linearmente sepa
     \begin{center}
     \includegraphics[scale=0.7]{svm-rbf-clas.png}
     \caption{SVM com \textit{kernel} de base radial.}
-    \small Imagem com direitos cedidos para uso não comercial, retirada de \cite{vanderplas15}
+    \small Imagem com direitos cedidos para uso não comercial, retirada de~\cite{vanderplas15}
     \label{fig:svm-rbf-clas}
     \end{center}
 }
 \end{center}
 \end{figure}
 
-Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$ \cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo através da qual tornou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente \cite{suykens99}.
+Uma limitação na utilização deste algoritmo é seu tempo de treinamento. Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e $O(n_{caracteristicas} \times n_{dados}^3)$~\cite{list09}. Porém, Suykens e Vandewalle desenvolveram uma função custo através da qual tornou possível realizar o treinamento de SVMs a partir da otimização pelo método do gradiente~\cite{suykens99}.
 
 \section{Redes Neurais} \label{sec:nn}
 
-redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro. Há diversas variações de redes neurais. Nesta subseção será abordada a mais simples, redes neurais feedforward, e na subseção~\ref{sec:convolucionais} serão apresentadas redes neurais Convolucionais.
+Redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro~\cite{wiener61}. Inspirado pelo campo do conexionismo criado por  Rosenblatt \cite{rosenblatt58} desenvolve%falar de perceptron, prova que perceptron nao funcionava, introducao MLP
 
-Redes neurais feedforward são compostas de camadas de neurônios sucessivamente interligadas por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, logística etc. Como exemplificação, há a figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
+Redes neurais MLP são compostas de camadas de neurônios sucessivamente interligadas por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, logística etc. Como exemplificação, há a figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.75]{ffnn.png}
-    \caption{Rede Neural Feedforward}
+    \caption{Rede neural multilayer perceptron}
     \label{fig:ff-neural-net}
     \end{center}
 }
 \end{center}
 \end{figure}
 
-Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não linear \cite{hornik89}.
+Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não linear~\cite{hornik89}.
 
-Para uma Rede Neural simular uma função, precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede uma boa representação para a função escolhida. Em outras palavras, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses. Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio padrão inversamente proporcional ao número de dados de treinamento \cite{lecun12}. Posteriormente, é feita uma otimização da representação em função dos pesos. Para realizar esta otimização, utiliza-se normalmente \textit{Backpropagation} para se encontrar o ajuste ideal de cada sinapse baseada, em sua contribuição no erro. Uma explicação deste método é apresentada por Williams e Hinton em \cite{williams86}.
+% falar da estagnação, introdução BP
+Para uma rede neural simular uma função, precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede uma boa representação para a função escolhida. Em outras palavras, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses. Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio padrão inversamente proporcional ao número de dados de treinamento~\cite{lecun12}. Posteriormente, é feita uma otimização da representação em função dos pesos. Para realizar esta otimização, utiliza-se normalmente \textit{Backpropagation} para se encontrar o ajuste ideal de cada sinapse baseada, em sua contribuição no erro. Uma explicação deste método é apresentada por Williams e Hinton em~\cite{williams86}.
+
+% abrir BP
 
 \subsection{Deep Learning}
 
-O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas. Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de objetos, tradução etc \cite{lecun15}. Chamou-se de \textit{Deep Learning} o campo de estudo de redes neurais com muitas camadas.
+O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas. Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de objetos, tradução etc~\cite{lecun15}. Chamou-se de \textit{Deep Learning} o campo de estudo de redes neurais com muitas camadas.
 
-Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser realizada. O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não observáveis. O aprofundamento das redes visa a reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de características, que usualmente requer expertise no domínio do problema. Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc. Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta etapa \cite{esteva17}.
+Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser realizada. O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não observáveis. O aprofundamento das redes visa a reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de características, que usualmente requer expertise no domínio do problema. Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc. Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta etapa~\cite{esteva17}.
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
 A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede. Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais Convolucionais, cujas conexões são baseadas no funcionamento do córtex visual.
 
-Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes feedforward \cite{goodfellow16}. Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado \cite{goodfellow16}.
+Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes feedforward~\cite{goodfellow16}. Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado~\cite{goodfellow16}.
 
-Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais \cite{lecun95}. Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
+Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais~\cite{lecun95}. Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
 
 \section{Funções Custo} \label{sec:custo}
 
@@ -197,9 +200,9 @@ A expressão~\ref{eq:cec} mostra o uso da entropia cruzada como função custo. 
 
 \section{Otimizadores}
 
-Definidas as funções custo, nesta seção serão abordados os algoritmos responsáveis por sua minimização. Embora a área de otimização apresente uma vasta gama de opções, sua utilização em aprendizado de máquina costuma se restringir a algoritmos de primeira ordem, como o gradiente descendente, principalmente por seu menor custo computacional. O método do gradiente, primeiramente apresentado por Cauchy em 1847 \cite{cauchy1847}, consiste em minimizar a função custo por meio de atualizações iterativas de parâmetros do modelo, a partir da derivada da própria função custo em relação aos parâmetros.
+Definidas as funções custo, nesta seção serão abordados os algoritmos responsáveis por sua minimização. Embora a área de otimização apresente uma vasta gama de opções, sua utilização em aprendizado de máquina costuma se restringir a algoritmos de primeira ordem, como o gradiente descendente, principalmente por seu menor custo computacional. O método do gradiente, primeiramente apresentado por Cauchy em 1847~\cite{cauchy1847}, consiste em minimizar a função custo por meio de atualizações iterativas de parâmetros do modelo, a partir da derivada da própria função custo em relação aos parâmetros.
 
-Redes neurais, em geral, possuem funções custo não convexas. Assim sendo, o algoritmo de gradiente descendente não garante convergência ao mínimo global. A convergência a mínimos locais torna o modelo sensível a parâmetros, como funções de ativação, número de neurônios, etc., e o torna sensível também à inicialização dos pesos, como mostra Glorot no artigo em que apresenta um método de inicialização de pesos homônimo \cite{glorot10}. Entretanto, o problema de convergência não se limita a mínimos locais. Dauphin \cite{dauphin14} mostra que quanto maior o número de variáveis latentes do modelo, maior a proporção de pontos de sela em relação a mínimos locais. Mostra também que os mínimos locais estão mais propensos a aparecer em pontos críticos com baixo custo, enquanto pontos de sela costumam aparecer em pontos de alto custo. Goodfellow \cite{goodfellow14} apresenta resultados empíricos da efetividade do método do gradiente na fuga dos pontos de sela.
+Redes neurais, em geral, possuem funções custo não convexas. Assim sendo, o algoritmo de gradiente descendente não garante convergência ao mínimo global. A convergência a mínimos locais torna o modelo sensível a parâmetros, como funções de ativação, número de neurônios, etc., e o torna sensível também à inicialização dos pesos, como mostra Glorot no artigo em que apresenta um método de inicialização de pesos homônimo~\cite{glorot10}. Entretanto, o problema de convergência não se limita a mínimos locais. Dauphin~\cite{dauphin14} mostra que quanto maior o número de variáveis latentes do modelo, maior a proporção de pontos de sela em relação a mínimos locais. Mostra também que os mínimos locais estão mais propensos a aparecer em pontos críticos com baixo custo, enquanto pontos de sela costumam aparecer em pontos de alto custo. Goodfellow~\cite{goodfellow14} apresenta resultados empíricos da efetividade do método do gradiente na fuga dos pontos de sela.
 
 O algoritmo~\ref{al:gd} descreve a forma tradicional do gradiente descendente, dado que $L$ é a função custo adotada e que $\mathbf{\hat{y}}$ é o mapeamento obtido pela rede neural a partir dos dados $\mathbf{x}$ e pesos $\boldsymbol{\theta}$. Observa-se que $\mathbf{\hat{g}}$ é a estimativa do gradiente dos pesos obtida a partir dos dados de treinamento.
 
@@ -225,7 +228,7 @@ Serão apresentadas nas próximas subseções as variações do método do gradi
 
 \subsection{Gradiente Descendente Estocástico}
 
-    A forma canônica do algoritmo do gradiente descendente começa a apresentar dificuldades de utilização em conjuntos de dados de tamanho considerável. Como observa-se no algoritmo~\ref{al:gd}, para cada atualização dos pesos $\boldsymbol{\theta}$ é necessária a estimação do gradiente $\mathbf{\hat{g}}$, a qual, por sua vez, depende da computação da função custo sobre todos os dados. Além do alto custo computacional, bases de dados grandes tendem a conter várias instâncias de dados muito próximos, não adicionando significativamente informação à estimação do gradiente.
+A forma canônica do algoritmo do gradiente descendente começa a apresentar dificuldades de utilização em conjuntos de dados de tamanho considerável. Como observa-se no algoritmo~\ref{al:gd}, para cada atualização dos pesos $\boldsymbol{\theta}$ é necessária a estimação do gradiente $\mathbf{\hat{g}}$, a qual, por sua vez, depende da computação da função custo sobre todos os dados. Além do alto custo computacional, bases de dados grandes tendem a conter várias instâncias de dados muito próximos, não adicionando significativamente informação à estimação do gradiente.
 
 Uma das soluções deste problema, abordada pelo \textit{Gradiente Descendente Estocástico}, é a divisão do conjunto de treinamento em lotes, nos quais serão estimados os gradientes. Cada interação sobre o conjunto inteiro de dados é chamada de época e entre cada época costuma-se embaralhar os dados. Já as outras partes do algoritmo permanecem iguais à implementação tradicional como apresentado em~\ref{al:gd}.
 
@@ -254,13 +257,13 @@ A escolha da taxa de treinamento envolve uma troca entre tempo de treinamento e 
     \end{algorithmic}
 \end{algorithm}
 
-O momento permite que, enquanto o gradiente $\mathbf{\hat{g}}$ mantiver o mesmo sinal entre iterações, o módulo da velocidade $\mathbf{v}$ cresça, acelerando o processo de aprendizado. Quando o sinal do gradiente for invertido, ou seja, passar de um ponto de custo mínimo, o módulo da velocidade será reduzido até seu sentido ser revertido, voltando ao mínimo. Segundo Haykin \cite{haykin09}, o uso do momento tem um efeito estabilizador no algoritmo de aprendizado.
+O momento permite que, enquanto o gradiente $\mathbf{\hat{g}}$ mantiver o mesmo sinal entre iterações, o módulo da velocidade $\mathbf{v}$ cresça, acelerando o processo de aprendizado. Quando o sinal do gradiente for invertido, ou seja, passar de um ponto de custo mínimo, o módulo da velocidade será reduzido até seu sentido ser revertido, voltando ao mínimo. Segundo Haykin~\cite{haykin09}, o uso do momento tem um efeito estabilizador no algoritmo de aprendizado.
 
 \subsection{Adam}
 
-Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.} \cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.} \cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na seção~\ref{sec:w2v}.
+Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.}~\cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.}~\cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na seção~\ref{sec:w2v}.
 
-Kingma e Ba \cite{kingma14} projetaram o algoritmo \textit{Adam} \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
+Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam} \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
 
 O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocódigo. Os valores dos decaimentos betas costumam ser escolhidos em torno de 0.9 para $\beta_{1}$ e 0.999 para $\beta_{2}$. Pelos momentos serem inicializados em zero, é necessário corrigir a tendência para se obter a verdadeira estimativa.
 
@@ -289,7 +292,7 @@ O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocó
     \end{algorithmic}
 \end{algorithm}
 
-\textit{Adam} apresenta robustez à escolha da taxa de treinamento $\epsilon$, visto que esta funciona como um limite superior da taxa efetiva de atualização dos pesos, como provado em seu artigo \cite{kingma14}, juntamente com sua análise de convergência e com seus resultados experimentais. Por se utilizar de médias móveis na estimação dos momentos, o algoritmo apresenta outra vantagem, sua capacidade de se adaptar a funções objetivos não estacionárias.
+\textit{Adam} apresenta robustez à escolha da taxa de treinamento $\epsilon$, visto que esta funciona como um limite superior da taxa efetiva de atualização dos pesos, como provado em seu artigo~\cite{kingma14}, juntamente com sua análise de convergência e com seus resultados experimentais. Por se utilizar de médias móveis na estimação dos momentos, o algoritmo apresenta outra vantagem, sua capacidade de se adaptar a funções objetivos não estacionárias.
 
 Por sua robustez à escolha de hiperparametros e por sua aceleração do processo de aprendizado \textit{Adam} se tornou uma das principais técnicas de otimização de redes neurais profundas.
 
@@ -317,14 +320,28 @@ O uso de modelos robustos como os de \textit{Deep Learning} implica em uma maior
 
 As regularizações de norma compõem um dos grupos mais simples de regularização. Seu funcionamento é possível pois se adiciona à função custo um termo proporcional aos pesos, penalizando neurônios com grandes normas. Assim, limita-se a capacidade do modelo e, consequentemente, diminui-se o potencial de \textit{overfitting}.
 
-Também conhecida como regularização $L_{2}$, a regularização de Tikhonov utiliza-se da norma quadrática dos pesos. A formula \ref{eq:custo-l2} exemplifica a função custo erro médio quadrático com o termo adicional de regularização $L_{2}$, que por sua vez é controlado por uma constante $\lambda$.
+Também conhecida como regularização $L_{2}$, a regularização de Tikhonov utiliza-se da norma quadrática dos pesos. A formula~\ref{eq:custo-l2} exemplifica a função custo erro médio quadrático com o termo adicional de regularização $L_{2}$, que por sua vez é controlado por uma constante $\lambda$.
 
 \begin{equation} \label{eq:custo-l2}
     \frac{\displaystyle\sum^n |\hat{\mathbf{y}}_i - \mathbf{y}_i|^2}{n} + \frac{\lambda}{2} \lVert \boldsymbol{\theta} \rVert_{2}^{2}
 \end{equation}
 
-Krogh e Hertz \cite{krogh92} provam que o uso de regularização $L_{2}$ é capaz de suprimir parâmetros irrelevantes, diminuindo o número de parâmetros do modelo, e de reduzir o efeito de ruídos presentes na anotação dos dados.
+Krogh e Hertz~\cite{krogh92} provam que o uso de regularização $L_{2}$ é capaz de suprimir parâmetros irrelevantes, diminuindo o número de parâmetros do modelo, e de reduzir o efeito de ruídos presentes na anotação dos dados.
 
 \subsection{Dropout}
 
+Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o \textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento. Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neuronio, a partir desse ponto se desconectam os neuronios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma rede neural composta por um subconjunto de neuronios da rede original os quais serão treinados com \textit{Backpropagation} como habitual. Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de redes neurais durante a fase de aprendizado. \textit{Dropout} pode ser aplicado tanto em neuronios de camadas escondidas como em neuronios de entrada, valores de $p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
+
+\textit{Dropout} se deriva de um conjunto de técnicas de combinação de modelos, também conhecidas como \textit{ensembling}. Como mostra Dietterich \textit{et al.}~\cite{dietterich00}, modelos significativamente diferentes quando combinados costumam resultar em melhoras na performace quando comparados à utilização de cada modelo isoladamente. No escopo de \textit{Deep Learning} o custo computacional do treinamento de múltiplos modelos reduz a viabilidade desse processo. Neste sentido, \textit{Dropout} aproxima-se de técnicas tradicionais de \textit{ensembling}, como \textit{bagging}, tendo como principal diferença o compartilhamento de pesos entre as redes neurais obtidas pelos desligamentos de neuronios, que permite o treinamento de um grande número de modelos sem um aumento computacional proporcional. Ressaltando-se que o apagamento de neuronios resulta em redes de tamanho reduzido, diminuindo assim seu poder de mapeamento, logo, a utilização dessa técnica exige um número superior de parâmetros para uma mesma capacidade de mapeamento.
+
+Essa ferramenta se inspira na reprodução sexuada, que envolve trocas entre genes de dois individuos distintos, Srivastava \textit{et al.} acreditam que assim como na evolução biológica, técnicas que reduzam a co-adaptação entre neuronios tornam redes neurais mais resistentes a destruição de informação, fazendo com que cada neuronio extraia caracteristicas relevantes por si só, aumentando a redundancia e melhorando assim o desempenho da rede como um todo.
+
+A utilização de modelos com \textit{Dropout} na fase de inferência requer um cuidado adicional. Por não haver desligamento nessa fase é necessário normalizar o valor esperado de cada neurônio para que este seja igual ao do periodo de treinamento. Há diferentes métodos, sendo a abordagem mais simples a multiplicação de cada neuronio por sua probabilidade de manutenção $p$.
+
 \section{Supervisão Distante}
+
+O sucesso de algoritmos de \textit{Deep Learning} depende da disponibilidade de grandes volumes de dados de treinamento. Apesar da crescente produção de dados, para muitos problemas o processo de anotação é uma tarefa manual, tornando-a custosa e limitando assim o conjunto de dados supervisionados.
+
+Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma carácteristica que tenha forte correlação com a saída desejada e considera-la como uma anotação ruidosa~\cite{go09}.
+
+Esse procedimento obteve êxito em algumas aplicações de processamento de linguaguem natural~\cite{craven99}\cite{go09} pela abundância de informaçoes presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteinas e suas relações.
