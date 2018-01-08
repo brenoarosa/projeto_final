@@ -16,33 +16,59 @@ sentimentos e opiniões de cada um.
 Com isso, após o surgimento das redes sociais, a presença online deixou de ser uma comunicação de via única.
 Agora, os leitores interagem com a fonte de informação recebida, seja ela uma notícia, atualização de amigos, etc.
 
-Essa febre de compatilhamentos, em tempo real, de status, ideias, atividades e interesses faz com que
-os usuários passem a gastar menos tempo navegando de forma independente e tendam a se guiar mais por recomendações de
-seus contatos, que passam a servir como curadores de conteúdo ao qual um usuário terá acesso.
+Essa presença central das mídias sociais na vida das pessoas faz com que os usuários passem a ser mais influenciados
+por opniões que trafegam pela mesma.
+Desta maneira, as redes sociais passam a ter um peso maior na tomada de decisão de cada individuo, como na compra de
+um produto ou na escolha de um candidato para a ser votado.
+O impacto destes novos meios de comunicação podem ser observados, por exemplo, nas mobilizações de massa ocorridas na
+primavera árabe em 2011.
 
-Nesse sentido, trabalhos que analisem o que se está dizendo nas redes sociais ganham importância comercial.
-Para uma emissora de TV, por exemplo, é interessante saber o que está sendo dito sobre suas emissões, assim como para a
-acessoria de um cantor, é importante descobrir se sua nova canção está agradando ou não o público.
-O tema do presente trabalho visa a contribuir para essa questão.
-Pretende-se analisar os sentimentos (positivo e negativo) presentes em \textit{tweets}.
+Nesse sentido, tornaram-se necessários trabalhos que analisem o que se está dizendo nas redes sociais.
+Para uma emissora de TV, por exemplo, é interessante saber o que está sendo dito sobre sua programação, assim como para
+a acessoria de um cantor, é importante descobrir se sua nova canção está agradando ou não seu público.
 
-A criação de conteúdo digital acompanha o crescimento da internet.
+Entretanto, a criação de conteúdo digital acompanha o crescimento da internet.
 No ano de 2016, a cada sessenta segundos foram adicionadas 500 horas vídeo no Youtube, realizadas 3.8 milhões de buscas
 no Google e publicados 450 mil \textit{tweets}~\cite{smartinsights}.
-
-Pode-se observar que torna-se inviavel a realização de análise de sentimento manualmente sobre mídias com esse volume
+Pode-se observar que se torna impraticável a realização de análise de sentimento manualmente sobre mídias com esse volume
 de dados.
 Portanto, a utilização de métodos de aprendizado de máquina é um modo de viabilizar a realização dessa tarefa.
 
 Jim Yu, presidente da empresa de marketing digital BrightEdge, ressalta que os sentimentos expressados por clientes em
 relação a uma marca é uma das principais métricas de \textit{branding}~\cite{marketingland}.
-O colunista da Forbes, Daniel Newman, ressalta que a utilização desta e outras técnicas de big data vem revolucionando
+O colunista da Forbes, Daniel Newman, destaca que a utilização desta e outras técnicas de big data vem revolucionando
 a forma de se fazer marketing, permitindo uma maior personalização dos produtos e fortalecimento de relaçao com os
 clientes.
 Além de ser utilizada como métrica de relações comerciais, análises de sentimento de mídias sociais são aplicadas na
-predição de mercados financeiros~\cite{bollen11}, no monitoramento de eventos como eleições e olimpiadas, entre outros.
+predição de mercados financeiros~\cite{bollen11}, na predição de resultados eleitorais~\cite{tumasjan10}, entre outros.
 
 \section{Análise de Sentimento}
+
+O campo de estudos da análise de sentimento, também chamado de mineração de opnião, é um dos ramos mais ativos do
+processamento de linguagem natural~\cite{liu12}.
+A análise de sentimento visa analisar a opnião, a avaliação, a emoção e  a atitude de um documento em relação a um
+evento, produto, serviço, organização, etc.
+Apesar do processamento de linguagem natural ter um longo histórico de estudos, a análise de sentimento se consolidou
+apenas no inicio dos anos 2000 com a crescente demanda comercial.
+Observa-se que o crescimento de interesse nessa área tem grande correlação com o crescimento de mídias sociais e do
+volume de dados, visto que o sucesso das redes sociais disponibilizam quantidades massivas de dados possibilitando o
+desenvolvimento de técnicas quanto oferecem oportunidades de aplicações~\cite{liu12}.
+
+O campo de análise de sentimento apresenta diferentes sub-áreas de estudo.
+Dentre elas, a tarefa mais presente na literatura e que abordaremos neste trabalho é a análise de polaridade de um
+documento.
+A análise de polaridade visa classificar textos em uma escala entre positivo e negativo.
+Encontra-se também estudos que visam determinar a subjetividade ou objetividade de um texto, como no trabalho de Wiebe e
+Rilof~\cite{Wiebe05}.
+Também entra no escopo de análise de sentimento a classificação de emoções presentes em uma mensagem, como felicidade,
+raiva, triteza, etc.
+Outro foco de pesquisa com grande aplicações práticas é a análise de sentimento porém não da mensagem como um todo, mas
+do sentimento em relação a uma entidade presente na mensagem.
+O contrário também é possivel, a análise da influência de sentimento de um termo em relação a mensagem.
+Percebe-se que a análise de sentimento se desmembra em varias subdivisões, novas subdivisões surgem a cada dia visto a
+área ser tão recente, o que confirma seu grande potencial de aplicação.
+
+% mostrar um exemplo de fato
 
 \section{Twitter}
 % falar do twitter, possivelmente dar exemplo de tweet, explicar hashtag pq aparece em stopwords
