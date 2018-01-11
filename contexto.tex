@@ -21,7 +21,8 @@ por opniões que trafegam pela mesma.
 Desta maneira, as redes sociais passam a ter um peso maior na tomada de decisão de cada individuo, como na compra de
 um produto ou na escolha de um candidato para a ser votado.
 O impacto destes novos meios de comunicação podem ser observados, por exemplo, nas mobilizações de massa ocorridas na
-primavera árabe em 2011.
+primavera árabe em 2011 que levaram a queda de governos no qual as mídias sociais exerceram papel
+crítico~\cite{mourtada11}.
 
 Nesse sentido, tornaram-se necessários trabalhos que analisem o que se está dizendo nas redes sociais.
 Para uma emissora de TV, por exemplo, é interessante saber o que está sendo dito sobre sua programação, assim como para
@@ -65,10 +66,61 @@ raiva, triteza, etc.
 Outro foco de pesquisa com grande aplicações práticas é a análise de sentimento porém não da mensagem como um todo, mas
 do sentimento em relação a uma entidade presente na mensagem.
 O contrário também é possivel, a análise da influência de sentimento de um termo em relação a mensagem.
-Percebe-se que a análise de sentimento se desmembra em varias subdivisões, novas subdivisões surgem a cada dia visto a
-área ser tão recente, o que confirma seu grande potencial de aplicação.
+Percebe-se que a análise de sentimento se desmembra em varias subdivisões, novas subdivisões surgem a cada dia visto que
+a área ainda está em sua infância, o que confirma seu grande potencial de aplicação.
 
-% mostrar um exemplo de fato
+% Inserir exemplo
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | p{10cm} |}
+        \hline
+        \textbf{Sentimento} & \textbf{\textit{Tweet}} \\ \hline
+        Positivo & Grande notícia, João Sousa e Gastão Elias representam Portugal nos Jogos Olímpicos do Rio de Janeiro.
+        \\ \hline
+        Neutro & Entrevistei hoje a Priscilla Carnaval do BMX. Classificada para o \#Rio2016, ela tem novidades na
+        preparação olímpica. \\ \hline
+        Negativo & Estão transformando Olimpíadas que é algo série num espetáculo triste e de mau gosto. \\ \hline
+        \end{tabular}
+        \caption{Exemplo de classificação de sentimento em \textit{tweets}.}
+    \end{center}
+    \label{tab:sentiment}
+\end{table}
+
+% falar de tecnicas com papers utilizados
+% (revisão bibliografica)
 
 \section{Twitter}
-% falar do twitter, possivelmente dar exemplo de tweet, explicar hashtag pq aparece em stopwords
+
+O Twitter é um microblog e rede social no qual os usuários interagem a partir de mensagens, chamadas \textit{tweets}.
+Microblogs são meios de comunicação que permitem usuários a compartilhar conteúdos e midias.
+As principais caracteristicas dos microblogs são a brevidade e instantaniedade.
+Os \textit{tweets} são limitados a 140 caracteres e podem conter fotos, videos, links, localizações referências a
+usuários e \textit{hashtags}.
+Criado em 2006, o site cresceu rapidamente a ponto de se tornar uma redes sociais com maior número de usuários no mundo.
+No ano de 2016 o Twitter a plataforma obteve a presença de 330 milhões de usuários ativos por mês.
+
+Um ponto chave da comunicação por Twitter são as \textit{hashtags}.
+\textit{Hashtags} são palavras-chave ou frases que definem um tópico ou tema.
+Elas são caracterizadas por serem precedidas pelo simbolo da tralha (\#) e por não conterem espaços ou pontuação, como
+ilustrado na figura~\ref{fig:hashtag}.
+São, ainda, elementos clicáveis que apontam o leitor para outra página.
+Essa outra página, por sua vez, contém um mural com todas as citações contendo aquela \textit{hashtag}.
+Desta forma, \textit{hashtags} funcionam como agregadores de \textit{tweets}.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.7]{tweet-hashtag.png}
+    \caption{Exemplo de \textit{tweet} com a utilização de \textit{hashtag}.}
+    \label{fig:hashtag}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+O tamanho reduzido das mensagens veiculadas por Twitter e o meio pelo qual elas circulam levam a utilização de
+variações gramáticais da lingua especificas para este ambiente.
+É comum encontrar, por exemplo, o uso excessivo de abreviações para reduzir a contagem total de caracteres, a repetição
+de pontuação para reforçar intensidade e o uso de neologismos.
+O fato do tamanho reduzido e linguaguem própria apresentam uma dificuldade adicional para o desenvolvimento  de
+classificadores.

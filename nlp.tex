@@ -1,12 +1,23 @@
-% falar do contexto geral de NLP
+O processamento de linguagem natural (NLP), é um dos principais ramos da Inteligência Artificial.
+Um de seus marcos inicias desse área de conhecimento foi o teste de Turing~\cite{turing50} no qual propõe a capacidade
+de comunicação como um critério de inteligência.
+Desde sua criação, no inicio dos anos 50, o NLP se consolidou de maneira a se fazer presente no dia-a-dia das pessoas
+como pode-se observar na utilização de serviços automatizados de atendimento ao clientes, ferramentas de tradução etc.
+Grande parte destas aplicações provem da utilização de técnicas de aprendizado supervisionado como serão apresentados
+no capitulo~\ref{supervisionado}.
+
+As seções a seguir apresentam as transformações aplicadas a textos necessárias para viabilizar a aplicação de algoritmos
+de aprendizado.
 
 \section{Pré-Processamentos}
 
-A primeira etapa na preparação de um documento e/ou mensagem para utilização em algoritmos de aprendizado de máquina é a
-separação por palavras.
+A primeira etapa na preparação de uma mensagem para utilização em algoritmos de aprendizado de máquina é a separação por
+palavras.
 Este processo é chamado de \textit{tokenização}, denominando-se cada palavra resultante como token.
 A \textit{tokenização} costuma incluir a separação de contrações como a transformação de \textit{dela} em \textit{de}
 e \textit{ela}.
+
+% figura mostrando tokenização
 
 Para aplicação de tarefas como a de classificação é comum se remover as palavras mais comuns de um idioma e que não
 agregam informação discriminantes para o objetivo desejado, essas palavras são chamadas de \textit{stopwords}.
