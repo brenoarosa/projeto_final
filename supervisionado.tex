@@ -151,7 +151,7 @@ Eles são classificadores binários compostos por duas camadas de neurônios art
 interligados por sinapses.
 As sinapses funcionam como um ponderador linear dos neurônios da camada anterior.
 Os neurônios, por sua vez, representam uma função de ativação, no caso do perceptron a função degrau, porém de maneira
-mais geral utiliza-se as funções: tangente hiperbólica, logística etc.
+mais geral dispõem-se de funções como: tangente hiperbólica, logística etc.
 
 A utilização de perceptrons com multiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
 (MLP), como exemplicado na figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
@@ -169,57 +169,77 @@ escondidas, as quais são seguidas pela camada de saída, que apontará o result
 \end{center}
 \end{figure}
 
+Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede
+contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não
+linear~\cite{hornik89}.
+
 Porém, no final dos anos 60, Misky e Papert~\cite{minsky72} publicaram um estudo no qual prova que redes neurais com
 apenas duas camadas, como o perceptron, são incapazes de realizar classificações não lineares.
 Esta descoberta, junto com a inviabilidade computacional de se trabalhar com redes maiores na época resultou em uma
 estagnação dos estudos de redes neurais artificais.
 
 Apenas em 1982 quando Werbos~\cite{werbos82} aplicou o método de otimização por auto diferenciação em redes neurais,
-facilitando o aprendizado de redes de múltiplas camadas que o estudo de redes neurais voltou a receber atenção.
+facilitando o aprendizado de redes de múltiplas camadas, que o estudo de redes neurais voltou a receber atenção.
 Este método foi chamado de backpropagation.
 Hinton \textit{et al.}~\cite{williams86} afirmam que este método é capaz de obter representações nas camadas
 intermediárias que são apropriadas para resolução do problema em questão.
-Será descrito a seguir um exemplo de backpropagation aplicado a uma rede de uma camadas escondida e uma saída.
+
+Será descrito a seguir um exemplo de treinamento por backpropagation aplicado a uma rede de uma camadas escondida e uma
+saída.
 
 A primeira etapa para utilização do backpropagation é computar o valor previsto ${\hat{y}_i}$ pela rede neural para
-uma dada observação de índice $i$ do conjunto de treinamento, como descrito nas equações~\ref{eq:nn-forward}, nas
-quais $f$ representa a função de ativação, $\mathbf{x}_i$ o conjunto de caractéristicas que descreve esse exemplo,
-$\mathbf{W}$ e $\mathbf{b}$ os pesos e o \textit{bias} respectivamente.
+uma dada observação de índice $i$ do conjunto de treinamento, como descrito nas
+equações~\crefrange{eq:nn-forward-a1}{eq:nn-forward-y}, nas quais $f$ representa a função de ativação; $\mathbf{x}_i$ o
+conjunto de caractéristicas que descreve esse exemplo; $\mathbf{W}$ e $\mathbf{b}$ os pesos e o \textit{bias}
+respectivamente; e $\mathbf{h}_i$ indica a camada escondida.
 
 \begin{subequations} \label{eq:nn-forward}
 \begin{align}
-    &\mathbf{a}_i^{(1)} = \mathbf{W}^{(1)} \mathbf{x}_i + \mathbf{b}^{(1)}\\
-    &\mathbf{h}_i = f(\mathbf{a}_i^{(1)})\\
-    &a_i^{(2)} = \mathbf{W}^{(2)} \mathbf{h}_i + b^{(2)}\\
-    &\hat{y}_i = f(a_i^{(2)})
+    &\mathbf{a}_i^{(1)} = \mathbf{W}^{(1)} \mathbf{x}_i + \mathbf{b}^{(1)} \label{eq:nn-forward-a1}\\
+    &\mathbf{h}_i = f(\mathbf{a}_i^{(1)}) \label{eq:nn-forward-hidden}\\
+    &a_i^{(2)} = \mathbf{W}^{(2)} \mathbf{h}_i + b^{(2)} \label{eq:nn-forward-a2}\\
+    &\hat{y}_i = f(a_i^{(2)}) \label{eq:nn-forward-y}
 \end{align}
 \end{subequations}
 
 Em seguida, utiliza-se uma função custo $L$ para calcular o erro $J$ de representação obtido pela rede neural a partir
-das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, a seção~\ref{sec:custo} apresenta exemplos de funções
-custo, como exposto na equação~\ref{eq:nn-cost}.
-Esta etapa conclui a parte \textit{forward} do algoritmo, no qual os valores serão armazenados para ??.
+das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, como exposto na equação~\ref{eq:nn-cost}.
+A seção~\ref{sec:custo} apresenta exemplos de funções custo.
 
 \begin{equation} \label{eq:nn-cost}
     J_i = L(\hat{y}_i, y_i)
 \end{equation}
 
-Dado que o custo $J$ foi computado, ou seja, executou-se a parte \textit{forward},
+A computação do custo $J$ conclui a parte \textit{forward} do algoritmo, no qual os valores das saídas de cada camada da
+rede são armazenados para execução da etapa seguinte, a \textit{backward}.
+Na fase \textit{backward} utiliza-se o gradiente do erro da rede neural em relação a cada camada para calcular ponderar
+quanto cada peso influi no erro de representação.
+Desta maneira, parâmetros que estejam menos adaptados ao problema receberão os maiores gradientes, e consequentemente os
+maiores ajustes, visto que são os mais responsáveis pelo erro.
 
-\begin{subequations} \label{nn-backprop}
+As equações~\crefrange{eq:nn-backprop-a2}{eq:nn-backprop-b1} mostram a propagação do gradiente a partir da camada de
+saída até camada de entrada utilizando-se os valores de $\mathbf{a}_i$ previamente obtidos.
+Dispondo do gradiente da função custo em relação a saída, $\frac{\partial{J_i}}{\partial{y_i}}$, que é dependente da
+função escolhida, calcula-se por regra da cadeia o gradiente do erro em relação aos pesos e \textit{bias} da camada de
+saída como observa-se nas equações~\cref{eq:nn-backprop-w2,eq:nn-backprop-b2}.
+Computa-se também o gradiente da camada escondida como apresentado na equação~\ref{eq:nn-backprop-h}.
+Uma vez apurado o gradiente da camada escondida, pode-se calcular os gradientes dos pesos e \textit{bias} desta camada
+como presentes nas equações~\cref{eq:nn-backprop-w1,eq:nn-backprop-b1}.
+
+\begin{subequations} \label{eq:nn-backprop}
 \begin{align}
     &\frac{\partial{J_i}}{\partial{a_i^{(2)}}}
         = \frac{\partial{J_i}}{\partial{y_i}} \frac{\partial{y_i}}{\partial{a_i^{(2)}}}
-        = \frac{\partial{J_i}}{\partial{y_i}} f^{\prime}(a_i^{(2)})\\
-    &\frac{\partial{J_i}}{\partial{\mathbf{h}_i}}
-        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\partial{\mathbf{h}_i}}
-        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{W}^{(2)}\\
+        = \frac{\partial{J_i}}{\partial{y_i}} f^{\prime}(a_i^{(2)}) \label{eq:nn-backprop-a2}\\
     &\frac{\partial{J_i}}{\partial{\mathbf{W}^{(2)}}}
         = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\mathbf{W}^{(2)}}
-        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{h}_i\\
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{h}_i \label{eq:nn-backprop-w2}\\
     &\frac{\partial{J_i}}{\partial{b^{(2)}}}
         = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\partial{b^{(2)}}}
-        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \label{eq:nn-backprop-b2}\\
+    &\frac{\partial{J_i}}{\partial{\mathbf{h}_i}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\partial{\mathbf{h}_i}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{W}^{(2)} \label{eq:nn-backprop-h}
 \end{align}
 
 \begin{align}
@@ -228,35 +248,21 @@ Dado que o custo $J$ foi computado, ou seja, executou-se a parte \textit{forward
         = \frac{\partial{J_i}}{\partial{\mathbf{h}_i}} f^{\prime}(\mathbf{a}_i^{(1)})\\
     &\frac{\partial{J_i}}{\partial{\mathbf{W}^{(1)}}}
         = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \frac{\partial{\mathbf{a}_i^{(1)}}}{\mathbf{W}^{(1)}}
-        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \mathbf{x}_i\\
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \mathbf{x}_i \label{eq:nn-backprop-w1}\\
     &\frac{\partial{J_i}}{\partial{\mathbf{b}^{(1)}}}
         = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \frac{\partial{\mathbf{a}_i^{(1)}}}{\mathbf{b}^{(1)}}
-        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \label{eq:nn-backprop-b1}
 \end{align}
 \end{subequations}
-% abrir BP como descrito por williams86 (baixar pdf)
-% linkar pra funções custo
-% linkar pra otimizadores
 
-Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede
-contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não
-linear~\cite{hornik89}.
-
-% reescrever esse paragrafo
-% talvez remover todo, talvez reutilizar inicialização
-Para uma rede neural simular uma função, precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede uma boa
-representação para a função escolhida.
-Em outras palavras, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses.
-Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio
-padrão inversamente proporcional ao número de dados de treinamento~\cite{lecun12}.
-Posteriormente, é feita uma otimização da representação em função dos pesos.
-Para realizar esta otimização, utiliza-se normalmente \textit{Backpropagation} para se encontrar o ajuste ideal de cada
-sinapse baseada, em sua contribuição no erro.
-Uma explicação deste método é apresentada por Williams e Hinton em~\cite{williams86}.
-
-% varnishing gradient
+Os gradientes dos pesos e \textit{bias} serão utilizados para sua otimização pelo método do gradiente visando minimizar
+a função custo.
+A seção~\ref{sec:optimizers} aborda o tema de otimizadores, focando em rede neurais.
 
 \subsection{Deep Learning}
+
+% varnishing gradient
+% layerwise pre training
 
 O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas.
 Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de
@@ -341,7 +347,7 @@ A expressão~\ref{eq:cec} mostra o uso da entropia cruzada como função custo. 
     \frac{-\displaystyle\sum^n \sum_k \mathbf{y}_k \ln(\mathbf{\hat{y}}_k)}{n}
 \end{equation}
 
-\section{Otimizadores}
+\section{Otimizadores} \label{sec:optimizers}
 
 Definidas as funções custo, nesta seção serão abordados os algoritmos responsáveis por sua minimização. Embora a área de otimização apresente uma vasta gama de opções, sua utilização em aprendizado de máquina costuma se restringir a algoritmos de primeira ordem, como o gradiente descendente, principalmente por seu menor custo computacional. O método do gradiente, primeiramente apresentado por Cauchy em 1847~\cite{cauchy1847}, consiste em minimizar a função custo por meio de atualizações iterativas de parâmetros do modelo, a partir da derivada da própria função custo em relação aos parâmetros.
 
