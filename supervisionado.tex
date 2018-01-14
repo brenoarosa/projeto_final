@@ -144,9 +144,19 @@ limitações computacionais.
 
 \section{Redes Neurais} \label{sec:nn}
 
-Redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro~\cite{wiener61}. Inspirado pelo campo do conexionismo criado por  Rosenblatt \cite{rosenblatt58} desenvolve%falar de perceptron, prova que perceptron nao funcionava, introducao MLP
+Redes neurais são sistemas computacionais que visam replicar o modelo de processamento do cérebro~\cite{wiener61}.
+Inspirado pelo campo do conexionismo, em 1958 Rosenblatt~\cite{rosenblatt58} desenvolveu o algoritmo do perceptron.
+O perceptron foi uma das primeiras formas de redes neurais desenvolvidas.
+Eles são classificadores binários compostos por duas camadas de neurônios artificiais, uma de entrada e uma de saída,
+interligados por sinapses.
+As sinapses funcionam como um ponderador linear dos neurônios da camada anterior.
+Os neurônios, por sua vez, representam uma função de ativação, no caso do perceptron a função degrau, porém de maneira
+mais geral utiliza-se as funções: tangente hiperbólica, logística etc.
 
-Redes neurais MLP são compostas de camadas de neurônios sucessivamente interligadas por sinapses. As sinapses funcionam como um ponderador linear dos neurônios da camada anterior. Os neurônios, por sua vez, representam uma função de ativação, normalmente não linear, tais como: tangente hiperbólica, logística etc. Como exemplificação, há a figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
+A utilização de perceptrons com multiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
+(MLP), como exemplicado na figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
+camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de
+escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
 
 \begin{figure}
 \begin{center} {
@@ -159,22 +169,117 @@ Redes neurais MLP são compostas de camadas de neurônios sucessivamente interli
 \end{center}
 \end{figure}
 
-Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não linear~\cite{hornik89}.
+Porém, no final dos anos 60, Misky e Papert~\cite{minsky72} publicaram um estudo no qual prova que redes neurais com
+apenas duas camadas, como o perceptron, são incapazes de realizar classificações não lineares.
+Esta descoberta, junto com a inviabilidade computacional de se trabalhar com redes maiores na época resultou em uma
+estagnação dos estudos de redes neurais artificais.
 
-% falar da estagnação, introdução BP
-Para uma rede neural simular uma função, precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede uma boa representação para a função escolhida. Em outras palavras, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses. Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio padrão inversamente proporcional ao número de dados de treinamento~\cite{lecun12}. Posteriormente, é feita uma otimização da representação em função dos pesos. Para realizar esta otimização, utiliza-se normalmente \textit{Backpropagation} para se encontrar o ajuste ideal de cada sinapse baseada, em sua contribuição no erro. Uma explicação deste método é apresentada por Williams e Hinton em~\cite{williams86}.
+Apenas em 1982 quando Werbos~\cite{werbos82} aplicou o método de otimização por auto diferenciação em redes neurais,
+facilitando o aprendizado de redes de múltiplas camadas que o estudo de redes neurais voltou a receber atenção.
+Este método foi chamado de backpropagation.
+Hinton \textit{et al.}~\cite{williams86} afirmam que este método é capaz de obter representações nas camadas
+intermediárias que são apropriadas para resolução do problema em questão.
+Será descrito a seguir um exemplo de backpropagation aplicado a uma rede de uma camadas escondida e uma saída.
 
-% abrir BP
+A primeira etapa para utilização do backpropagation é computar o valor previsto ${\hat{y}_i}$ pela rede neural para
+uma dada observação de índice $i$ do conjunto de treinamento, como descrito nas equações~\ref{eq:nn-forward}, nas
+quais $f$ representa a função de ativação, $\mathbf{x}_i$ o conjunto de caractéristicas que descreve esse exemplo,
+$\mathbf{W}$ e $\mathbf{b}$ os pesos e o \textit{bias} respectivamente.
+
+\begin{subequations} \label{eq:nn-forward}
+\begin{align}
+    &\mathbf{a}_i^{(1)} = \mathbf{W}^{(1)} \mathbf{x}_i + \mathbf{b}^{(1)}\\
+    &\mathbf{h}_i = f(\mathbf{a}_i^{(1)})\\
+    &a_i^{(2)} = \mathbf{W}^{(2)} \mathbf{h}_i + b^{(2)}\\
+    &\hat{y}_i = f(a_i^{(2)})
+\end{align}
+\end{subequations}
+
+Em seguida, utiliza-se uma função custo $L$ para calcular o erro $J$ de representação obtido pela rede neural a partir
+das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, a seção~\ref{sec:custo} apresenta exemplos de funções
+custo, como exposto na equação~\ref{eq:nn-cost}.
+Esta etapa conclui a parte \textit{forward} do algoritmo, no qual os valores serão armazenados para ??.
+
+\begin{equation} \label{eq:nn-cost}
+    J_i = L(\hat{y}_i, y_i)
+\end{equation}
+
+Dado que o custo $J$ foi computado, ou seja, executou-se a parte \textit{forward},
+
+\begin{subequations} \label{nn-backprop}
+\begin{align}
+    &\frac{\partial{J_i}}{\partial{a_i^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{y_i}} \frac{\partial{y_i}}{\partial{a_i^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{y_i}} f^{\prime}(a_i^{(2)})\\
+    &\frac{\partial{J_i}}{\partial{\mathbf{h}_i}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\partial{\mathbf{h}_i}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{W}^{(2)}\\
+    &\frac{\partial{J_i}}{\partial{\mathbf{W}^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\mathbf{W}^{(2)}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \mathbf{h}_i\\
+    &\frac{\partial{J_i}}{\partial{b^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}} \frac{\partial{a_i^{(2)}}}{\partial{b^{(2)}}}
+        = \frac{\partial{J_i}}{\partial{a_i^{(2)}}}
+\end{align}
+
+\begin{align}
+    &\frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{h}_i}} \frac{\partial{\mathbf{h}_i}}{\partial{\mathbf{a}_i^{(1)}}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{h}_i}} f^{\prime}(\mathbf{a}_i^{(1)})\\
+    &\frac{\partial{J_i}}{\partial{\mathbf{W}^{(1)}}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \frac{\partial{\mathbf{a}_i^{(1)}}}{\mathbf{W}^{(1)}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \mathbf{x}_i\\
+    &\frac{\partial{J_i}}{\partial{\mathbf{b}^{(1)}}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}} \frac{\partial{\mathbf{a}_i^{(1)}}}{\mathbf{b}^{(1)}}
+        = \frac{\partial{J_i}}{\partial{\mathbf{a}_i^{(1)}}}
+\end{align}
+\end{subequations}
+% abrir BP como descrito por williams86 (baixar pdf)
+% linkar pra funções custo
+% linkar pra otimizadores
+
+Uma de suas principais características de redes neurais é a capacidade de aproximar qualquer função, dado que a rede
+contenha pelo menos uma camada escondida com número suficientemente grande de neurônios com ativação não
+linear~\cite{hornik89}.
+
+% reescrever esse paragrafo
+% talvez remover todo, talvez reutilizar inicialização
+Para uma rede neural simular uma função, precisa-se obter o conjunto de pesos, ou sinapses, que torne esta rede uma boa
+representação para a função escolhida.
+Em outras palavras, precisa-se minimizar o erro da representação da rede dado que este erro é uma função das sinapses.
+Uma prática comum é inicializar a rede com pesos selecionados de uma distribuição uniforme com média zero e desvio
+padrão inversamente proporcional ao número de dados de treinamento~\cite{lecun12}.
+Posteriormente, é feita uma otimização da representação em função dos pesos.
+Para realizar esta otimização, utiliza-se normalmente \textit{Backpropagation} para se encontrar o ajuste ideal de cada
+sinapse baseada, em sua contribuição no erro.
+Uma explicação deste método é apresentada por Williams e Hinton em~\cite{williams86}.
+
+% varnishing gradient
 
 \subsection{Deep Learning}
 
-O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas. Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de objetos, tradução etc~\cite{lecun15}. Chamou-se de \textit{Deep Learning} o campo de estudo de redes neurais com muitas camadas.
+O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas.
+Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de
+objetos, tradução etc~\cite{lecun15}.
+Chamou-se de \textit{Deep Learning} o campo de estudo de redes neurais com muitas camadas.
 
-Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser realizada. O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não observáveis. O aprofundamento das redes visa a reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de características, que usualmente requer expertise no domínio do problema. Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc. Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta etapa~\cite{esteva17}.
+Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser
+realizada.
+O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não
+observáveis.
+O aprofundamento das redes visa a reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de
+características, que usualmente requer expertise no domínio do problema.
+Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de
+extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc.
+Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta
+etapa~\cite{esteva17}.
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede. Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais Convolucionais, cujas conexões são baseadas no funcionamento do córtex visual.
+A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos
+neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede.
+Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais Convolucionais, cujas conexões são baseadas
+no funcionamento do córtex visual.
 
 Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes feedforward~\cite{goodfellow16}. Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado~\cite{goodfellow16}.
 
@@ -383,3 +488,11 @@ O sucesso de algoritmos de \textit{Deep Learning} depende da disponibilidade de 
 Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma carácteristica que tenha forte correlação com a saída desejada e considera-la como uma anotação ruidosa~\cite{go09}.
 
 Esse procedimento obteve êxito em algumas aplicações de processamento de linguaguem natural~\cite{craven99}\cite{go09} pela abundância de informaçoes presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteinas e suas relações.
+
+
+\section{Métricas} \label{sec:metrics}
+% ROC
+% SP
+% F1
+% matriz confusão
+% cross validation
