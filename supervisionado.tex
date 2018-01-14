@@ -1,9 +1,9 @@
 O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa a gerar modelos preditivos a partir de
 um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
 
-\section{Naive Bayes}
+\section{Naïve Bayes}
 
-\textit{Naive Bayes} é uma das técnicas mais simples disponíveis nesse contexto.
+\textit{Naïve Bayes} é uma das técnicas mais simples disponíveis nesse contexto.
 Ela se baseia no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o
 dado.
 Será demostrada sua formulação matemática, como descrita por Schütze~\cite{schutze08}.
@@ -35,7 +35,7 @@ Portanto, tem-se que o estimador ótimo $\hat{y}$ escolherá pela classe que ati
     \hat{y} = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
 \end{equation}
 
-Vê-se então que o modelo de \textit{Naive Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$.
+Vê-se então que o modelo de \textit{Naïve Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$.
 Estes parâmetros serão extraídos do conjunto de treino por máxima verossimilhança.
 
 Dado um vetor $\mathbf{y}$ de tamanho $m$ que representa as classificações referentes a $\mathbf{X}$, pode-se estimar
@@ -51,7 +51,7 @@ classe $c_k$:
     \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X'}|}
 \end{equation}
 
-Vê-se que modelos montados a partir de \textit{Naive Bayes} são computacionalmente baratos dado que seus parâmetros são
+Vê-se que modelos montados a partir de \textit{Naïve Bayes} são computacionalmente baratos dado que seus parâmetros são
 obtidos através de contagens sobre os dados de treinamento e que sua predição utiliza apenas multiplicações.
 Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada
 mesmo em problemas com notória dependência entre características como a classificação de texto~\cite{mccallum98}.
@@ -153,8 +153,8 @@ As sinapses funcionam como um ponderador linear dos neurônios da camada anterio
 Os neurônios, por sua vez, representam uma função de ativação, no caso do perceptron a função degrau, porém de maneira
 mais geral dispõem-se de funções como: tangente hiperbólica, logística etc.
 
-A utilização de perceptrons com multiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
-(MLP), como exemplicado na figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
+A utilização de perceptrons com múltiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
+(MLP), como exemplificado na figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
 camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de
 escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
 
@@ -176,7 +176,7 @@ linear~\cite{hornik89}.
 Porém, no final dos anos 60, Misky e Papert~\cite{minsky72} publicaram um estudo no qual prova que redes neurais com
 apenas duas camadas, como o perceptron, são incapazes de realizar classificações não lineares.
 Esta descoberta, junto com a inviabilidade computacional de se trabalhar com redes maiores na época resultou em uma
-estagnação dos estudos de redes neurais artificais.
+estagnação dos estudos de redes neurais artificias.
 
 Apenas em 1982 quando Werbos~\cite{werbos82} aplicou o método de otimização por auto diferenciação em redes neurais,
 facilitando o aprendizado de redes de múltiplas camadas, que o estudo de redes neurais voltou a receber atenção.
@@ -190,7 +190,7 @@ saída.
 A primeira etapa para utilização do backpropagation é computar o valor previsto ${\hat{y}_i}$ pela rede neural para
 uma dada observação de índice $i$ do conjunto de treinamento, como descrito nas
 equações~\crefrange{eq:nn-forward-a1}{eq:nn-forward-y}, nas quais $f$ representa a função de ativação; $\mathbf{x}_i$ o
-conjunto de caractéristicas que descreve esse exemplo; $\mathbf{W}$ e $\mathbf{b}$ os pesos e o \textit{bias}
+conjunto de características que descreve esse exemplo; $\mathbf{W}$ e $\mathbf{b}$ os pesos e o \textit{bias}
 respectivamente; e $\mathbf{h}_i$ indica a camada escondida.
 
 \begin{subequations} \label{eq:nn-forward}
@@ -479,21 +479,21 @@ Krogh e Hertz~\cite{krogh92} provam que o uso de regularização $L_{2}$ é capa
 
 \subsection{Dropout}
 
-Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o \textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento. Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neuronio, a partir desse ponto se desconectam os neuronios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma rede neural composta por um subconjunto de neuronios da rede original os quais serão treinados com \textit{Backpropagation} como habitual. Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de redes neurais durante a fase de aprendizado. \textit{Dropout} pode ser aplicado tanto em neuronios de camadas escondidas como em neuronios de entrada, valores de $p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
+Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o \textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento. Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neurônio, a partir desse ponto se desconectam os neurônios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma rede neural composta por um subconjunto de neurônios da rede original os quais serão treinados com \textit{Backpropagation} como habitual. Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de redes neurais durante a fase de aprendizado. \textit{Dropout} pode ser aplicado tanto em neurônios de camadas escondidas como em neurônios de entrada, valores de $p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
 
-\textit{Dropout} se deriva de um conjunto de técnicas de combinação de modelos, também conhecidas como \textit{ensembling}. Como mostra Dietterich \textit{et al.}~\cite{dietterich00}, modelos significativamente diferentes quando combinados costumam resultar em melhoras na performace quando comparados à utilização de cada modelo isoladamente. No escopo de \textit{Deep Learning} o custo computacional do treinamento de múltiplos modelos reduz a viabilidade desse processo. Neste sentido, \textit{Dropout} aproxima-se de técnicas tradicionais de \textit{ensembling}, como \textit{bagging}, tendo como principal diferença o compartilhamento de pesos entre as redes neurais obtidas pelos desligamentos de neuronios, que permite o treinamento de um grande número de modelos sem um aumento computacional proporcional. Ressaltando-se que o apagamento de neuronios resulta em redes de tamanho reduzido, diminuindo assim seu poder de mapeamento, logo, a utilização dessa técnica exige um número superior de parâmetros para uma mesma capacidade de mapeamento.
+\textit{Dropout} se deriva de um conjunto de técnicas de combinação de modelos, também conhecidas como \textit{ensembling}. Como mostra Dietterich \textit{et al.}~\cite{dietterich00}, modelos significativamente diferentes quando combinados costumam resultar em melhoras na performance quando comparados à utilização de cada modelo isoladamente. No escopo de \textit{Deep Learning} o custo computacional do treinamento de múltiplos modelos reduz a viabilidade desse processo. Neste sentido, \textit{Dropout} aproxima-se de técnicas tradicionais de \textit{ensembling}, como \textit{bagging}, tendo como principal diferença o compartilhamento de pesos entre as redes neurais obtidas pelos desligamentos de neurônios, que permite o treinamento de um grande número de modelos sem um aumento computacional proporcional. Ressaltando-se que o apagamento de neurônios resulta em redes de tamanho reduzido, diminuindo assim seu poder de mapeamento, logo, a utilização dessa técnica exige um número superior de parâmetros para uma mesma capacidade de mapeamento.
 
-Essa ferramenta se inspira na reprodução sexuada, que envolve trocas entre genes de dois individuos distintos, Srivastava \textit{et al.} acreditam que assim como na evolução biológica, técnicas que reduzam a co-adaptação entre neuronios tornam redes neurais mais resistentes a destruição de informação, fazendo com que cada neuronio extraia caracteristicas relevantes por si só, aumentando a redundancia e melhorando assim o desempenho da rede como um todo.
+Essa ferramenta se inspira na reprodução sexuada, que envolve trocas entre genes de dois indivíduos distintos, Srivastava \textit{et al.} acreditam que assim como na evolução biológica, técnicas que reduzam a co-adaptação entre neurônios tornam redes neurais mais resistentes a destruição de informação, fazendo com que cada neurônio extraia características relevantes por si só, aumentando a redundância e melhorando assim o desempenho da rede como um todo.
 
-A utilização de modelos com \textit{Dropout} na fase de inferência requer um cuidado adicional. Por não haver desligamento nessa fase é necessário normalizar o valor esperado de cada neurônio para que este seja igual ao do periodo de treinamento. Há diferentes métodos, sendo a abordagem mais simples a multiplicação de cada neuronio por sua probabilidade de manutenção $p$.
+A utilização de modelos com \textit{Dropout} na fase de inferência requer um cuidado adicional. Por não haver desligamento nessa fase é necessário normalizar o valor esperado de cada neurônio para que este seja igual ao do período de treinamento. Há diferentes métodos, sendo a abordagem mais simples a multiplicação de cada neurônio por sua probabilidade de manutenção $p$.
 
 \section{Supervisão Distante} \label{sec:distant_supervision}
 
 O sucesso de algoritmos de \textit{Deep Learning} depende da disponibilidade de grandes volumes de dados de treinamento. Apesar da crescente produção de dados, para muitos problemas o processo de anotação é uma tarefa manual, tornando-a custosa e limitando assim o conjunto de dados supervisionados.
 
-Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma carácteristica que tenha forte correlação com a saída desejada e considera-la como uma anotação ruidosa~\cite{go09}.
+Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma característica que tenha forte correlação com a saída desejada e considerá-la como uma anotação ruidosa~\cite{go09}.
 
-Esse procedimento obteve êxito em algumas aplicações de processamento de linguaguem natural~\cite{craven99}\cite{go09} pela abundância de informaçoes presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteinas e suas relações.
+Esse procedimento obteve êxito em algumas aplicações de processamento de linguagem natural~\cite{craven99}\cite{go09} pela abundância de informações presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteínas e suas relações.
 
 
 \section{Métricas} \label{sec:metrics}
