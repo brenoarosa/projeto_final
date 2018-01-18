@@ -478,6 +478,7 @@ Também conhecida como regularização $L_{2}$, a regularização de Tikhonov ut
 Krogh e Hertz~\cite{krogh92} provam que o uso de regularização $L_{2}$ é capaz de suprimir parâmetros irrelevantes, diminuindo o número de parâmetros do modelo, e de reduzir o efeito de ruídos presentes na anotação dos dados.
 
 \subsection{Dropout}
+% substituir neuronio por outras palavras
 
 Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o \textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento. Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neurônio, a partir desse ponto se desconectam os neurônios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma rede neural composta por um subconjunto de neurônios da rede original os quais serão treinados com \textit{Backpropagation} como habitual. Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de redes neurais durante a fase de aprendizado. \textit{Dropout} pode ser aplicado tanto em neurônios de camadas escondidas como em neurônios de entrada, valores de $p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
 
@@ -501,4 +502,4 @@ Esse procedimento obteve êxito em algumas aplicações de processamento de ling
 % SP
 % F1
 % matriz confusão
-% cross validation
+% validaçao cruzada, ver dissertação do junior
