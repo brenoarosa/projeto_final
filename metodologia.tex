@@ -1,10 +1,16 @@
-O presente trabalho será dividido em duas etapas.
-A primeira se constitui em criar uma base de dados de treinamento como descrito por Go \textit{et at.}~\cite{go09} e
-replicar os resultados obtidos com técnicas tradicionais de aprendizado de máquina aplicados a texto, como apresentadas
-pelo autor.
-Em seguida reproduzir a aplicação de redes convolucionais como descrito por Kim~\cite{kim14} e analisar o impacto da
-utilização desta técnica na classificação de mensagens.
+Este capítulo visa descrever a elaboração de um modelo de \textit{deep learning} capaz de classificar sentimento,
+positivo ou negativo, de \textit{tweets}.
+A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
+replicação sem dependência de anotação manual.
 
+O presente trabalho será dividido em duas etapas.
+A primeira se constitui em criar uma base de dados de treinamento de maneira como descrito por Go
+\textit{et at.}~\cite{go09} e replicar os resultados obtidos com técnicas tradicionais de aprendizado de máquina
+aplicados a texto, como apresentadas pelo autor.
+Em seguida, reproduzir a aplicação de redes convolucionais em textos como descrito por Kim~\cite{kim14} e analisar o
+impacto da utilização desta técnica na classificação de mensagens.
+
+% remover ambos
 O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
 anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
 Apesar do termo \textit{análise de sentimento} ter definição ambígua na literatura, nesse contexto estaremos tratando da
@@ -28,47 +34,60 @@ as características textuais.
 
 \section{Bases de Dados}
 
+O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
+anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
 A não dependência de anotação dos dados e a facilidade de coleta dos \textit{tweets}, por meio de interface programável,
 viabilizam a formação de uma grande base de treinamento.
 Para a realização deste trabalho foram coletados cerca de 50 milhões de mensagens filtradas apenas pelo idiomas inglês,
 estes \textit{tweets} compõe a base de treinamento.
 Posteriormente, se aplica o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
 especificado na seção~\ref{sec:distant_supervision}.
+Nesse método, são definidos grupos de \textit{emoticons} positivos e negativos.
+Mensagens que possuírem \textit{emoticons} pertencentes a algum destes grupos serão anotadas com as respectivas classes,
+caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
+Os \textit{emoticons} utilizados para anotação da base de dados foram removidos das mensagens para evitar introduzir
+viés ao classificador.
 
 A base de teste por sua vez é composta de \textit{tweets} anotados manualmente.
-Essa base é composta da coletânea de dados disponibilizados pela conferencia anual \textit{Semantic Evaluation}
+Essa base é formada pela coletânea de dados disponibilizados pela conferencia anual \textit{Semantic Evaluation}
 (SemEval)~\cite{semeval17} entre os anos de 2013 a 2017.
-Esta base é composta de cerca de 70 mil \textit{tweets} e processo de anotação destes dados foi feito manualmente através
-da plataforma CrowdFlower, mais detalhes sobre a formação da base de dados são apresentados por Rosenthal
+Esta base é composta de cerca de 70 mil \textit{tweets} e processo de anotação destes dados foi feito manualmente
+através da plataforma CrowdFlower, mais detalhes sobre a formação da base de dados são apresentados por Rosenthal
 \textit{et al.}~\cite{rosenthal17}, organizadores do evento.
+Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa.
 
-\section{Aplicação}
+\section{Desenvolvimento}
 
-Neste projeto foram utilizadas a biblioteca NLTK~\cite{nltk}, desenvolvida em \textit{Python} para remoção de stopwords
-e tokenização das mensagens de ambas as bases.
-SpaCy~\cite{spacy} é outra biblioteca relevante no tratamento de linguagem natural, também escrita em \textit{Python}.
-
-Foram replicadas as técnicas abordadas por Go \textit{et al.}, \textit{Support Vector Machine} (SVM) e
-\textit{Naïve Bayes} (NB), validando os resultados obtidos com o conjunto de dados coletados.
-% acertar aqui, se replicou com os dados originais depois se rodou com os dados coletados
-Em razão da pequena variação nos resultados obtidos por Go, foram replicados apenas as representações por unigrama.
-Dada a grande quantidade de dados e as limitações computacionais, o modelo SVM utilizado foi treinado a partir do método
+Na primeira etapa utilizou-se a base de dados utilizada por Go \textit{et al.}~\cite{go09} replicando as técnicas
+abordadas em seu artigo visando validar os pré-processamentos e algoritmos aplicados.
+Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se stopwords; links; referências a usuários;
+e cada token foi transformado para forma minuscula.
+Posteriormente, como entrada do algoritmo de aprendizado replicou-se apenas a representação dos tokens por unigrama,
+essa escolha foi feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca
+variação de resultado entre as diferentes representações.
+Finalmente, foram aplicados os algoritmos de Naïve Bayes e SVM.
+Dada a grande quantidade de dados e as limitações computacionais, o modelo SVM empregado foi treinado a partir do método
 do gradiente como descrito por Suykens e Vandewalle~\cite{suykens99}.
-Foi utilizada as implementações de NB e SVM disponibilizadas pela biblioteca Scikit-Learn~\cite{sklearn}.
+Os hiperparâmetros utilizados por ambos os algoritmos foi selecionado a fim de otimizar a área sobre a curva ROC por
+meio de validação cruzada.
 
-Em seguida, foi gerado um \textit{embedding}, pelo algoritmo Word2Vec, a partir da base de treinamento.
-O desenvolvimento de um \textit{embedding} treinado a partir de dados da mesma fonte a ser classificada permite sua
-melhor acurácia, visto que as mensagens tem variações de linguagens próprias do meio.
-Este treinamento foi feito utilizando a implementação disponibilizada pela biblioteca Gensim~\cite{gensim}.
+Uma vez validados os resultados obtidos por Go \textit{et al.}~\cite{go09}, aplicou-se os mesmos processos na base de
+dados elaborada por supervisão distante.
+A comparação entre os resultados da etapa anterior e esta visam validar o processo de captação de dados.
 
-Por fim, gerou-se um modelo de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec, como
-descrito por Kim~\cite{kim14}.
-A implementação da rede convolucional foi feita utilizando a biblioteca Keras~\cite{keras}.
-A escolha dos hiper-parâmetros a serem testados foi baseada na submissão ao SemEval de Derius
+Para utilização de modelos de redes convolucionais, obtém-se primeiro uma representação dos dados em um
+\textit{embedding}.
+Foram avaliados duas opções: a utilização de um \textit{embedding} Word2Vec pré-treinado pelo Google a partir de
+notícias, como realizado por Kim~\cite{kim14} em seu trabalho; o treinamento de um \textit{embedding} Word2Vec a partir
+da base de \textit{tweets} de treinamento.
+Os parâmetros de treinamento do Word2Vec treinado a partir de \textit{tweets} foi baseados no modelo disponibilizado
+pelo Google
+
+Por fim, gerou-se um modelo de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec.
+A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
-Apesar de Kim~\cite{kim14} ter obtido melhores resultados utilizando \textit{fine-tuning} do \textit{embedding}, a
-tentativa de utilização do mesmo resultou em grande aumento do \textit{overfit}.
-Kim, entretanto, já ressaltava a dificuldade de generalização dos modelos treinados com \textit{fine-tuning}.
-A seleção dos hiper-parâmetros foi determinada de maneira a maximizar a área sob a curva de operação do receptor (ROC).
-
-% validaçao cruzada, ver dissertação do junior
+Foram testados tanto modelos com aplicação de \textit{fine-tuning} no \textit{embedding} quanto modelos em que os pesos
+do Word2Vec mantinham-se estáticos durante o treinamento.
+A seleção dos hiperparâmetros foi determinada de maneira a maximizar a área sob a curva ROC.
+Entretanto, neste caso não foi utilizada a validação cruzada visto o alto custo computacional de se treinar modelos de
+\textit{deep learning}.
