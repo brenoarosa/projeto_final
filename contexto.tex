@@ -40,14 +40,14 @@ relação a uma marca é uma das principais métricas de \textit{branding}~\cite
 O colunista da Forbes, Daniel Newman, destaca que a utilização desta e outras técnicas de big data vem revolucionando
 a forma de se fazer marketing, permitindo uma maior personalização dos produtos e fortalecimento de relação com os
 clientes.
-Além de ser utilizada como métrica de relações comerciais, análises de sentimento de mídias sociais são aplicadas na
+Além de ser utilizada como indicador de relações comerciais, análises de sentimento de mídias sociais são aplicadas na
 predição de mercados financeiros~\cite{bollen11}, na predição de resultados eleitorais~\cite{tumasjan10}, entre outros.
 
 \section{Análise de Sentimento}
 
 O campo de estudos da análise de sentimento, também chamado de mineração de opinião, é um dos ramos mais ativos do
 processamento de linguagem natural~\cite{liu12}.
-A análise de sentimento visa analisar a opinião, a avaliação, a emoção e  a atitude de um documento em relação a um
+A análise de sentimento visa analisar a opinião, a avaliação, a emoção e a atitude de um documento em relação a um
 evento, produto, serviço, organização, etc.
 Apesar do processamento de linguagem natural ter um longo histórico de estudos, a análise de sentimento se consolidou
 apenas no inicio dos anos 2000 com a crescente demanda comercial.
@@ -83,11 +83,32 @@ A tabela~\ref{tab:sentiment} exemplifica a classificação de polaridade de \tex
         Negativo & Estão transformando Olimpíadas que é algo sério num espetáculo triste e de mau gosto. \\ \hline
         \end{tabular}
         \caption{Exemplo de classificação de sentimento em \textit{tweets}.}
+        \label{tab:sentiment}
     \end{center}
-    \label{tab:sentiment}
 \end{table}
 
-% falar de tecnicas com papers utilizados
+Entretanto, nem todos exemplos são claramente distinguíveis como os apresentados na tabela~\ref{tab:sentiment}.
+A comunicação frequentemente apresenta fatores como ironia, ambiguidade de sentimentos e multiplicidade de idiomas.
+Em outros casos, a mensagem sendo analisada pode ser complementar a mensagens anteriores ou informações não textuais
+que a acompanham.
+Estes fatores são complexidades adicionais e diminuim a acertividade dos classificadores.
+A tabela~\ref{tab:sentiment_complexity} demonstra exemplos das dificuldades indicadas.
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | p{10cm} |}
+        \hline
+        \textbf{Fator} & \textbf{\textit{Tweet}} \\ \hline
+        Ironia & Recomendo chegar para dar aula e descobrir que mudaram seu horário sem avisar. \\ \hline
+        Ambiguidade & Estou igualmente fascinada e enojada. \\ \hline
+        Multiplicidade de idiomas & Macarrão de arroz is the new miojo. \\ \hline
+        \end{tabular}
+        \caption{Dificuldades encontradas na classificação de sentimento.}
+        \label{tab:sentiment_complexity}
+    \end{center}
+\end{table}
+
+% falar de tecnicas com papers utilizados mostrando resultados iniciais
 % (revisão bibliografica)
 
 \section{Twitter}
