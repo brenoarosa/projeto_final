@@ -7,7 +7,7 @@ Declaração de Autoria e de Direitos
 
 Eu, \emph{Breno Vieira Arosa} CPF \emph{131.187.117-95}, autor da monografia \emph{Aprendizado Semi-Supervisionado para Classificação de Polaridade de Tweets}, subscrevo para os devidos fins, as seguintes informações:\\
 1. O autor declara que o trabalho apresentado na disciplina de Projeto de Graduação da Escola Politécnica da UFRJ é de sua autoria, sendo original em forma e conteúdo.\\
-2. Excetuam-se do item 1. eventuais transcrições de texto, figuras, tabelas, conceitos e idéias, que identifiquem claramente a fonte original, explicitando as autorizações obtidas dos respectivos proprietários, quando necessárias.\\
+2. Excetuam-se do item 1. eventuais transcrições de texto, figuras, tabelas, conceitos e ideias, que identifiquem claramente a fonte original, explicitando as autorizações obtidas dos respectivos proprietários, quando necessárias.\\
 3. O autor permite que a UFRJ, por um prazo indeterminado, efetue em qualquer mídia de divulgação, a publicação do trabalho acadêmico em sua totalidade, ou em parte. Essa autorização não envolve ônus de qualquer natureza à UFRJ, ou aos seus representantes.\\
 4. O autor pode, excepcionalmente, encaminhar à Comissão de Projeto de Graduação, a não divulgação do material, por um prazo máximo de 01 (um) ano, improrrogável, a contar da data de defesa, desde que o pedido seja justificado, e solicitado antecipadamente, por escrito, à Congregação da Escola Politécnica.\\
 5. O autor declara, ainda, ter a capacidade jurídica para a prática do presente ato, assim como ter conhecimento do teor da presente Declaração, estando ciente das sanções e punições legais, no que tange a cópia parcial, ou total, de obra intelectual, o que se configura como violação do direito autoral previsto no Código Penal Brasileiro no art.184 e art.299, bem como na Lei 9.610.\\
@@ -29,17 +29,19 @@ Eu, \emph{Breno Vieira Arosa} CPF \emph{131.187.117-95}, autor da monografia \em
 \pagebreak
 
 % Copyright
-      \vspace{0.5cm}
+\vspace{0.5cm}
 
 UNIVERSIDADE FEDERAL DO RIO DE JANEIRO \\
 Escola Politécnica - Departamento de Eletrônica e de Computação \\
 Centro de Tecnologia, bloco H, sala H-217, Cidade Universitária \\
 Rio de Janeiro - RJ      CEP 21949-900\\
 \vspace{0.5cm}
-\paragraph{}Este exemplar é de propriedade da Universidade Federal do Rio de Janeiro, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
-\paragraph{}É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
-\paragraph{}Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es).
 
+Este exemplar é de propriedade da Universidade Federal do Rio de Janeiro, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
+
+É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
+
+Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es).
 
 \pagebreak
 
@@ -47,7 +49,7 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \begin{center}
 \textbf{DEDICATÓRIA}
 \end{center}
-      \vspace{0.5cm}
+\vspace{0.5cm}
 
 \paragraph{}Opcional.
 
@@ -58,38 +60,56 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \begin{center}
 \textbf{AGRADECIMENTO}
 \end{center}
-      \vspace{0.5cm}
+\vspace{0.5cm}
 
 \paragraph{}Sempre haverá. Se não estiver inspirado, aqui está uma sugestão: dedico este trabalho ao povo brasileiro que contribuiu de forma significativa à minha formação e estada nesta Universidade. Este projeto é uma pequena forma de retribuir o investimento e confiança em mim depositados.
 
 \pagebreak
 
-
 % Resumo
 \begin{center}
 \textbf{RESUMO}
 \end{center}
-      \vspace{0.5cm}
+\vspace{0.5cm}
 
-\paragraph{}Inserir o resumo do seu trabalho aqui. O objetivo é apresentar ao pretenso leitor do seu Projeto Final uma descrição genérica do seu trabalho. Você também deve tentar despertar no leitor o interesse pelo conteúdo deste documento.
-\paragraph{}
-\noindent Palavras-Chave: trabalho, resumo, interesse, projeto final.
+O presente trabalho apresenta a elaboração de um classificador de \textit{deep learning} para análise de sentimento de
+mensagens de redes sociais sem a necessidade de bases de dados anotadas manualmente.
+Tendo em vista o crescimento de influência da mídias sociais, são propostos como objeto de estudos as mensagens da rede
+social Twitter, as quais serão classificadas em positivas ou negativas.
+Dado o custo de elaboração de bases de dados anotadas manualmente, principalmente se considerando a dependência de
+grandes volumes de dados para o sucesso de técnicas de \textit{deep learning}, utiliza-se supervisão distante para
+formação de base de dados de treinamento.
+São abordados o uso de redes neurais convolucionais para classificação de texto e comparados seus resultados com
+algoritmos de \textit{machine learning} tradicionalmente aplicadas no processamento de linguagem natural.
+
+\vspace{0.5cm}
+
+\noindent Palavras-Chave: análise de sentimento, machine learning, redes neurais convolucionais, processamento de
+linguagem natural, supervisão distante.
 
 \pagebreak
-
 
 % Abstract
 \begin{center}
 \textbf{ABSTRACT}
 \end{center}
-      \vspace{0.5cm}
+\vspace{0.5cm}
 
-\paragraph{}Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here.
-\paragraph{}
-\noindent Key-words: word, word, word.
+The present work presents the elaboration of a deep learning classifier for sentiment analysis of messages of social
+networks without the need of annotated datasets.
+In view of the growing influence of social media, Twitter social network messages are proposed as object of study, which
+will be classified in positive or negative.
+Given the cost of developing manually annotated datasets, especially considering the dependence of large volumes
+of data for the success of deep learning techniques, distant supervision is used to build a training dataset.
+The use of convolutional networks for text classification is discussed and their results compared with machine learning
+algorithms traditionally applied in natural language processing.
+
+\vspace{0.5cm}
+
+\noindent Keywords: sentiment analysis, machine learning, convolutional neural networks, natural language processing,
+distant supervision
 
 \pagebreak
-
 
 % Siglas
 \begin{center}
