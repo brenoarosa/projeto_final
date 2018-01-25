@@ -261,41 +261,77 @@ A seção~\ref{sec:optimizers} aborda o tema de otimizadores, focando em rede ne
 
 \subsection{Deep Learning}
 
-% varnishing gradient
-% layerwise pre training
+Com o aumento do poder computacional ao longo dos anos levou a utilização de redes neurais mais robustas.
+Todavia, a adição de múltiplas camadas a redes neurais feedforward apresenta dificuldades no treinamento por
+\textit{backpropagation} pelo efeito do \textit{vanishing gradient}~\cite{hochreiter98}.
+O \textit{vanishing gradient} acontece quando os pesos das camadas mais externas da rede são treinados até o ponto que
+o gradiente dos seus erros sejam pequenos.
+A partir desse momento, as camadas mais próximas da entrada recebem atualizações menores em seus pesos visto que o fator
+de atualização depende da multiplicação dos gradientes das camadas mais externas.
+Este processo resulta no treinamento efetivo apenas das camadas próximas a saída, estabelecendo uma dificuldade
+exponencial no treinamento com relação ao número de camadas.
 
-O sucesso na aplicação de redes neurais nas mais diversas áreas levou à utilização de redes cada vez mais robustas.
-Assim, redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de
+Somente quando Hinton \textit{et al.} desenvolveram o pré-treinamento camada a camada~\cite{hinton06} que começou a se
+contornar o problema do \textit{vanishing gradiente}, viabilizando a aplicação de redes neurais feedforward com muitas
+camadas.
+Essa técnica consiste em se obter um conjunto de pesos de cada camada de neurônios individualmente de maneira a melhor
+representar a sua entrada, posteriormente esse conjunto de pesos serve como inicialização para o treinamento da rede.
+Outros métodos de redução do \textit{vanishing gradiente} são utilizados, como a função de ativação ReLU
+(\textit{rectified linear unit})~\cite{nair10} e mais recentemente, as arquiteturas de redes neurais
+residuais~\cite{he16}.
+
+Chamou-se de \textit{deep learning} o campo de estudo de redes neurais com muitas camadas.
+Redes neurais profundas romperam barreiras de performance em problemas como reconhecimento de fala, detecção de
 objetos, tradução etc~\cite{lecun15}.
-Chamou-se de \textit{Deep Learning} o campo de estudo de redes neurais com muitas camadas.
 
-Cada camada de uma Rede Neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser
+Cada camada de uma rede neural gera uma abstração que representa a sua entrada de modo a facilitar a tarefa a ser
 realizada.
 O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não
 observáveis.
-O aprofundamento das redes visa a reduzir ou eliminar a chamada \textit{feature engineering}, processo de seleção de
-características, que usualmente requer expertise no domínio do problema.
+O aprofundamento das redes tem como consequencia a reduzição ou eliminação da chamada \textit{feature engineering},
+processo de seleção de características, que usualmente requer expertise no domínio do problema.
 Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de
 extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc.
 Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta
 etapa~\cite{esteva17}.
 
+Contudo, as técnicas de \textit{deep learning} não se limitam apenas a arquitetura multilayer perceptron.
+Dentre as arquitetura frequentemente utilizadas temos: redes neurais recursivas (RNN)~\cite{hopfield87}, redes neurais
+convolucionais, \textit{autoencoders}~\cite{hinton06_2}, e redes neurais geradoras adversárias
+(GAN)~\cite{goodfellow14_2}.
+A seção~\ref{sec:convolucionais} apresenta detalhes das redes neurais convolucionais, técnica aplicada neste trabalho.
+
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-A utilização de redes neurais feedforward em imagens sofre limitações, por cada pixel estar diretamente ligado aos
-neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede.
-Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais Convolucionais, cujas conexões são baseadas
+A utilização de redes neurais multilayer perceptron em imagens sofre limitações, por cada pixel estar diretamente
+ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede.
+Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais convolucionais, cujas conexões são baseadas
 no funcionamento do córtex visual.
 
-Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}. Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares utilizadas em Redes feedforward~\cite{goodfellow16}. Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e deslocado até o final. Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e rotações. Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede. Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros. \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que sua sua posição no dado~\cite{goodfellow16}.
+Elas são compostas primariamente de dois tipos de camadas: convolucionais e \textit{pooling}.
+Camadas convolucionais são formadas por um conjunto de filtros espaciais compostos das mesmas funções não-lineares
+utilizadas em redes MLP~\cite{goodfellow16}.
+Para cada exemplo do conjunto de dados, o filtro, cujo tamanho é menor que a entrada, é aplicado no inicio do dado e
+deslocado até o final.
+Desta forma, os filtros dividem os pesos entre todo espaço do dado, permitindo uma insensibilidade a deslocamentos e
+rotações.
+Por sua vez, as camadas de \textit{pooling} visam reduzir o número total de sinapses da rede.
+Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias de dimensões desses filtros.
+\textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que
+sua posição no dado~\cite{goodfellow16}.
 
-Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais~\cite{lecun95}. Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
+Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão
+computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries
+temporais~\cite{lecun95}.
+Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
 
-% falar da diferença de utilização de CNN em texto (ver artigo materia deep learning)
+% falar da diferença de utilização de CNN em texto (ver artigo yoon kim - materia deep learning)
 
 \section{Funções Custo} \label{sec:custo}
 
-Dá-se o nome de \textit{função custo} às funções que caracterizam a distância entre o resultado obtido pela rede e seu objetivo. Assim, as sinapses de redes neurais são otimizadas a partir da minimização de tais funções. Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
+Dá-se o nome de função custo às funções que caracterizam a distância entre o resultado obtido pela rede e seu objetivo.
+Assim, as sinapses de redes neurais são otimizadas a partir da minimização de tais funções.
+Nesta seção, serão apresentadas as funções custo mais relevantes no contexto de redes neurais.
 
 \subsection{Erro Médio Quadrático}
 
