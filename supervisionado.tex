@@ -358,7 +358,7 @@ O algoritmo~\ref{al:gd} descreve a forma tradicional do gradiente descendente, d
 \begin{algorithm}
     \caption{Gradiente Descendente}
     \label{al:gd}
-    \begin{algorithmic}
+    \begin{algorithmic}[1]
         \Require Taxa de treinamento $\epsilon$
         \Require Pesos iniciais $\boldsymbol{\theta}_{0}$
         \Require Número de iterações $T$
@@ -388,7 +388,7 @@ A escolha da taxa de treinamento envolve uma troca entre tempo de treinamento e 
 \begin{algorithm}
     \caption{Gradiente Descendente com Momento}
     \label{al:gdm}
-    \begin{algorithmic}
+    \begin{algorithmic}[1]
         \Require Taxa de treinamento $\epsilon$
         \Require Constante de momento $\alpha$
         \Require Pesos iniciais $\boldsymbol{\theta}_{0}$
@@ -419,7 +419,7 @@ O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocó
 \begin{algorithm}
     \caption{Adam}
     \label{al:adam}
-    \begin{algorithmic}
+    \begin{algorithmic}[1]
         \Require Taxa de treinamento $\epsilon$
         \Require Constante de decaimento $\beta_{1}, \beta_{2}$
         \Require Pesos iniciais $\boldsymbol{\theta}_{0}$
@@ -495,7 +495,6 @@ O sucesso de algoritmos de \textit{Deep Learning} depende da disponibilidade de 
 Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma característica que tenha forte correlação com a saída desejada e considerá-la como uma anotação ruidosa~\cite{go09}.
 
 Esse procedimento obteve êxito em algumas aplicações de processamento de linguagem natural~\cite{craven99}\cite{go09} pela abundância de informações presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteínas e suas relações.
-
 
 \section{Métricas} \label{sec:metrics}
 
