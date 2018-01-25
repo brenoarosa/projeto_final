@@ -320,12 +320,24 @@ Para tal, reduz-se o tamanho dos filtros, obtendo-se valores máximos ou médias
 \textit{Pooling} é fundamental quando o objetivo a ser atingido depende mais da presença de uma característica do que
 sua posição no dado~\cite{goodfellow16}.
 
-Por fim, apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão
-computacional, elas também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries
-temporais~\cite{lecun95}.
+Apesar de Redes Convolucionais terem sido desenvolvidas com intuito de solucionar problemas de visão computacional, elas
+também obtiveram êxito nas mais diversas áreas, como no reconhecimento de voz e em séries temporais~\cite{lecun95}.
 Tal sucesso pode ser atribuído à insensibilidade da rede a deslocamentos.
 
-% falar da diferença de utilização de CNN em texto (ver artigo yoon kim - materia deep learning)
+Kim~\cite{kim14}, por sua vez, propôs o uso de redes convolucionais aplicadas a texto.
+Para tal, os documentos são representados em uma matriz na qual cada coluna é composta pelos pesos de um
+\textit{embedding}, como o Word2Vec, correspondente a cada palavra.
+Por cada mensagem poder ter tamanho variado, escolhe-se um número de tokens $n$, para representar cada mensagem.
+Dos documentos que contém número de palavras maior do que o escolhido selecionam-se os $n$ primeiros tokens.
+Nos casos em que a mensagem é menor, ela é completada com tokens de preenchimento, os quais são alocados na origem do
+espaço do \textit{embedding}.
+O número $n$ é escolhido com base nos dados disponíveis de treinamento, de maneira a não se desperdiçar grande
+quantidade de informação nem se fazer uso excessivo dos tokens.
+
+A principal diferença na utilização de redes convolucionais em texto é que neste caso as convoluções e \textit{poolings}
+são operadas em apenas uma dimensão, a dimensão que representa a posição de cada palavra na mensagem.
+Desta maneira, cada filtro se desloca apenas entre as janelas de tokens, englobando toda a representação do
+\textit{embedding} de cada token.
 
 \section{Funções Custo} \label{sec:custo}
 
