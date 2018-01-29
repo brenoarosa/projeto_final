@@ -1,36 +1,7 @@
 Este capítulo visa descrever a elaboração de um modelo de \textit{deep learning} capaz de classificar sentimento,
 positivo ou negativo, de \textit{tweets}.
 A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
-replicação sem dependência de anotação manual.
-
-O presente trabalho será dividido em duas etapas.
-A primeira se constitui em criar uma base de dados de treinamento de maneira como descrito por Go
-\textit{et at.}~\cite{go09} e replicar os resultados obtidos com técnicas tradicionais de aprendizado de máquina
-aplicados a texto, como apresentadas pelo autor.
-Em seguida, reproduzir a aplicação de redes convolucionais em textos como descrito por Kim~\cite{kim14} e analisar o
-impacto da utilização desta técnica na classificação de mensagens.
-
-% remover ambos
-O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
-anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
-Apesar do termo \textit{análise de sentimento} ter definição ambígua na literatura, nesse contexto estaremos tratando da
-extração de polaridade, negativa ou positiva, de uma mensagem.
-Em especial, as mensagens tratadas nesse trabalho são originárias do Twitter, serviço de microblogs.
-
-Embora já existisse uma ampla gama de estudos em análise se sentimento, Go \textit{et at.} apresentaram o primeiro
-trabalho referente a \textit{tweets}.
-A principal característica das mensagens de microblogs são seu tamanho reduzido, no caso do Twitter limitadas a
-140 caracteres.
-Devido a esse fato e ao meio no qual as mensagens estão inseridas, é observáveis variações idiomáticas especificas deste
-contexto.
-Outro traço notável é que por ser uma plataforma aberta, o Twitter é composto de mensagens dos mais diversos domínios.
-Esse fator dificulta a tarefa a ser executada quando comparado com trabalhos de um domínio específico, como por exemplo
-a análise de sentimento para avaliação de filmes a partir de resenhas; ou na predição de flutuações do mercado financeiro
-considerando artigos jornalísticos.
-Além das características textuais, os \textit{tweets} também são compostos de atributos como: republicação ou citação de
-mensagens, a presença de fotos e video, as conexões entre os usuários, local de envio, horário, número de curtidas etc.
-Tais variáveis podem colaborar na realização de tarefas como a análise de sentimento, porém, este trabalho aborda apenas
-as características textuais.
+fácil replicação.
 
 \section{Bases de Dados}
 
@@ -38,15 +9,31 @@ O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classifi
 anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
 A não dependência de anotação dos dados e a facilidade de coleta dos \textit{tweets}, por meio de interface programável,
 viabilizam a formação de uma grande base de treinamento.
-Para a realização deste trabalho foram coletados cerca de 50 milhões de mensagens filtradas apenas pelo idiomas inglês,
-estes \textit{tweets} compõe a base de treinamento.
+Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens do Twitter filtrando-as apenas pelo
+idioma inglês.
 Posteriormente, se aplica o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
-especificado na seção~\ref{sec:distant_supervision}.
+especificado na seção~\ref{sec:distant_supervision} nos \textit{tweets} coletados.
 Nesse método, são definidos grupos de \textit{emoticons} positivos e negativos.
 Mensagens que possuírem \textit{emoticons} pertencentes a algum destes grupos serão anotadas com as respectivas classes,
 caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
 Os \textit{emoticons} utilizados para anotação da base de dados foram removidos das mensagens para evitar introduzir
 viés ao classificador.
+A tabela~\ref{tab:emoticons} mostra alguns dos emoticons escolhidos para compor a anotação ruidosa.
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| c | c |}
+        \hline
+        \textbf{Negativos} & \textbf{Positivos} \\ \hline
+        :( & :) \\ \hline
+        =( & =) \\ \hline
+        :-( & :-) \\ \hline
+        :'( & :D \\ \hline
+        \end{tabular}
+        \caption{Exemplos de emoticons selecionados para aplicação de supervisão distante.}
+        \label{tab:emoticons}
+    \end{center}
+\end{table}
 
 A base de teste por sua vez é composta de \textit{tweets} anotados manualmente.
 Essa base é formada pela coletânea de dados disponibilizados pela conferencia anual \textit{Semantic Evaluation}
@@ -58,36 +45,68 @@ Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa.
 
 \section{Desenvolvimento}
 
-Na primeira etapa utilizou-se a base de dados utilizada por Go \textit{et al.}~\cite{go09} replicando as técnicas
+O presente trabalho será dividido em três etapas.
+
+% Etapa 1
+Na primeira etapa utilizou-se a base de dados provida por Go \textit{et al.}~\cite{go09} replicando as técnicas
 abordadas em seu artigo visando validar os pré-processamentos e algoritmos aplicados.
+Para tal, serão utilizadas as bases de dados tanto de treinamento como de testes disponibilizadas por Go
+\textit{et at.}~\cite{go09}.
+
 Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se stopwords; links; referências a usuários;
 e cada token foi transformado para forma minuscula.
-Posteriormente, como entrada do algoritmo de aprendizado replicou-se apenas a representação dos tokens por unigrama,
-essa escolha foi feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca
-variação de resultado entre as diferentes representações.
-Finalmente, foram aplicados os algoritmos de Naïve Bayes e SVM.
-Dada a grande quantidade de dados e as limitações computacionais, o modelo SVM empregado foi treinado a partir do método
-do gradiente como descrito por Suykens e Vandewalle~\cite{suykens99}.
-Os hiperparâmetros utilizados por ambos os algoritmos foi selecionado a fim de otimizar a área sobre a curva ROC por
-meio de validação cruzada.
+Replicou-se como entrada do algoritmo de aprendizado apenas a representação dos tokens por unigrama, essa escolha foi
+feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca variação de
+resultado entre as diferentes representações.
 
-Uma vez validados os resultados obtidos por Go \textit{et al.}~\cite{go09}, aplicou-se os mesmos processos na base de
-dados elaborada por supervisão distante.
-A comparação entre os resultados da etapa anterior e esta visam validar o processo de captação de dados.
+Finalmente, foram treinados os algoritmos de Naïve Bayes e SVM.
+Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré processamento utilizado.
+Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a área da curva ROC.
+Para treinamento do modelo por \textit{support vector machine}, dada a grande quantidade de dados e as limitações
+computacionais,foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
+Vandewalle~\cite{suykens99}.
+A função \textit{kernel} utilizada foi linear.
+Neste caso, variou-se parâmetro de regularização L2 também visando maximizar a área da curva ROC.
+Empregou-se validação cruzada por K-partições, com 5 partições, no treinamento dos dois algoritmos.
+
+% Etapa 2
+A segunda etapa consiste em treinar os mesmos algoritmos de Naive Bayes e SVM utilizados anteriormente porém utilizando
+a base de dados anotada com supervisão distante.
+Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
+de \textit{deep learning}.
+Adicionamente, será validado o processo de captação de dados.
+Nesta fase replicou-se os mesmos procedimentos práticos da etapa anterior.
+
+% Etapa 3
+Por fim, a terceira e última etapada é formada pela aplicação de redes convolucionais em textos como descrito por
+Kim~\cite{kim14}.
+Nesta fase será medido o impacto da utilização desta técnica na classificação de mensagens.
+Serão variados diferentes pré-processamentos e parametros das redes para analisar sua influência na eficiência do
+modelo.
 
 Para utilização de modelos de redes convolucionais, obtém-se primeiro uma representação dos dados em um
 \textit{embedding}.
-Foram avaliados duas opções: a utilização de um \textit{embedding} Word2Vec pré-treinado pelo Google a partir de
-notícias, como realizado por Kim~\cite{kim14} em seu trabalho; o treinamento de um \textit{embedding} Word2Vec a partir
-da base de \textit{tweets} de treinamento.
-Os parâmetros de treinamento do Word2Vec treinado a partir de \textit{tweets} foi baseados no modelo disponibilizado
-pelo Google
+Foram avaliados duas opções de \textit{embeddings}: a utilização de um \textit{embedding} Word2Vec pré-treinado a
+partir de notícias, disponibilizados pelo Google; e o treinamento de um \textit{embedding} Word2Vec a partir da base de
+treinamento composta por \textit{tweets}.
+Este experimento visa verificar as implicações de utilização de representações obtidas a partir de textos da mesma
+fonte a ser classificada.
+O número de dimensões do Word2Vec treinado a partir de \textit{tweets} foi baseados no modelo disponibilizado pelo
+Google, com 300 dimensões.
 
-Por fim, gerou-se um modelo de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec.
+Geraram-se modelos de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec.
 A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
-Foram testados tanto modelos com aplicação de \textit{fine-tuning} no \textit{embedding} quanto modelos em que os pesos
-do Word2Vec mantinham-se estáticos durante o treinamento.
-A seleção dos hiperparâmetros foi determinada de maneira a maximizar a área sob a curva ROC.
-Entretanto, neste caso não foi utilizada a validação cruzada visto o alto custo computacional de se treinar modelos de
-\textit{deep learning}.
+Compões os hiperparâmetros variados: número de camadas, número de filtros convolutivos por camada, tamanho dos filtros,
+tamanho do \textit{pooling}.
+Começou-se com redes com poucos parâmetros a serem ajustados e acompanhou-se o efeito de aumentar a complexidade da
+rede.
+Uma vez atingido um modelo no qual aparece a presença de \textit{overfitting}, aplicou-se as técnicas de regularização L2
+e \textit{dropout}, com hiperparâmetros propostos por Derius \textit{et al.}
+Enfim, continuou-se aumentando o número de neurônios da rede regularizada até atingir o ponto com valor máximo de área
+sob a curva ROC.
+
+Durante o treinamento das redes neurais convolucionais não foi utilizada a validação cruzada visto o alto custo
+computacional de treinamento de cada rede.
+
+% Foram testados tanto modelos com aplicação de \textit{fine-tuning} no \textit{embedding} quanto modelos em que os pesos do Word2Vec mantinham-se estáticos durante o treinamento.
