@@ -41,10 +41,10 @@ Pode-se observar que se torna impraticável a realização de análise de sentim
 de dados.
 Portanto, a utilização de métodos de aprendizado de máquina é um modo de viabilizar a realização dessa tarefa.
 Porém, a extração de informação de linguagem natural não é uma tarefa simples, pois envolve conhecimentos da língua
-explicitos e implicitos, regulares e irregulares, sintáticos e semânticos~\cite{cambria13}.
+explícitos e implícitos, regulares e irregulares, sintáticos e semânticos~\cite{cambria13}.
 Sobretudo, a análise de sentimento ainda envolve problemas ainda não resolvidos no processamento de linguagem natural
-como a resolução de coreferências, tratamento de negações, resolução de anáforas, reconhecimento de entidades e
-desambiguidade de palavras~\cite{cambria13}.
+como a resolução de co-referências, tratamento de negações, resolução de anáforas, reconhecimento de entidades e
+ambiguidade de palavras~\cite{cambria13}.
 Estes fatores constituem desafios adicionais para a tarefa.
 
 \section{Análise de Sentimento}
@@ -73,19 +73,23 @@ O contrário também é possível, a análise da influência do sentimento de um
 Percebe-se que a análise de sentimento se desmembra em varias subdivisões, novas subdivisões surgem a cada dia visto que
 a área ainda está em sua infância, o que confirma seu grande potencial de aplicação.
 
-%Além de ser utilizada como indicador de relações comerciais, análises de sentimento de mídias sociais são aplicadas na
-%predição de mercados financeiros~\cite{bollen11}, na predição de resultados eleitorais~\cite{tumasjan10}, entre outros.
+Com o crescimento da participação dos usuários na formação de conteúdo da Web torna-se cada vez mais relevante a análise
+do conteúdo sendo produzido.
+Zhuang \textit{et al.}~\cite{zhuang06}, por exemplo, utiliza mineração de opinião para extrair avaliações a partir de
+críticas de filmes feitas por usuários.
+Hu e Liu~\cite{hu04}, por sua vez, desenvolveram métodos para resumo de sentimento de avaliações de produtos vendidos
+por comercio eletrônico.
 
-%%%%%%%%%%%%
-% citaçoes pra outros trabalhos da area
-% J. Bollen, H. Mao, X. Zeng, Twitter mood predicts the stock market, J. Comput.  Sci. 2 (2012) 1–8.
-% Y.-M. Li, Y.-L. Shiu, A diffusion mechanism for social advertising over microblogs, Decis. Support Syst. 54 (2012) 9–22.
-% J. Du et al., Box office prediction based on microblog, Expert Syst. Appl.  (2013), http://dx.doi.org/10.1016/j.eswa.2013.08.065.
-%%%%%%%%%%%%
+A utilização de classificadores de opinião sobre dados de redes sociais se mostrou relevante em diversas aplicações.
+Bollen \textit{et al.}~\cite{bollen11}, por exemplo, aplicam análise de sentimento de mídias sociais para predição de
+mercados financeiros.
+Tumasjan \textit{et al.}~\cite{tumasjan10}, por sua vez, utilizam o sentimento exposto no Twitter para prever resultados
+eleitorais.
+Até mesmo na predição de bilheteria de filmes, como feito por Du \textit{et al.}~\cite{du14}.
 
 Porém, a produção de base de dados para o treinamento de modelos de aprendizado supervisionado é um processo custoso.
 O seu processo de desenvolvimento envolve a anotação manual de dados, preferencialmente por múltiplas pessoas.
-Entretanto, apesar de modelos simples como os obtidos com técnicas como Naive Bayes e \textit{support vector machine}
+Contudo, apesar de modelos simples como os obtidos com técnicas como Naïve Bayes e \textit{support vector machine}
 conseguirem desempenhos satisfatórios com quantidades limitadas de dados, modelos mais complexos como redes neurais
 profundas dependem de grandes volumes de dados para obter êxito, tornando o processo de anotação manual extremamente
 ineficiente.
@@ -132,7 +136,7 @@ Entretanto, nem todos exemplos são claramente distinguíveis como os apresentad
 A comunicação frequentemente apresenta fatores como ironia, ambiguidade de sentimentos e multiplicidade de idiomas.
 Em outros casos, a mensagem sendo analisada pode ser complementar a mensagens anteriores ou informações não textuais
 que a acompanham.
-Estes fatores são complexidades adicionais e diminuim a acertividade dos classificadores.
+Estes fatores são complexidades adicionais e diminuem a acertividade dos classificadores.
 A tabela~\ref{tab:sentiment_complexity} demonstra exemplos das dificuldades indicadas.
 
 \begin{table}[h]
