@@ -1,40 +1,129 @@
+Neste capitulo serão descritos brevemente o problema abordado, as áreas de conhecimento que cerceiam o estudo, e os
+métodos que compões a solução proposta por este trabalho.
+Serão ainda ressaltados os motivos que caracterizam a necessidade do projeto apresentado e seu objetivo.
+
 \section{Tema}
 
-O tema do projeto é o estudo de técnicas de aprendizado de máquina para classificação de sentimento em mensagens de redes sociais, em especial o Twitter. Portanto, o projeto visa criar um modelo capaz de distinguir entre a polaridade, positiva ou negativa, de uma mensagem.
+O tema do projeto é o estudo de técnicas de aprendizado de máquina para processamento de linguagem natural de redes
+sociais.
+Em especial, avaliar o impacto da utilização de técnicas de \textit{deep learning}, recentemente desenvolvidas, quando
+aplicadas neste contexto.
+
+O processamento de linguagem natural é o campo dentro de inteligência artificial que estuda a geração e compreensão de
+línguas humanas.
+Uma das principais características deste campo é o fato de lidar com dados não estruturados.
+Nesse sentido, estudos que envolvam formas de comunicação, como por texto, apresentam diversas dificuldades.
+Dentre elas estão: diferentes idiomas e alfabetos, variações linguísticas temporais e determinadas pelo meio em que a
+mensagem está inserida, entre outros.
+
+Somando-se a este fato que apesar de estudos envolvendo o processamento de linguagem natural começarem a aparecer desde
+a década de 50, as redes sociais são um fenômeno recente.
+Por sua vez, estas se diferem de textos mais amplamente abordados principalmente por seu tamanho normalmente reduzido,
+seu nível de formalidade, e a frequente associação com mídias não textuais.
+Tais distinções ressaltam a necessidade de desenvolvimento e validação de técnicas aplicadas especificamente ao contexto
+de mídias sociais.
 
 \section{Delimitação}
 
-O objeto de estudo são \textit{tweets}, mensagens publicadas no Twitter. Serão utilizadas duas bases de dados: a primeira, uma base anotada automaticamente pelo \textit{Sentiment140} \cite{sent140}, o qual é formado por um grupo de alunos de \textit{Stanford University}; e a segunda, uma base com anotação manual, formada pela coletânea de dados disponibilizados anualmente entre 2013 e 2017 pelo \textit{International Workshop on Semantic Evaluation} \cite{semeval17}. A análise de sentimento a ser aplicada terá seu enfoque na polaridade das mensagens, separando-as entre positivas e negativas. Não serão abordadas por esse projeto a objetividade ou neutralidade de um texto. Por fim, o modelo a ser obtido visa a classificação de mensagens escritas em língua inglesa.
+O objeto de estudo deste trabalho são os chamados \textit{tweets}, mensagens curtas publicadas na rede social Twitter.
+O Twitter é uma das principais redes sociais contando com 310 milhões de usuários ativos, gerando um total de meio
+bilhão de \textit{tweets} por dia.
+
+Sobre essas mensagens será aplicada a análise de sentimento, na qual seu enfoque será na polaridade das mensagens,
+separando-as entre positivas e negativas.
+Não serão abordadas por esse projeto a objetividade ou neutralidade de um texto.
+
+Por fim, o modelo a ser obtido visa a classificação de mensagens escritas em língua inglesa.
+A língua inglesa foi escolhida por ter o maior conjunto de estudos e dados disponíveis.
+Desta forma, é possível validar o método proposto comparando seus resultados com os obtidos na literatura.
 
 \section{Justificativa}
 
-Acompanhamos ao longo da última década a massificação do uso de redes sociais. O Twitter, objeto de nosso estudo, conta com 310 milhões de usuários ativos, gerando um total de meio bilhão de \textit{tweets} por dia. Tais estatísticas provam ser cada vez mais necessário ferramentas capazes de automatizar o processo extração de informação deste mar de dados.
+As redes sociais são escolhidas como objeto de estudo por que longo da última década observamos a massificação de seu
+uso.
+A medida que essas plataformas passam a ser cada vez mais relevantes, cresce a importância de se analisar o conteúdo
+que trafega pelas redes.
+Dentre essas mensagens, frequentemente se encontram opiniões sobre um assunto, evento ou produto.
+Neste quesito, é possível aplicar a análise de sentimento, ou mineração de opinião, que é o campo de estudo que visa
+resgatar as informações que transitam nos textos, de maneira a agregar conhecimento sobre os tópicos falados.
 
-A análise de sentimento neste contexto visa resgatar opinião sobre um assunto, evento ou produto. Os primeiros estudos deste tópico aplicados ao Twitter foram desenvolvidos em 2009 por Go et al., \cite{go09}. Esse grupo de pesquisadores utiliza, em seu artigo, as melhores técnicas de classificação de texto disponíveis na época e ressalta as diferenças de seus resultados comparados a quando aplicadas em textos jornalísticos, resenhas etc.
+Entretanto, o crescimento da produção de dados inviabiliza o processo de análise manual deste conteúdo.
+Logo, há a necessidade de técnicas, como a abordada por este trabalho, capazes de operar dados no volume em que são
+gerados atualmente.
 
-O campo do processamento de linguagem natural foi fortemente impactado pelo crescimento do \textit{Deep Learning}. Técnicas como Redes Neurais Convolutivas (CNN), a princípio desenvolvidas para processamento de imagens, e \textit{Long Short-Term Memory} (LSTM) propulsionaram o salto de desempenho obtido nos últimos anos. O impacto deste avanço é notório no nosso dia a dia. Frequentemente utilizamos essas técnicas como em serviços automatizados de atendimento ao cliente ou em ferramentas de tradução simultânea.
+Em paralelo, observamos nos últimos anos o desenvolvimento do chamado \textit{deep learning}.
+\textit{Deep learning} se constitui de redes neurais de diversas camadas.
+Este conjunto de técnicas, viabilizadas pelo aumento de poder computacional, apresentou sucesso nas mais diversas
+aplicações como no processamento de imagens, reconhecimento de fala, entre outros.
+O campo do processamento de linguagem natural, por sua vez, foi fortemente impactado por estes algoritmos.
+Ferramentas como redes neurais convolutivas, a princípio desenvolvidas para processamento de imagens, e
+\textit{long short-term memory} propulsionaram o salto de desempenho obtido nos últimos anos.
+O impacto deste avanço é notório no nosso dia a dia.
+Frequentemente utilizamos, por exemplo, serviços automatizados de atendimento ao cliente ou ferramentas de tradução
+simultânea que fazem uso desta abordagem.
 
-Neste sentido, o presente projeto visa aplicar em \textit{tweets} os procedimentos que compõe o estado da arte em classificação de sentimento.
+É necessário ressaltar que parte do sucesso atribuído ao \textit{deep learning} provem de seu maior poder de abstração
+dos dados.
+Entretanto, essa característica faz com que haja uma dependência de grandes volumes de dados durante o treinamento
+destes algoritmos.
+Por esse motivo, se ressalta a necessidade de métodos capaz de gerar bases de treinamento de maneira automática.
 
 \section{Objetivos}
 
-O objetivo deste projeto, portanto, consiste em gerar um modelo computacional capaz de sistematizar a classificação de sentimento de \textit{tweets}. Este modelo deve ser independente de uma base de dados anotada manualmente, visto o alto custo desta ser reproduzida.
+O objetivo deste projeto, portanto, consiste em gerar um modelo computacional capaz de sistematizar a classificação de
+sentimento de \textit{tweets}.
+A produção deste modelo será feita de maneira a não depender de uma base de dados anotada manualmente, visto o alto
+custo desta ser reproduzida.
 
 \section{Metodologia}
 
-Para alcançar esse objetivo, as seguintes etapas serão necessárias: (1) replicar técnicas consolidadas de análise de sentimento para \textit{tweets} e utilizá-las como referência; (2) aplicar nos \textit{tweets} técnicas de \textit{Deep Learning} que vêm obtendo sucesso em processamento de linguagem natural.
+Para alcançar esse objetivo, o projeto foi dividido em três etapas: (1) replicar técnicas consolidadas de análise de
+sentimento para \textit{tweets} sobre dados de treinamento obtidos por anotação automática; (2) formar uma base de dados
+própria e aplicar os mesmos algoritmos utilizados anteriormente para validar o procedimento de sua elaboração; (3)
+aplicar nos \textit{tweets} técnicas de \textit{deep learning} que vêm obtendo sucesso em processamento de linguagem
+natural e avaliar o impacto das mesmas comparado-as a classificadores menos robustos.
 
-A primeira etapa do trabalho será a replicação de estudos desenvolvidos por Go et al., \cite{go09} que aplica técnicas de \textit{Naïve Bayes} e \textit{SVM} na classificação de polaridade de \textit{tweets}, sendo seu treinamento feito em cima de uma base de dados com anotação automática, conforme apresentado por Read \cite{read05}. Os resultados obtidos por estas técnicas serão utilizados como patamar para comparação dos modelos a serem gerados.
+A primeira etapa do trabalho será a replicação de estudos desenvolvidos por Go \textit{et al.}~\cite{go09}, que aplica
+técnicas de \textit{Naïve Bayes} e \textit{support vector machine} na classificação de polaridade de \textit{tweets},
+sendo seu treinamento feito em cima de uma base de dados disponibilizada por Go \textit{et al.} formada por anotação
+automática.
+Os resultados obtidos por estas técnicas serão utilizados como patamar para comparação dos modelos posteriormente
+gerados.
 
-Posteriormente, serão aplicadas técnicas de \textit{Deep Learning}, como apresentadas por Kim \cite{kim14}, em que se utiliza CNNs para classificação de texto. O treinamento continua sendo feito a partir do banco de dados com anotação semi-supervisionada, o qual foi apresentado anteriormente. Será avaliado o desempenho desta técnica quando aplicada em mensagens do Twitter.
+Posteriormente, a segunda etapa consiste em produzir uma base de treinamento gerada pelo método proposto por Go
+\textit{et al.}, anotada automaticamente.
+Para sua validação, serão replicados os mesmo algoritmos de \textit{Naïve Bayes} e \textit{support vector machine},
+treinados com esse novo conjunto de dados, e comparados seus resultados com os obtidos pelos classificadores da etapa
+anterior.
 
-\section{Descrição}
-% TODO
+Finalmente, a terceira etapa fundamenta-se na aplicação de técnicas de \textit{Deep Learning}, como apresentadas por
+Kim \cite{kim14}, em que se utiliza redes neurais convolucionais para classificação de texto.
+O treinamento continua sendo feito a partir do banco de dados produzido por anotação automática, o qual foi apresentado
+anteriormente.
+Serão comparados seus resultados com os obtidos pelos classificadores que compõe a etapa anterior para analisar a
+eficiência de algoritmos de \textit{deep learning} aplicadas ao processamento de linguagem natural de redes sociais.
 
-No capítulo \ref{contexto} será .....
+\section{Organização}
 
-O capítulo 3 apresenta ...
+No capítulo~\ref{contexto} se aborda definições relevantes ao problema que será abordado, ressaltam-se a importância do
+objetivo proposto, situa-se o trabalho em sua área de conhecimento e se apresenta o Twitter, objeto do estudo.
 
-Os .... são apresentados no capítulo 4. Nele será explicitado ...
+O capítulo~\ref{nlp} apresenta as técnicas necessárias para permitir o uso de aprendizado de máquina no processamento de
+texto.
+Este capítulo mostra as diferentes abordagens possíveis para transformações de texto em valores numéricos, ressaltando
+como estas decisões afetam os algoritmos de aprendizado posteriormente aplicados.
 
-E assim vai até chegar na conclusão.
+Os algoritmos de aprendizado, por sua vez, são apresentados no capítulo~\ref{supervisionado}.
+Nele serão explicitadas as fundamentações teóricas de cada algoritmo e variações necessárias para aplicações destas
+técnicas em texto.
+Também são apresentadas as métricas de avaliação de resultado que foram utilizadas para a realização do projeto.
+
+O capítulo~\ref{metodologia} descreve em detalhes cada etapa que compõe o trabalho.
+Destacando-se os bancos de dados utilizados, a escolha dos parâmetros dos algoritmos de aprendizado e o procedimento
+metodológico aplicado.
+
+No capítulo~\ref{resultados} são apresentados os resultados obtidos pelas técnicas de aprendizado de máquina propostas.
+Neste capítulo, os resultados encontrados são avaliados, comparados e discutidos.
+
+O capítulo~\ref{conclusao} é composto pela conclusão, mostrando os objetivos cumpridos, destacando os ponto positivos e
+apontando as limitações encontradas durante o desenvolvimento do projeto.
