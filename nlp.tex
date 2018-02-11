@@ -1,10 +1,10 @@
 O processamento de linguagem natural (NLP), é um dos principais ramos da Inteligência Artificial.
-Um de seus marcos inicias desse área de conhecimento foi o teste de Turing~\cite{turing50} no qual propõe a capacidade
-de comunicação como um critério de inteligência.
-Desde sua criação, no inicio dos anos 50, o NLP se consolidou de maneira a se fazer presente no dia a dia das pessoas
-como pode-se observar na utilização de serviços automatizados de atendimento ao clientes, ferramentas de tradução etc.
-Grande parte destas aplicações provem da utilização de técnicas de aprendizado supervisionado como serão apresentados
-no capitulo~\ref{supervisionado}.
+Um dos marcos inicias desta área de conhecimento foi o teste de Turing~\cite{turing50} no qual a capacidade
+de comunicação é proposta como um critério de inteligência.
+Desde sua criação, no inicio dos anos 50, o NLP se consolidou de maneira a estar presente no dia a dia das pessoas como
+se observa na utilização de serviços automatizados de atendimento ao clientes, ferramentas de tradução, e outros.
+Grande parte destas aplicações provém da utilização de técnicas de aprendizado supervisionado que serão apresentadas
+no Capítulo~\ref{supervisionado}.
 
 As seções a seguir apresentam as transformações aplicadas a textos necessárias para viabilizar a aplicação de algoritmos
 de aprendizado.
@@ -13,20 +13,20 @@ de aprendizado.
 
 A primeira etapa na preparação de uma mensagem para utilização em algoritmos de aprendizado de máquina é a separação por
 palavras.
-Este processo é chamado de \textit{tokenização}, denominando-se cada palavra resultante como token.
+Este processo é chamado de \textit{tokenização}, denominando-se cada palavra resultante como um token.
 A \textit{tokenização} costuma incluir a separação de contrações como a transformação de \textit{dela} em \textit{de}
 e \textit{ela}.
 
 % figura mostrando tokenização
 
-Para aplicação de tarefas como a de classificação é comum se remover as palavras mais comuns de um idioma e que não
-agregam informação discriminantes para o objetivo desejado, essas palavras são chamadas de \textit{stopwords}.
+Para aplicação de tarefas como classificação, é comum se remover as palavras mais comuns de um idioma e que não
+agregam informação discriminante para o objetivo desejado, essas palavras são chamadas de \textit{stopwords}.
 A remoção de \textit{stopwords} visa reduzir o ruído presente em dados textuais, aumentando a acurácia dos algoritmos de
 aprendizado de máquina e reduzindo a complexidade do problema~\cite{silva03}.
 Porém, a remoção de \textit{stopwords} provindas de listas pré compiladas, técnica mais utilizada, apresenta desafios
-principalmente devido a dinamicidade de meios como redes sociais.
-Saif \textit{et al.}~\cite{saif14} apresentam um estudo comparativo do efeito da remoção de \textit{stopwords} por
-diferentes técnicas e seus efeitos na classificação de sentimento de \textit{tweets}.
+devido a dinamicidade de meios como redes sociais.
+Saif \textit{et al.}~\cite{saif14} apresentam um estudo comparativo da remoção de \textit{stopwords} por diferentes
+técnicas e seus efeitos na classificação de sentimento de \textit{tweets}.
 Além da remoção de \textit{stopwords}, em mensagens provindas de redes sociais também são costumeiramente removidos
 links, \textit{hashtags} e menções a usuários.
 
@@ -37,7 +37,7 @@ Estas técnicas são normalmente empregadas para reduzir o vocabulário e diminu
 \section{Representações Numéricas}
 
 Contudo, a utilização de algoritmos de aprendizado de máquina depende de uma representação numérica dos dados.
-Portanto, após a conversão de uma mensagem em uma uma sequência de tokens, há uma etapa de transformação destas cadeias
+Após a conversão de uma mensagem em uma uma sequência de tokens, há uma etapa de transformação destas cadeias
 de tokens em matrizes ou vetores.
 Serão apresentadas nas subseções seguintes as principais técnicas referentes a este processo.
 
