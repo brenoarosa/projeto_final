@@ -545,39 +545,3 @@ O sucesso de algoritmos de \textit{Deep Learning} depende da disponibilidade de 
 Supervisão Distante visa contornar essa dificuldade extraindo anotação de maneira automatizada. Essa técnica consiste encontrar uma característica que tenha forte correlação com a saída desejada e considerá-la como uma anotação ruidosa~\cite{go09}.
 
 Esse procedimento obteve êxito em algumas aplicações de processamento de linguagem natural~\cite{craven99}\cite{go09} pela abundância de informações presentes de forma desestruturada. Craven \textit{et al.}~\cite{craven99} apresenta uma das primeiras aplicações da técnica extraindo a partir de registros textuais informações sobre proteínas e suas relações.
-
-\section{Métricas} \label{sec:metrics}
-
-Definidas as técnicas de classificação se faz necessário medir e comparar sua eficiência.
-Esta seção apresentará as métricas utilizadas para seleção de parâmetros e avaliação dos algoritmos.
-
-A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia.
-Todavia, a presença de desbalanceamento de classes nos dados pode favorecer a acertividade da classe mais presente
-enquanto perde eficiencia na classificação da classe com menos exemplos.
-
-% ROC - dissertacao fernando
-A curva ROC (\textit{receiver operating characteristic})~\cite{bradley97} é uma forma de visualizar a performance de um
-classificador binário para seleção de um ponto de operação.
-Nela se apresenta a variação da probabilidade de detecção e de falso alarme variam com a escolha do patamar de decisão.
-A área sob a curva pode ser utilizada como métrica de eficiência para um classificador.
-
-% SP - dissertacao fernando
-O índice SP é outro método de avaliação de classificadores binários.
-A equação~\ref{eq:sp} descreve a formação desse índice na qual $P_c$ representa a probabilidade de detecção da classe
-positiva enquanto $P_{nc}$ caracteriza a probabilidade de não obtenção de falso alarme~\cite{ciodaro12}.
-
-\begin{equation} \label{eq:sp}
-    SP = \sqrt{\sqrt{P_c P_{nc}}(\frac{P_c + P_{nc}}{2})}
-\end{equation}
-
-O patamar de decisão do classificador será escolhido de maneira a maximizar o índice SP.
-
-% validaçao cruzada, ver dissertação do junior
-Uma maneira de garantir que os resultados obtidos pelas métricas apresentadas sejam consistentes independente do
-conjunto de dados na qual será aplicado é utilizar a validação cruzada.
-Neste trabalho será utilizado o método de validação cruzada de K-partições.
-Este processo~\cite{kohavi95} consiste na separação aleatória da base de dados em $k$ conjuntos mutualmente exclusivos
-de tamanhos similares.
-Posteriormente são executadas $k$ rodadas, na qual o conjunto correspondente a cada rodada será utilizado para validação
-do modelo enquanto os outros $k-1$ conjuntos servirão para seu treinamento.
-O treinamento pode ser considerado consistente se obtiver pouca variação nos resultados das $k$ rodadas.
