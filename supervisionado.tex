@@ -1,7 +1,7 @@
 O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa a gerar modelos preditivos a partir de
 um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
 
-\section{Naïve Bayes}
+\section{Naïve Bayes} \label{sec:bayes}
 
 \textit{Naïve Bayes} é uma das técnicas mais simples disponíveis nesse contexto.
 Ela se baseia no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o
@@ -462,7 +462,7 @@ O momento permite que, enquanto o gradiente $\mathbf{\hat{g}}$ mantiver o mesmo 
 
 Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.}~\cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.}~\cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na seção~\ref{sec:w2v}.
 
-Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam} \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
+Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam}, \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
 
 O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocódigo. Os valores dos decaimentos betas costumam ser escolhidos em torno de 0.9 para $\beta_{1}$ e 0.999 para $\beta_{2}$. Pelos momentos serem inicializados em zero, é necessário corrigir a tendência para se obter a verdadeira estimativa.
 

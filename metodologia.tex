@@ -3,10 +3,14 @@ positivo ou negativo, de \textit{tweets}.
 A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
 fácil replicação.
 
-\section{Bases de Dados}
+\section{Bases de Dados} \label{sec:data}
 
-O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
+O trabalho de Go \textit{et al.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
 anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
+Conjuntamente com o artigo, Go \textit{et al.} disponibilizaram um base de dados formada por anotação ruidosa composta
+de 800 mil \textit{tweets}, divididos igualmente entre as classes positivas e negativas, e uma pequena base de testes de
+360 \textit{tweets} anotados manualmente, também divididos igualmente entre as classes.
+
 A não dependência de anotação dos dados e a facilidade de coleta dos \textit{tweets}, por meio de interface programável,
 viabilizam a formação de uma grande base de treinamento.
 Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens do Twitter filtrando-as apenas pelo
@@ -18,8 +22,15 @@ Mensagens que possuírem \textit{emoticons} pertencentes a algum destes grupos s
 caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
 Os \textit{emoticons} utilizados para anotação da base de dados foram removidos das mensagens para evitar introduzir
 viés ao classificador.
-A tabela~\ref{tab:emoticons} mostra alguns dos emoticons escolhidos para compor a anotação ruidosa.
 
+A tabela~\ref{tab:emoticons} mostra os \textit{emoticons} escolhidos para compor a anotação ruidosa.
+Em adição aos \textit{emoticons} presentes no trabalho de Go \textit{et al.}, foram classificados manualmente os
+emoticons mais presentes na base de dados.
+A escolha dos \textit{emoticons} definirá quão ruidosa será a anotação automática.
+Durante este processo, observou-se um grande desbalanceamento nas classes, na qual os \textit{tweets} positivos
+compões 80\% do volume total de anotações.
+
+% completar com todos
 \begin{table}[h]
     \begin{center}
         \begin{tabular}{| c | c |}
@@ -50,7 +61,7 @@ Esta seção apresentará as métricas utilizadas para seleção de parâmetros 
 
 A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia.
 Todavia, a presença de desbalanceamento de classes nos dados pode favorecer a acertividade da classe mais presente
-enquanto perde eficiencia na classificação da classe com menos exemplos.
+enquanto perde eficiência na classificação da classe com menos exemplos.
 
 % ROC - dissertacao fernando
 A curva ROC (\textit{receiver operating characteristic})~\cite{bradley97} é uma forma de visualizar a performance de um
@@ -110,54 +121,66 @@ resultado entre as diferentes representações como apresentado na Tabela~\ref{t
 \end{table}
 
 Finalmente, foram treinados os algoritmos de Naïve Bayes e SVM, estes foram escolhidos por existirem implementações de
-código aberto disponíveis.
+código aberto disponíveis e de fácil acesso.
 Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré processamento utilizado.
-Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a área da curva ROC.
-Para treinamento do modelo por \textit{support vector machine}, dada a grande quantidade de dados e as limitações
-computacionais,foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
+Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a acurácia.
+Para treinamento do modelo por \textit{support vector machines}, dada a grande quantidade de dados e as limitações
+computacionais, foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
 Vandewalle~\cite{suykens99}.
 A função \textit{kernel} utilizada foi linear.
-Neste caso, variou-se parâmetro de regularização L2 também visando maximizar a área da curva ROC.
+Neste caso, variou-se parâmetro de regularização L2 também visando maximizar a acurácia.
 Empregou-se validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
 
 % Etapa 2
-A segunda etapa consiste em treinar os mesmos algoritmos de Naive Bayes e SVM utilizados anteriormente porém utilizando
-a base de dados anotada com supervisão distante.
+A segunda etapa consiste em treinar os mesmos algoritmos de Naïve Bayes e SVM utilizados anteriormente porém utilizando
+a base de dados anotada desenvolvida com supervisão distante, como elucidado na seção~\ref{sec:data}.
 Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
 de \textit{deep learning}.
-Adicionamente, será validado o processo de captação de dados.
+Adicionalmente, será validado o processo de captação de dados e anotação por supervisão distante.
 Nesta fase replicou-se os mesmos procedimentos práticos da etapa anterior.
 
+Entretanto, devido a base de dados coletada ser desbalanceada, durante o treinamento do modelo por
+\textit{support vector machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
+igualmente durante o treinamento.
+Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes,
+como descrito na seção~\ref{sec:bayes}.
+Por sua vez, a métrica utilizada para seleção do modelo neste caso será a área sob a curva ROC visto que a seleção por
+acurácia favorece modelos enviesados a classe mais presente nos dados.
+
 % Etapa 3
-Por fim, a terceira e última etapada é formada pela aplicação de redes convolucionais em textos como descrito por
+Por fim, a terceira e última etapa é formada pela aplicação de redes convolucionais em textos como descrito por
 Kim~\cite{kim14}.
 Nesta fase será medido o impacto da utilização desta técnica na classificação de mensagens.
-Serão variados diferentes pré-processamentos e parametros das redes para analisar sua influência na eficiência do
+Serão variados diferentes pré-processamentos e parâmetros das redes para analisar sua influência na eficiência do
 modelo.
 
-Para utilização de modelos de redes convolucionais, obtém-se primeiro uma representação dos dados em um
-\textit{embedding}.
-Foram avaliados duas opções de \textit{embeddings}: a utilização de um \textit{embedding} Word2Vec pré-treinado a
-partir de notícias, disponibilizados pelo Google; e o treinamento de um \textit{embedding} Word2Vec a partir da base de
-treinamento composta por \textit{tweets}.
-Este experimento visa verificar as implicações de utilização de representações obtidas a partir de textos da mesma
-fonte a ser classificada.
-O número de dimensões do Word2Vec treinado a partir de \textit{tweets} foi baseados no modelo disponibilizado pelo
-Google, com 300 dimensões.
+Para utilização de modelos de redes convolucionais, precisa-se primeiro representar os dados por um \textit{embedding}.
+Neste sentido, utilizou-se o \textit{embedding} Word2Vec pré-treinado a partir de notícias em inglês, disponibilizado
+pelo Google.
+Este Word2Vec é treinado de maneira a representar cada token como um vetor de 300 dimensões.
 
-Geraram-se modelos de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec.
+Posteriormente, geraram-se modelos de redes convolucionais aplicando como entrada a representação obtida pelo Word2Vec.
 A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
 Compões os hiperparâmetros variados: número de camadas, número de filtros convolutivos por camada, tamanho dos filtros,
 tamanho do \textit{pooling}.
-Começou-se com redes com poucos parâmetros a serem ajustados e acompanhou-se o efeito de aumentar a complexidade da
-rede.
-Uma vez atingido um modelo no qual aparece a presença de \textit{overfitting}, aplicou-se as técnicas de regularização L2
-e \textit{dropout}, com hiperparâmetros propostos por Derius \textit{et al.}
-Enfim, continuou-se aumentando o número de neurônios da rede regularizada até atingir o ponto com valor máximo de área
-sob a curva ROC.
+Os parâmetros de regularização L2 e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
+propostos por Derius \textit{et al.}
 
-Durante o treinamento das redes neurais convolucionais não foi utilizada a validação cruzada visto o alto custo
-computacional de treinamento de cada rede.
+Para o treinamento das redes convolucionais sortearam-se os dados anotados de maneira ruidosa em dois grupos:
+treinamento, contendo 80\% do volume total, e validação com os 20\% restante.
+Não se aplicou a validação cruzada, como nas etapas anteriores, visto o alto custo computacional de treinamento de cada
+rede.
+O treinamento se deu até que o valor da função custo sob os dados de treinamento se estabiliza-se em um valor
+arbitrariamente pequeno, $\epsilon$ .
+Entretanto, para reduzir o efeito do \textit{overfitting}, foi aplicado \textit{early stopping}~\cite{caruana01},
+técnica que consiste em utilizar os pesos obtidos na época de treinamento que corresponde ao menor valor de função custo
+aplicada ao conjunto de validação.
+A função custo aplicada foi a entropia cruzada e utilizou-se o otimizador por método do gradiente \textit{Adam}.
+
+Assim como aplicado na modelagem por SVM na segunda etapa, foi necessário compensar o desbalanceamento das classes
+através de pesos diferentes para cada classe.
+A seleção do classificador de melhor performance foi feita a partir daquele que obteve maior valor de área sob a curva
+ROC.
 
 % Foram testados tanto modelos com aplicação de \textit{fine-tuning} no \textit{embedding} quanto modelos em que os pesos do Word2Vec mantinham-se estáticos durante o treinamento.
