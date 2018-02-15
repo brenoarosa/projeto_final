@@ -83,18 +83,34 @@ O treinamento pode ser considerado consistente se obtiver pouca variação nos r
 
 % Etapa 1
 O presente trabalho será dividido em três etapas.
-Na primeira etapa utilizou-se a base de dados provida por Go \textit{et al.}~\cite{go09} replicando as técnicas
+Na primeira fase utilizou-se a base de dados provida por Go \textit{et al.}~\cite{go09} replicando as técnicas
 abordadas em seu artigo visando validar os pré-processamentos e algoritmos aplicados.
 Para tal, serão utilizadas as bases de dados tanto de treinamento como de testes disponibilizadas por Go
 \textit{et at.}~\cite{go09}.
 
-Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se stopwords; links; referências a usuários;
+Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se \textit{stopwords}; links; referências a usuários;
 e cada token foi transformado para forma minuscula.
 Replicou-se como entrada do algoritmo de aprendizado apenas a representação dos tokens por unigrama, essa escolha foi
 feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca variação de
-resultado entre as diferentes representações.
+resultado entre as diferentes representações como apresentado na Tabela~\ref{tab:go}.
 
-Finalmente, foram treinados os algoritmos de Naïve Bayes e SVM.
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| l | r | r | r |}
+        \hline
+        \textbf{Representação} & \textbf{Naïve Bayes} & \textbf{Máxima Entropia} & \textbf{SVM} \\ \hline
+        Unigrama & 81,3\% & 80,5\% & 82,2\% \\ \hline
+        Bigrama &  82,6\% & 79,1\% & 78,8\% \\ \hline
+        Unigrama + Bigrama & 82,7\% & 83,0\% & 81,6\% \\ \hline
+        Unigrama + \textit{Part of Speech} & 82,7\% & 83,0\% & 81,6\% \\ \hline
+        \end{tabular}
+        \caption{Acurácia obtida pelos classificadores de Go \textit{et al.}}
+        \label{tab:go}
+    \end{center}
+\end{table}
+
+Finalmente, foram treinados os algoritmos de Naïve Bayes e SVM, estes foram escolhidos por existirem implementações de
+código aberto disponíveis.
 Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré processamento utilizado.
 Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a área da curva ROC.
 Para treinamento do modelo por \textit{support vector machine}, dada a grande quantidade de dados e as limitações
@@ -102,7 +118,7 @@ computacionais,foi empregado o treinamento a partir do método do gradiente como
 Vandewalle~\cite{suykens99}.
 A função \textit{kernel} utilizada foi linear.
 Neste caso, variou-se parâmetro de regularização L2 também visando maximizar a área da curva ROC.
-Empregou-se validação cruzada por K-partições, com 5 partições, no treinamento dos dois algoritmos.
+Empregou-se validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
 
 % Etapa 2
 A segunda etapa consiste em treinar os mesmos algoritmos de Naive Bayes e SVM utilizados anteriormente porém utilizando

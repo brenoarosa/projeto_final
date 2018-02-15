@@ -28,18 +28,18 @@ Nesse sentido, tornaram-se necessários trabalhos que analisem o que se está di
 Para uma emissora de TV, por exemplo, é interessante saber o que está sendo dito sobre sua programação, assim como para
 a assessoria de um cantor, é importante descobrir se sua nova canção está agradando ou não seu público.
 
-Jim Yu, presidente da empresa de marketing digital BrightEdge, ressalta que os sentimentos expressados por clientes em
+Jim Yu, presidente da empresa de marketing digital BrightEdge, ressalta que os sentimentos expressos por clientes em
 relação a uma marca é uma das principais métricas de \textit{branding}~\cite{marketingland}.
-O colunista da Forbes, Daniel Newman, destaca que a utilização desta e outras técnicas de big data vem revolucionando
-a forma de se fazer marketing, permitindo uma maior personalização dos produtos e fortalecimento de relação com os
-clientes.
+O colunista da Forbes, Daniel Newman, destaca que a utilização de técnicas de análise de sentimento em conjunto com
+outras técnicas de \textit{big data} vem revolucionando a forma de se fazer marketing, permitindo uma maior
+personalização dos produtos e fortalecimento de relação com os clientes~\cite{newman16}.
 
 Entretanto, a criação de conteúdo digital acompanha o crescimento da internet.
 No ano de 2016, a cada sessenta segundos foram adicionadas 500 horas vídeo no YouTube, realizadas 3.8 milhões de buscas
 no Google e publicados 450 mil \textit{tweets}~\cite{smartinsights}.
-Pode-se observar que se torna impraticável a realização de análise de sentimento manualmente sobre mídias com esse volume
-de dados.
-Portanto, a utilização de métodos de aprendizado de máquina é um modo de viabilizar a realização dessa tarefa.
+Estes números tornam impraticável a realização de análise de sentimento manualmente sobre mídias com esse volume de
+dados.
+Portanto, a utilização de métodos de automatizados é um modo de viabilizar a realização dessa tarefa.
 Porém, a extração de informação de linguagem natural não é uma tarefa simples, pois envolve conhecimentos da língua
 explícitos e implícitos, regulares e irregulares, sintáticos e semânticos~\cite{cambria13}.
 Sobretudo, a análise de sentimento ainda envolve problemas ainda não resolvidos no processamento de linguagem natural
@@ -52,12 +52,12 @@ Estes fatores constituem desafios adicionais para a tarefa.
 O campo de estudos da análise de sentimento, também chamado de mineração de opinião, é um dos ramos mais ativos do
 processamento de linguagem natural~\cite{liu12}.
 A análise de sentimento visa analisar a opinião, a avaliação, a emoção e a atitude de um documento em relação a um
-evento, produto, serviço, organização, etc.
+evento, produto, serviço, organização, ou qualquer outra entidade.
 Apesar do processamento de linguagem natural ter um longo histórico de estudos, a análise de sentimento se consolidou
 apenas no inicio dos anos 2000 com a crescente demanda comercial.
 Observa-se que o crescimento de interesse nessa área tem grande correlação com o crescimento de mídias sociais e do
-volume de dados, visto que o sucesso das redes sociais disponibilizam quantidades massivas de dados possibilitando o
-desenvolvimento de técnicas quanto oferecem oportunidades de aplicações~\cite{liu12}.
+volume de dados, visto que o sucesso das redes sociais disponibilizam quantidades massivas de dados possibilitando tanto
+a oferta de novas aplicações quanto oportunidades de desenvolvimento de técnicas ~\cite{liu12}.
 
 O campo de análise de sentimento apresenta diferentes subáreas de estudo.
 Dentre elas, a tarefa mais presente na literatura e que abordaremos neste trabalho é a análise de polaridade de um
@@ -66,12 +66,12 @@ A análise de polaridade visa classificar textos em uma escala entre positivo e 
 Encontra-se também estudos que visam determinar a subjetividade ou objetividade de um texto, como no trabalho de Wiebe e
 Rilof~\cite{Wiebe05}.
 Também entra no escopo de análise de sentimento a classificação de emoções presentes em uma mensagem, como felicidade,
-raiva, tristeza, etc.
+raiva, tristeza, etc~\cite{bollen11b}.
 Outro foco de pesquisa com grande aplicações práticas é a análise de sentimento porém não da mensagem como um todo, mas
 do sentimento em relação a uma entidade presente na mensagem.
 O contrário também é possível, a análise da influência do sentimento de um termo em relação a mensagem.
-Percebe-se que a análise de sentimento se desmembra em varias subdivisões, novas subdivisões surgem a cada dia visto que
-a área ainda está em sua infância, o que confirma seu grande potencial de aplicação.
+Percebe-se que a análise de sentimento se desmembra em varias subdivisões e, novas subdivisões surgem a cada dia visto
+que a área ainda está em processo de expansão, o que confirma seu grande potencial de aplicação.
 
 Com o crescimento da participação dos usuários na formação de conteúdo da Web torna-se cada vez mais relevante a análise
 do conteúdo sendo produzido.
@@ -89,7 +89,7 @@ Até mesmo na predição de bilheteria de filmes, como feito por Du \textit{et a
 
 Porém, a produção de base de dados para o treinamento de modelos de aprendizado supervisionado é um processo custoso.
 O seu processo de desenvolvimento envolve a anotação manual de dados, preferencialmente por múltiplas pessoas.
-Contudo, apesar de modelos simples como os obtidos com técnicas como Naïve Bayes e \textit{support vector machine}
+Contudo, apesar de modelos simples como os obtidos com técnicas como Naïve Bayes e \textit{support vector machines}
 conseguirem desempenhos satisfatórios com quantidades limitadas de dados, modelos mais complexos como redes neurais
 profundas dependem de grandes volumes de dados para obter êxito, tornando o processo de anotação manual extremamente
 ineficiente.
@@ -97,24 +97,24 @@ Sobretudo, uma vez formada esta base de dados, ela só é eficiente para o desen
 na mesma língua, no mesmo formato, e sem grandes defasagens de tempo.
 Por exemplo, uma base de dados composta por \textit{tweets} seria ineficiente para modelagem de classificadores de
 emails, ou mesmo o uso de uma base formada por \textit{tweets} de 2010 sofreria queda de performance se o modelo
-treinado com esta for aplicado em \textit{tweets} de 2018.
+treinado com esta for aplicado em \textit{tweets} de 2018, visto a evolução da língua neste período de tempo.
 
-Portanto, se faz necessário desenvolver subterfujos como o apresentado por Go \textit{et at.}~\cite{go09}, desenvolvendo
+Portanto, se faz necessário desenvolver métodos como o apresentado por Go \textit{et at.}~\cite{go09}, que desenvolve
 uma base composta de \textit{tweets} a partir de anotação automática por emoticons.
-
 O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
-anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
-Neste artigo a \textit{análise de sentimento} tratada é a extração de polaridade, negativa ou positiva, de uma mensagem.
-Em especial, as mensagens tratadas nesse trabalho são originárias do Twitter, serviço de microblogs, sendo o primeiro a
-estudar este tipo de mensagem.
+anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante, técnica de anotação ruidosa
+automática.
+Neste artigo a análise de sentimento tratada é a extração de polaridade, negativa ou positiva, de uma mensagem.
+Em especial, as mensagens desse trabalho são originárias do Twitter, serviço de microblogs, sendo este trabalho o
+primeiro a estudar este tipo de mensagem.
 
 % colocar exemplos compativeis com os apresentados anteriormente
 Por ser uma plataforma aberta, o Twitter é composto de mensagens dos mais diversos domínios.
-Esse fator dificulta a tarefa a ser executada quando comparado com trabalhos de um domínio específico, como por exemplo
-a análise de sentimento para avaliação de filmes a partir de resenhas; ou na predição de flutuações do mercado
-financeiro pela análise de artigos jornalísticos.
+Esse fator dificulta a tarefa de classificação a ser executada quando comparado com trabalhos de um domínio específico,
+como por exemplo a análise de sentimento para avaliação de filmes a partir de resenhas; ou na predição de flutuações do
+mercado financeiro pela análise de artigos jornalísticos.
 
-A tabela~\ref{tab:sentiment} exemplifica a classificação de polaridade de \textit{tweets}, foco deste trabalho.
+A Tabela~\ref{tab:sentiment} exemplifica a classificação de polaridade de \textit{tweets}, foco deste trabalho.
 
 \begin{table}[h]
     \begin{center}
@@ -160,8 +160,9 @@ Microblogs são meios de comunicação que permitem usuários a compartilhar con
 As principais características dos microblogs são a brevidade e instantaneidade.
 Os \textit{tweets} são limitados a 140 caracteres e podem conter fotos, vídeos, links, localizações referências a
 usuários e \textit{hashtags}.
-Criado em 2006, o site cresceu rapidamente a ponto de se tornar uma redes sociais com maior número de usuários no mundo.
-No ano de 2016 o Twitter a plataforma obteve a presença de 330 milhões de usuários ativos por mês.
+Criada em 2006, a rede social cresceu rapidamente a ponto de se tornar uma das redes com maior número de usuários no
+mundo.
+No ano de 2016 o Twitter a plataforma contava com a presença de 330 milhões de usuários ativos por mês.
 
 Um ponto chave da comunicação por Twitter são as \textit{hashtags}.
 \textit{Hashtags} são palavras-chave ou frases que definem um tópico ou tema.
