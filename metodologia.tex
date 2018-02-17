@@ -5,8 +5,8 @@ fácil replicação.
 
 \section{Bases de Dados} \label{sec:data}
 
-O trabalho de Go \textit{et al.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
-anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
+O trabalho Sentiment140, desenvolvido por Go \textit{et al.}~\cite{go09} visa definir um sistema de classificação de
+sentimento sem a necessidade de anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
 Conjuntamente com o artigo, Go \textit{et al.} disponibilizaram um base de dados formada por anotação ruidosa composta
 de 800 mil \textit{tweets}, divididos igualmente entre as classes positivas e negativas, e uma pequena base de testes de
 360 \textit{tweets} anotados manualmente, também divididos igualmente entre as classes.
@@ -24,8 +24,8 @@ Os \textit{emoticons} utilizados para anotação da base de dados foram removido
 viés ao classificador.
 
 A tabela~\ref{tab:emoticons} mostra os \textit{emoticons} escolhidos para compor a anotação ruidosa.
-Em adição aos \textit{emoticons} presentes no trabalho de Go \textit{et al.}, foram classificados manualmente os
-emoticons mais presentes na base de dados.
+Em adição aos \textit{emoticons} presentes no Sentment140, foram classificados manualmente os emoticons mais presentes
+na base de dados.
 A escolha dos \textit{emoticons} definirá quão ruidosa será a anotação automática.
 Durante este processo, observou-se um grande desbalanceamento nas classes, na qual os \textit{tweets} positivos
 compões 80\% do volume total de anotações.
@@ -40,8 +40,21 @@ compões 80\% do volume total de anotações.
         =( & =) \\ \hline
         :-( & :-) \\ \hline
         :'( & :D \\ \hline
+        \includegraphics[height=1em]{emojis/1F62D.pdf} & \includegraphics[height=1em]{emojis/1F60D.pdf} \\ \hline
+        \includegraphics[height=1em]{emojis/1F612.pdf} & \includegraphics[height=1em]{emojis/1F602.pdf} \\ \hline
+        \includegraphics[height=1em]{emojis/1F622.pdf} & \includegraphics[height=1em]{emojis/1F60D.pdf} \\ \hline
+        \includegraphics[height=1em]{emojis/1F614.pdf} & \includegraphics[height=1em]{emojis/1F60A.pdf} \\ \hline
+        \includegraphics[height=1em]{emojis/1F62A.pdf} & \includegraphics[height=1em]{emojis/1F618.pdf} \\ \hline
+                                                       & \includegraphics[height=1em]{emojis/1F495.pdf} \\ \cline{2-2}
+                                                       & \includegraphics[height=1em]{emojis/2665.pdf} \\ \cline{2-2}
+                                                       & \includegraphics[height=1em]{emojis/2764.pdf} \\ \cline{2-2}
+                                                       & \includegraphics[height=1em]{emojis/1F49B.pdf} \\ \cline{2-2}
+                                                       & \includegraphics[height=1em]{emojis/1F499.pdf} \\ \cline{2-2}
+                                                       & \includegraphics[height=1em]{emojis/1F49A.pdf} \\ \hline
+
+
         \end{tabular}
-        \caption{Exemplos de emoticons selecionados para aplicação de supervisão distante.}
+        \caption{Emoticons selecionados para aplicação de supervisão distante.}
         \label{tab:emoticons}
     \end{center}
 \end{table}
@@ -67,7 +80,7 @@ enquanto perde eficiência na classificação da classe com menos exemplos.
 A curva ROC (\textit{receiver operating characteristic})~\cite{bradley97} é uma forma de visualizar a performance de um
 classificador binário para seleção de um ponto de operação.
 Nela se apresenta a variação da probabilidade de detecção e de falso alarme variam com a escolha do patamar de decisão.
-A área sob a curva pode ser utilizada como métrica de eficiência para um classificador.
+A área sob a curva (AUC) pode ser utilizada como métrica de eficiência para um classificador.
 
 % SP - dissertacao fernando
 O índice SP é outro método de avaliação de classificadores binários.
@@ -96,8 +109,8 @@ O treinamento pode ser considerado consistente se obtiver pouca variação nos r
 O presente trabalho será dividido em três etapas.
 Na primeira fase utilizou-se a base de dados provida por Go \textit{et al.}~\cite{go09} replicando as técnicas
 abordadas em seu artigo visando validar os pré-processamentos e algoritmos aplicados.
-Para tal, serão utilizadas as bases de dados tanto de treinamento como de testes disponibilizadas por Go
-\textit{et at.}~\cite{go09}.
+Para tal, serão utilizadas as bases de dados tanto de treinamento como de testes disponibilizadas no
+Sentiment140~\cite{go09}.
 
 Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se \textit{stopwords}; links; referências a usuários;
 e cada token foi transformado para forma minuscula.
@@ -115,7 +128,7 @@ resultado entre as diferentes representações como apresentado na Tabela~\ref{t
         Unigrama + Bigrama & 82,7\% & 83,0\% & 81,6\% \\ \hline
         Unigrama + \textit{Part of Speech} & 82,7\% & 83,0\% & 81,6\% \\ \hline
         \end{tabular}
-        \caption{Acurácia obtida pelos classificadores de Go \textit{et al.}}
+        \caption{Acurácia obtida pelos classificadores do Sentiment140.}
         \label{tab:go}
     \end{center}
 \end{table}

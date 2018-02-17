@@ -185,5 +185,6 @@ TSWLatexianTemp*
 # SCons state file
 .sconsign.dblite
 
+!figuras/emojis/*.pdf
 # compiled result
 !projeto_final.pdf
