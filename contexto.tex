@@ -44,7 +44,7 @@ Porém, a extração de informação de linguagem natural não é uma tarefa sim
 explícitos e implícitos, regulares e irregulares, sintáticos e semânticos~\cite{cambria13}.
 Sobretudo, a análise de sentimento ainda envolve problemas ainda não resolvidos no processamento de linguagem
 natural~\cite{cambria13}
-como a resolução de co-referências~\cite{soon01}, resolução de anáforas~\cite{lappin94}, reconhecimento de
+como a resolução de correferências~\cite{soon01}, resolução de anáforas~\cite{lappin94}, reconhecimento de
 entidades~\cite{nadeau07} e ambiguidade de palavras~\cite{yarowsky95}.
 Estes fatores constituem desafios adicionais para a tarefa.
 
@@ -101,7 +101,7 @@ emails, ou mesmo o uso de uma base formada por \textit{tweets} de 2010 sofreria 
 treinado com esta for aplicado em \textit{tweets} de 2018, visto a evolução da língua neste período de tempo.
 
 Portanto, se faz necessário desenvolver métodos como o apresentado por Go \textit{et at.}~\cite{go09}, que desenvolve
-uma base composta de \textit{tweets} a partir de anotação automática por emoticons.
+uma base composta de \textit{tweets} a partir de anotação automática por \textit{emoticons}.
 O trabalho de Go \textit{et at.}~\cite{go09} visa definir um sistema de classificação de sentimento sem a necessidade de
 anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante, técnica de anotação ruidosa
 automática.
@@ -116,6 +116,8 @@ como por exemplo a análise de sentimento para avaliação de filmes a partir de
 mercado financeiro pela análise de artigos jornalísticos.
 
 A Tabela~\ref{tab:sentiment} exemplifica a classificação de polaridade de \textit{tweets}, foco deste trabalho.
+As mensagens presentes nessa tabela são transcrições de \textit{tweets} reais selecionados de maneira a ilustrar
+a classificação de sentimento.
 
 \begin{table}[h]
     \begin{center}
@@ -133,12 +135,12 @@ A Tabela~\ref{tab:sentiment} exemplifica a classificação de polaridade de \tex
     \end{center}
 \end{table}
 
-Entretanto, nem todos exemplos são claramente distinguíveis como os apresentados na tabela~\ref{tab:sentiment}.
+Entretanto, nem todos exemplos são claramente distinguíveis como os apresentados na Tabela~\ref{tab:sentiment}.
 A comunicação frequentemente apresenta fatores como ironia, ambiguidade de sentimentos e multiplicidade de idiomas.
 Em outros casos, a mensagem sendo analisada pode ser complementar a mensagens anteriores ou informações não textuais
 que a acompanham.
 Estes fatores são complexidades adicionais e diminuem a acertividade dos classificadores.
-A tabela~\ref{tab:sentiment_complexity} demonstra exemplos das dificuldades indicadas.
+A Tabela~\ref{tab:sentiment_complexity} demonstra exemplos das dificuldades indicadas.
 
 \begin{table}[h]
     \begin{center}
@@ -164,26 +166,26 @@ usuários e \textit{hashtags}.
 Criada em 2006, a rede social cresceu rapidamente a ponto de se tornar uma das redes com maior número de usuários no
 mundo.
 No ano de 2016 o Twitter a plataforma contava com a presença de 330 milhões de usuários ativos por mês.
+A Figura~\ref{fig:tweet_ex} mostra um exemplo de \textit{tweet}.
 
-Um ponto chave da comunicação por Twitter são as \textit{hashtags}.
-\textit{Hashtags} são palavras-chave ou frases que definem um tópico ou tema.
-Elas são caracterizadas por serem precedidas pelo simbolo da tralha (\#) e por não conterem espaços ou pontuação, como
-ilustrado na figura~\ref{fig:hashtag}.
-São, ainda, elementos clicáveis que apontam o leitor para outra página.
-Essa outra página, por sua vez, contém um mural com todas as citações contendo aquela \textit{hashtag}.
-Desta forma, \textit{hashtags} funcionam como agregadores de \textit{tweets}.
-
-% fazer um tweet sintetico mudando nome de usuario, foto, e escolher um texto dificil
 \begin{figure}
 \begin{center} {
     \begin{center}
-    \includegraphics[scale=0.7]{tweet-hashtag.png}
-    \caption{Exemplo de \textit{tweet} com a utilização de \textit{hashtag}.}
-    \label{fig:hashtag}
+    \includegraphics[scale=0.7]{tweet-example.png}
+    \caption{Exemplo de \textit{tweet} contendo \textit{emoticon}, abreviação e neologismos.}
+    \small{As informações do usuário foram anonimizadas para sua privacidade.}
+    \label{fig:tweet_ex}
     \end{center}
 }
 \end{center}
 \end{figure}
+
+Um ponto chave da comunicação por Twitter são as \textit{hashtags}.
+\textit{Hashtags} são palavras-chave ou frases que definem um tópico ou tema.
+Elas são caracterizadas por serem precedidas pelo simbolo da tralha (\#) e por não conterem espaços ou pontuação.
+São, ainda, elementos clicáveis que apontam o leitor para outra página.
+Essa outra página, por sua vez, contém um mural com todas as citações contendo aquela \textit{hashtag}.
+Desta forma, \textit{hashtags} funcionam como agregadores de \textit{tweets}.
 
 O tamanho reduzido das mensagens veiculadas por Twitter e o meio pelo qual elas circulam levam a utilização de
 variações gramaticais da língua especificas para este ambiente.

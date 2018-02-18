@@ -16,7 +16,7 @@ viabilizam a formação de uma grande base de treinamento.
 Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens do Twitter filtrando-as apenas pelo
 idioma inglês.
 Posteriormente, se aplica o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
-especificado na seção~\ref{sec:distant_supervision} nos \textit{tweets} coletados.
+especificado na Seção~\ref{sec:distant_supervision} nos \textit{tweets} coletados.
 Nesse método, são definidos grupos de \textit{emoticons} positivos e negativos.
 Mensagens que possuírem \textit{emoticons} pertencentes a algum destes grupos serão anotadas com as respectivas classes,
 caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
@@ -148,7 +148,7 @@ Findada a seleção dos modelos, se avaliou o desempenho dos classificadores com
 
 % Etapa 2
 A segunda etapa consiste em treinar os mesmos algoritmos de Naïve Bayes e SVM utilizados anteriormente porém utilizando
-a base de dados anotada desenvolvida com supervisão distante, como elucidado na seção~\ref{sec:data}.
+a base de dados anotada desenvolvida com supervisão distante, como elucidado na Seção~\ref{sec:data}.
 Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
 de \textit{deep learning}.
 Adicionalmente, será validado o processo de captação de dados e anotação por supervisão distante.
@@ -158,7 +158,7 @@ Entretanto, devido a base de dados coletada ser desbalanceada, durante o treinam
 \textit{support vector machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
 igualmente durante o treinamento.
 Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes,
-como descrito na seção~\ref{sec:bayes}.
+como descrito na Seção~\ref{sec:bayes}.
 Por sua vez, a métrica utilizada para seleção do modelo neste caso será a área sob a curva ROC visto que a seleção por
 acurácia favorece modelos enviesados a classe mais presente nos dados.
 Uma vez selecionados, os modelos foram analisados com base em sua performance na classificação das bases de testes tanto

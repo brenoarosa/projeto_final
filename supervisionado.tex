@@ -61,7 +61,7 @@ mesmo em problemas com notória dependência entre características como a class
 O conceito fundamental do \textit{Support Vector Machine} (SVM) se dá pela obtenção de vetores de suporte que melhor
 separe as classes.
 Esta separação é feita de maneira que se maximize a margem entre as classes.
-A figura~\ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes
+A Figura~\ref{fig:svm} demostra dados de duas classes distintas, representadas pelas cores rosa e amarelo, pertencentes
 a um espaço de características de duas dimensões; vê-se na figura que a reta que define a maior separação é suportada
 pelos dados de cada classe mais próximos a ela.
 
@@ -79,12 +79,12 @@ pelos dados de cada classe mais próximos a ela.
 
 Como utilizam vetores de suporte para definir hiperplanos de separação, SVM não são capazes de segregar classes não
 linearmente distinguíveis.
-Podemos observar um exemplo deste caso na figura~\ref{fig:svm-lin}, na qual uma SVM treinado tenta separar classes
+Podemos observar um exemplo deste caso na Figura~\ref{fig:svm-lin}, na qual uma SVM treinado tenta separar classes
 concêntricas.
 Para contornar esse impedimento, foi elaborado o que se chamou de \textit{kernel trick}.
 Este se baseia em um mapeamento não linear dos dados para um espaço onde possam ser linearmente
 separáveis~\cite{scholkopf02}.
-A figura~\ref{fig:svm-rbf} mostra a representação dos dados apresentados na figura~\ref{fig:svm-lin} após seu mapeamento
+A Figura~\ref{fig:svm-rbf} mostra a representação dos dados apresentados na Figura~\ref{fig:svm-lin} após seu mapeamento
 por uma função de base radial.
 
 \begin{figure}
@@ -113,7 +113,7 @@ por uma função de base radial.
 
 Neste novo espaço definido pela transformação, os dados são linearmente separáveis.
 Portanto, é possível achar um vetor de suporte que defina um hiperplano de separação das classes.
-Vemos na figura~\ref{fig:svm-rbf-clas} as margens encontradas.
+Vemos na Figura~\ref{fig:svm-rbf-clas} as margens encontradas.
 
 \begin{figure}
 \begin{center} {
@@ -133,7 +133,7 @@ A solução desse problema foi a criação de uma variável de relaxamento que d
 classificação permitido.
 Esta propriedade é descrita com mais detalhes por Cortes e Vapnik em~\cite{cortes95}.
 Sua utilização permite o desenvolvimento de modelos mais robustos a \textit{outliers} e melhora a generalização.
-Outros exemplos de regularizadores, como este, serão apresentados na subseção~\ref{sec:generalizacao}.
+Outros exemplos de regularizadores, como este, serão apresentados na Subseção~\ref{sec:generalizacao}.
 
 Uma limitação na utilização deste algoritmo é seu tempo de treinamento.
 Sua complexidade computacional fica entre $O(n_{caracteristicas} \times n_{dados}^2)$ e
@@ -156,7 +156,7 @@ Os neurônios, por sua vez, representam uma função de ativação, no caso do p
 mais geral dispõem-se de funções como: tangente hiperbólica, logística etc.
 
 A utilização de perceptrons com múltiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
-(MLP), como exemplificado na figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
+(MLP), como exemplificado na Figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
 camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de
 escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
 
@@ -206,7 +206,7 @@ respectivamente; e $\mathbf{h}_i$ indica a camada escondida.
 
 Em seguida, utiliza-se uma função custo $L$ para calcular o erro $J$ de representação obtido pela rede neural a partir
 das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, como exposto na equação~\ref{eq:nn-cost}.
-A seção~\ref{sec:custo} apresenta exemplos de funções custo.
+A Seção~\ref{sec:custo} apresenta exemplos de funções custo.
 
 \begin{equation} \label{eq:nn-cost}
     J_i = L(\hat{y}_i, y_i)
@@ -259,7 +259,7 @@ como presentes nas equações~\cref{eq:nn-backprop-w1,eq:nn-backprop-b1}.
 
 Os gradientes dos pesos e \textit{bias} serão utilizados para sua otimização pelo método do gradiente visando minimizar
 a função custo.
-A seção~\ref{sec:optimizers} aborda o tema de otimizadores, focando em rede neurais.
+A Seção~\ref{sec:optimizers} aborda o tema de otimizadores, focando em rede neurais.
 
 \subsection{Deep Learning}
 
@@ -290,7 +290,7 @@ Cada camada de uma rede neural gera uma abstração que representa a sua entrada
 realizada.
 O encadeamento de camadas resulta em representações mais complexas dos dados, revelando relações previamente não
 observáveis.
-O aprofundamento das redes tem como consequencia a reduzição ou eliminação da chamada \textit{feature engineering},
+O aprofundamento das redes tem como consequência a redução ou eliminação da chamada \textit{feature engineering},
 processo de seleção de características, que usualmente requer expertise no domínio do problema.
 Considerando por exemplo o caso do diagnóstico de câncer de pele, técnicas tradicionais de classificação dependiam de
 extração de informações de imagens de lesões, tais como: formato, tamanho, cor etc.
@@ -301,7 +301,7 @@ Contudo, as técnicas de \textit{deep learning} não se limitam apenas a arquite
 Dentre as arquitetura frequentemente utilizadas temos: redes neurais recursivas (RNN)~\cite{hopfield87}, redes neurais
 convolucionais, \textit{autoencoders}~\cite{hinton06_2}, e redes neurais geradoras adversárias
 (GAN)~\cite{goodfellow14_2}.
-A seção~\ref{sec:convolucionais} apresenta detalhes das redes neurais convolucionais, técnica aplicada neste trabalho.
+A Seção~\ref{sec:convolucionais} apresenta detalhes das redes neurais convolucionais, técnica aplicada neste trabalho.
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
@@ -403,7 +403,7 @@ Definidas as funções custo, nesta seção serão abordados os algoritmos respo
 
 Redes neurais, em geral, possuem funções custo não convexas. Assim sendo, o algoritmo de gradiente descendente não garante convergência ao mínimo global. A convergência a mínimos locais torna o modelo sensível a parâmetros, como funções de ativação, número de neurônios, etc., e o torna sensível também à inicialização dos pesos, como mostra Glorot no artigo em que apresenta um método de inicialização de pesos homônimo~\cite{glorot10}. Entretanto, o problema de convergência não se limita a mínimos locais. Dauphin~\cite{dauphin14} mostra que quanto maior o número de variáveis latentes do modelo, maior a proporção de pontos de sela em relação a mínimos locais. Mostra também que os mínimos locais estão mais propensos a aparecer em pontos críticos com baixo custo, enquanto pontos de sela costumam aparecer em pontos de alto custo. Goodfellow~\cite{goodfellow14} apresenta resultados empíricos da efetividade do método do gradiente na fuga dos pontos de sela.
 
-O algoritmo~\ref{al:gd} descreve a forma tradicional do gradiente descendente, dado que $L$ é a função custo adotada e que $\mathbf{\hat{y}}$ é o mapeamento obtido pela rede neural a partir dos dados $\mathbf{x}$ e pesos $\boldsymbol{\theta}$. Observa-se que $\mathbf{\hat{g}}$ é a estimativa do gradiente dos pesos obtida a partir dos dados de treinamento.
+O Algoritmo~\ref{al:gd} descreve a forma tradicional do gradiente descendente, dado que $L$ é a função custo adotada e que $\mathbf{\hat{y}}$ é o mapeamento obtido pela rede neural a partir dos dados $\mathbf{x}$ e pesos $\boldsymbol{\theta}$. Observa-se que $\mathbf{\hat{g}}$ é a estimativa do gradiente dos pesos obtida a partir dos dados de treinamento.
 
 \begin{algorithm}
     \caption{Gradiente Descendente}
@@ -427,13 +427,13 @@ Serão apresentadas nas próximas subseções as variações do método do gradi
 
 \subsection{Gradiente Descendente Estocástico}
 
-A forma canônica do algoritmo do gradiente descendente começa a apresentar dificuldades de utilização em conjuntos de dados de tamanho considerável. Como observa-se no algoritmo~\ref{al:gd}, para cada atualização dos pesos $\boldsymbol{\theta}$ é necessária a estimação do gradiente $\mathbf{\hat{g}}$, a qual, por sua vez, depende da computação da função custo sobre todos os dados. Além do alto custo computacional, bases de dados grandes tendem a conter várias instâncias de dados muito próximos, não adicionando significativamente informação à estimação do gradiente.
+A forma canônica do algoritmo do gradiente descendente começa a apresentar dificuldades de utilização em conjuntos de dados de tamanho considerável. Como observa-se no Algoritmo~\ref{al:gd}, para cada atualização dos pesos $\boldsymbol{\theta}$ é necessária a estimação do gradiente $\mathbf{\hat{g}}$, a qual, por sua vez, depende da computação da função custo sobre todos os dados. Além do alto custo computacional, bases de dados grandes tendem a conter várias instâncias de dados muito próximos, não adicionando significativamente informação à estimação do gradiente.
 
 Uma das soluções deste problema, abordada pelo \textit{Gradiente Descendente Estocástico}, é a divisão do conjunto de treinamento em lotes, nos quais serão estimados os gradientes. Cada interação sobre o conjunto inteiro de dados é chamada de época e entre cada época costuma-se embaralhar os dados. Já as outras partes do algoritmo permanecem iguais à implementação tradicional como apresentado em~\ref{al:gd}.
 
 \subsection{Gradiente Descendente com Momento}
 
-A escolha da taxa de treinamento envolve uma troca entre tempo de treinamento e grau de convergência. Altas taxas de treinamento podem apresentar dificuldades de convergência ou comportamentos oscilatórios em torno de um ponto de custo mínimo, enquanto baixas taxas de treinamento consomem muito tempo de treinamento em regiões de alto custo, diminuindo assim sua viabilidade. Objetivando-se obter um melhor compromisso, foi acrescentado o momento ao método do gradiente, como formulado no algoritmo~\ref{al:gdm}. O termo adicional $\mathbf{v}$ representa a "velocidade" do gradiente e a constante de momento $\alpha$ condiz com a taxa de decaimento exponencial do termo $\mathbf{v}$.
+A escolha da taxa de treinamento envolve uma troca entre tempo de treinamento e grau de convergência. Altas taxas de treinamento podem apresentar dificuldades de convergência ou comportamentos oscilatórios em torno de um ponto de custo mínimo, enquanto baixas taxas de treinamento consomem muito tempo de treinamento em regiões de alto custo, diminuindo assim sua viabilidade. Objetivando-se obter um melhor compromisso, foi acrescentado o momento ao método do gradiente, como formulado no Algoritmo~\ref{al:gdm}. O termo adicional $\mathbf{v}$ representa a "velocidade" do gradiente e a constante de momento $\alpha$ condiz com a taxa de decaimento exponencial do termo $\mathbf{v}$.
 
 \begin{algorithm}
     \caption{Gradiente Descendente com Momento}
@@ -460,11 +460,11 @@ O momento permite que, enquanto o gradiente $\mathbf{\hat{g}}$ mantiver o mesmo 
 
 \subsection{Adam}
 
-Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.}~\cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.}~\cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na seção~\ref{sec:w2v}.
+Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.}~\cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.}~\cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na Seção~\ref{sec:w2v}.
 
 Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam}, \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
 
-O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocódigo. Os valores dos decaimentos betas costumam ser escolhidos em torno de 0.9 para $\beta_{1}$ e 0.999 para $\beta_{2}$. Pelos momentos serem inicializados em zero, é necessário corrigir a tendência para se obter a verdadeira estimativa.
+O Algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocódigo. Os valores dos decaimentos betas costumam ser escolhidos em torno de 0.9 para $\beta_{1}$ e 0.999 para $\beta_{2}$. Pelos momentos serem inicializados em zero, é necessário corrigir a tendência para se obter a verdadeira estimativa.
 
 \begin{algorithm}
     \caption{Adam}
@@ -493,13 +493,13 @@ O algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocó
 
 \textit{Adam} apresenta robustez à escolha da taxa de treinamento $\epsilon$, visto que esta funciona como um limite superior da taxa efetiva de atualização dos pesos, como provado em seu artigo~\cite{kingma14}, juntamente com sua análise de convergência e com seus resultados experimentais. Por se utilizar de médias móveis na estimação dos momentos, o algoritmo apresenta outra vantagem, sua capacidade de se adaptar a funções objetivos não estacionárias.
 
-Por sua robustez à escolha de hiperparametros e por sua aceleração do processo de aprendizado \textit{Adam} se tornou uma das principais técnicas de otimização de redes neurais profundas.
+Por sua robustez à escolha de hiperparâmetros e por sua aceleração do processo de aprendizado \textit{Adam} se tornou uma das principais técnicas de otimização de redes neurais profundas.
 
 \section{Generalização} \label{sec:generalizacao}
 
 Um dos principais fatores de um sistema de aprendizado de maquina é sua capacidade de generalizar, isto é, quando seu desempenho em dados de teste, ou seja, dados que não foram utilizados na fase de treinamento, é equivalente ou suficientemente próximo ao obtido durante aprendizado.
 
-A fase de aprendizado do sistema pode ser vista como o processo de ajuste de parâmetros. Desta forma, ao tentar representar a função, o modelo pode sofrer com sobreajuste, \textit{overfitting}, adequando-se demais aos dados de treinamento. O oposto também acontece quando o modelo é incapaz de mapear a complexidade entre as entradas e a saída; a este evento dá-se o nome de subajuste, \textit{underfit}. Tais eventos estão exemplificados na figura~\ref{fig:fitting}.
+A fase de aprendizado do sistema pode ser vista como o processo de ajuste de parâmetros. Desta forma, ao tentar representar a função, o modelo pode sofrer com sobreajuste, \textit{overfitting}, adequando-se demais aos dados de treinamento. O oposto também acontece quando o modelo é incapaz de mapear a complexidade entre as entradas e a saída; a este evento dá-se o nome de subajuste, \textit{underfit}. Tais eventos estão exemplificados na Figura~\ref{fig:fitting}.
 
 
 \begin{figure}
