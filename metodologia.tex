@@ -180,8 +180,8 @@ Posteriormente, geraram-se modelos de redes convolucionais nos quais a represent
 como entrada da rede.
 A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
-Compõem os hiperparâmetros variados: número de camadas, número de filtros convolutivos por camada, tamanho dos filtros,
-tamanho do \textit{pooling}.
+Compõem os hiperparâmetros variados: número de camadas, número de filtros convolucionais por camada, tamanho dos filtros
+convolucionais, tamanho do filtro de \textit{pooling}.
 Os parâmetros de regularização L2 e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
 propostos por Derius \textit{et al.}
 
@@ -190,7 +190,7 @@ treinamento, contendo 80\% do volume total, e validação com os 20\% restante.
 Não se aplicou a validação cruzada, como nas etapas anteriores, visto o alto custo computacional de treinamento de cada
 rede.
 O treinamento se deu até que o valor da função custo sob os dados de treinamento se estabiliza-se em um valor
-arbitrariamente pequeno, $\epsilon$ .
+arbitrariamente pequeno, $\epsilon$.
 Entretanto, para reduzir o efeito do \textit{overfitting}, foi aplicado \textit{early stopping}~\cite{caruana01},
 técnica que consiste em utilizar os pesos obtidos na época de treinamento que corresponde ao menor valor de função custo
 aplicada ao conjunto de validação.

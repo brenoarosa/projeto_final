@@ -26,7 +26,7 @@ ao obtido originalmente: 83,3\%.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.5]{go_nb.png}
-    \caption{Seleção do modelo de Naïve Bayes - Etapa 1.}
+    \caption{Seleção de hiperparâmetros de Naïve Bayes - Etapa 1.}
     \label{fig:go_nb}
     \end{center}
 }
@@ -43,7 +43,7 @@ O modelo selecionado apresenta 83,0\% de acurácia no conjunto de testes.
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.5]{go_svm.png}
-    \caption{Seleção do modelo de SVM - Etapa 1.}
+    \caption{Seleção de hiperparâmetros de SVM - Etapa 1.}
     \label{fig:go_svm}
     \end{center}
 }
@@ -89,7 +89,7 @@ média de área sob a curva ROC dentre os grupos de validação quando aplicada 
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.5]{nb_selecao.png}
-    \caption{Seleção do modelo de Naïve Bayes - Etapa 2.}
+    \caption{Seleção de hiperparâmetros de Naïve Bayes - Etapa 2.}
     \label{fig:nb_selecao}
     \end{center}
 }
@@ -100,7 +100,7 @@ média de área sob a curva ROC dentre os grupos de validação quando aplicada 
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.5]{svm_selecao.png}
-    \caption{Seleção do modelo de SVM - Etapa 2.}
+    \caption{Seleção de hiperparâmetros de SVM - Etapa 2.}
     \label{fig:svm_selecao}
     \end{center}
 }
@@ -150,7 +150,6 @@ Outro fator relevante para definição de ruído no processo de anotação é a 
 Neste trabalho, os \textit{emoticons} mais presentes nos dados foram selecionados para classificação manual, a escolha
 de \textit{emoticons} com maior correlação com as classes pode reduzir a diferença entre os resultados de treinamento e
 os resultados de teste.
-% adicionar desbalanceamento ?
 
 Apesar dos resultados obtidos na base de treinamento anotada para este trabalho serem inferiores aos apresentados pelos
 classificadores treinados com a base disponibilizada por Go \textit{et al.}, a técnica de supervisão distante por
@@ -187,5 +186,110 @@ desbalanceadas, como é o caso da base de \textit{tweets} coletados dos SemEval,
 \end{table}
 
 \section{Terceira Etapa}
-% maximizar roc
-% compensar desbalanceamento
+
+A terceria fase do projeto visa a reproduzir redes neurais convolucionais aplicadas a texto e comparar seu desempenho
+a algoritmos de aprendizado de máquina consolidados no processamente de linguagem natural.
+Neste estágio, as redes serão treinadas com dados provindos da base anotada por supervisão distante, mesmos dados
+utilizados para treinamento dos algoritmos de Naive Bayes e \textit{support vector machines} da etapa anterior.
+Após feita a seleção dos hiperparâmetros, o modelo será avaliado aos treinados na segunda etapa com base no seu
+desempenho obtido na base de testes disponibilizada pelas conferências SemEval.
+
+Foram variados diversos hiperparâmetros, são eles: número de camadas, número de filtros convolucionais por camada,
+tamanho dos filtros convolucionais, tamanho do filtro de \textit{pooling}.
+Outros hiperparâmeros como: fator de regularização L2 e probabilidade de Dropout foram mantidos fixos em
+respectivamente $10^{-3}$ e $0,5$.
+Os modelos foram treinados até que o valor da função custo estabilizar, não se modificando mais do que um valor
+arbitrariamente pequeno, $\epsilon$, entre cada época de treinamento.
+O valor escolhido de $\epsilon$ foi $10^{-3}$, o qual foi selecionado após a ánalise de algumas curvas de treinamento.
+Por sua vez, aplicou-se \textit{early stopping}, no qual os pesos selecionados foram os correspondentes a época de menor
+valor de função custo aplicada ao conjunto de validação.
+
+A escolha dos hiperparâmetros foi feita de maneira a maximizar a área sob a curva ROC nos dados de validação.
+A tabela~\ref{tab:cnn_selection} mostra os resultados obtidos por cada configuração treinada.
+
+% apos treino coletar a auc de todos modelos (nos dados de treinamento mesmo), anotar valores na tabela
+\begin{longtable}{| >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm}| c |}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{Hiperparâmetros}} & \textbf{Resultado} \\ \hline
+    \textbf{Número de Camadas} & \textbf{Número Filtros Conv.} & \textbf{Tamanho Filtros Conv.} & \textbf{Tamanho Filtros Pooling} & \textbf{AUC} \\ \hline
+    \endhead
+    1 & 100 & 2 & 2 & 0.??? \\ \hline
+    1 & 100 & 2 & 3 & 0.??? \\ \hline
+    1 & 100 & 2 & 5 & 0.??? \\ \hline
+
+    1 & 100 & 3 & 2 & 0.??? \\ \hline
+    1 & 100 & 3 & 3 & 0.??? \\ \hline
+    1 & 100 & 3 & 5 & 0.??? \\ \hline
+
+    1 & 100 & 5 & 2 & 0.??? \\ \hline
+    1 & 100 & 5 & 3 & 0.??? \\ \hline
+    1 & 100 & 5 & 5 & 0.??? \\ \hline
+
+    1 & 200 & 2 & 2 & 0.??? \\ \hline
+    1 & 200 & 2 & 3 & 0.??? \\ \hline
+    1 & 200 & 2 & 5 & 0.??? \\ \hline
+
+    1 & 200 & 3 & 2 & 0.??? \\ \hline
+    1 & 200 & 3 & 3 & 0.??? \\ \hline
+    1 & 200 & 3 & 5 & 0.??? \\ \hline
+
+    1 & 200 & 5 & 2 & 0.??? \\ \hline
+    1 & 200 & 5 & 3 & 0.??? \\ \hline
+    1 & 200 & 5 & 5 & 0.??? \\ \hline
+
+    1 & 400 & 2 & 2 & 0.??? \\ \hline
+    1 & 400 & 2 & 3 & 0.??? \\ \hline
+    1 & 400 & 2 & 5 & 0.??? \\ \hline
+
+    1 & 400 & 3 & 2 & 0.??? \\ \hline
+    1 & 400 & 3 & 3 & 0.??? \\ \hline
+    1 & 400 & 3 & 5 & 0.??? \\ \hline
+
+    1 & 400 & 5 & 2 & 0.??? \\ \hline
+    1 & 400 & 5 & 3 & 0.??? \\ \hline
+    1 & 400 & 5 & 5 & 0.??? \\ \hline
+
+    2 & 100 & 2 & 2 & 0.??? \\ \hline
+    2 & 100 & 2 & 3 & 0.??? \\ \hline
+    2 & 100 & 2 & 5 & 0.??? \\ \hline
+
+    2 & 100 & 3 & 2 & 0.??? \\ \hline
+    2 & 100 & 3 & 3 & 0.??? \\ \hline
+    2 & 100 & 3 & 5 & 0.??? \\ \hline
+
+    2 & 100 & 5 & 2 & 0.??? \\ \hline
+    2 & 100 & 5 & 3 & 0.??? \\ \hline
+    2 & 100 & 5 & 5 & 0.??? \\ \hline
+
+    2 & 200 & 2 & 2 & 0.??? \\ \hline
+    2 & 200 & 2 & 3 & 0.??? \\ \hline
+    2 & 200 & 2 & 5 & 0.??? \\ \hline
+
+    2 & 200 & 3 & 2 & 0.??? \\ \hline
+    2 & 200 & 3 & 3 & 0.??? \\ \hline
+    2 & 200 & 3 & 5 & 0.??? \\ \hline
+
+    2 & 200 & 5 & 2 & 0.??? \\ \hline
+    2 & 200 & 5 & 3 & 0.??? \\ \hline
+    2 & 200 & 5 & 5 & 0.??? \\ \hline
+
+    2 & 400 & 2 & 2 & 0.??? \\ \hline
+    2 & 400 & 2 & 3 & 0.??? \\ \hline
+    2 & 400 & 2 & 5 & 0.??? \\ \hline
+
+    2 & 400 & 3 & 2 & 0.??? \\ \hline
+    2 & 400 & 3 & 3 & 0.??? \\ \hline
+    2 & 400 & 3 & 5 & 0.??? \\ \hline
+
+    2 & 400 & 5 & 2 & 0.??? \\ \hline
+    2 & 400 & 5 & 3 & 0.??? \\ \hline
+    2 & 400 & 5 & 5 & 0.??? \\ \hline
+
+    \caption{Seleção de hiperparâmetros de CNN.}
+    \label{tab:cnn_selection}
+\end{longtable}
+
+Selecionado os hiperparâmetros da rede neural convolucional, a Figura XYZ apresenta a curva ROC comparativa entre
+a rede e os modelos treinandos na segunda etapa quando aplicados a base de testes formada por \textit{tweets} fornecido
+pelas conferências SemEval.
+% analisar modelo
