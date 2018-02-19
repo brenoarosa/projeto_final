@@ -1,10 +1,32 @@
-% Tratam-se das considerações finais do trabalho, mostrando que os objetivos foram cumpridos e enfatizando as descobertas feitas durante o projeto. Em geral reserva-se um ou dois parágrafos para sugerir trabalhos futuros.
+A massificação do uso das redes sociais gera uma crescente produção de dados.
+Entretanto, as informações sendo geradas são dispostas de forma não estruturada, dificultando sua extração.
+Dado o volume de dados produzidos, se torna cada vez mais custoso realizar este processo manualmente.
+Portanto, é fundamental o desenvolvimento de técnicas de processamento de linguagem natural capazes de auxiliar neste
+procedimento.
 
-% Observe que neste modelo a conclusão é numerada pelo numeral 3, mas o projeto não tem a obrigatoriedade de possuir apenas 3 capítulos. Alias, espera-se que tenha mais que isso.
+O presente trabalho teve como objetivo o desenvolvimento de um método de gerar classificadores de análise de sentimento
+para redes sociais sem dependência da anotação manual de bases de dados.
+Classificadores formados por algoritmos de aprendizado de máquina vem obtendo bons resultados na mineração de opinião.
+Todavia, estes dependem de dados de treinamento, os quais sua formação é custosa visto que sua formação depende da
+anotação manual dos casos, dificultando, por exemplo, a reprodução destes classificadores para diferentes idiomas ou
+redes sociais.
 
-% diferenças distribuiçoes treino / teste
-% ressaltar dificuldades
-% possibilidade de treinar o w2v
-% possibilidade outros idiomas
+Com o desenvolvimento de classificadores cada vez mais complexos, como os englobados pelas técnicas de
+\textit{deep learning}, cresce a dependência de grandes volumes de dados de treinamento.
+O método da anotação ruidosa por supervisão distante, apesar de apresentar dificuldades decorrentes da seleção das
+características correlacionada com as classes, se mostrou eficiente na formação de bases de treinamento.
+
+Observou-se que embora algoritmos de aprendizado de máquina tradicionalmente aplicadas ao processamento de linguagem
+natural atinjam resultados positivos nesta tarefa, a utilização de técnicas de \textit{deep learning} é capaz elevar o
+nível de desempenho obtido.
+
+Portanto, foi desenvolveu um método de classificação que não depende de anotação manual de dados de treinamento.
+Isto foi possível pois as representações de texto utilizadas são obtidas através de algoritmos de aprendizado de máquina
+não supervisionados e as redes neurais convolucionais são treinadas a partir de dados anotados por supervisão distante.
 
 \section{Trabalhos Futuros}
+
+% possibilidade de treinar o w2v
+% neutro
+% lstm
+% char
