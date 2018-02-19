@@ -1,5 +1,7 @@
 O aprendizado supervisionado é o campo dentro de aprendizado de máquina que visa a gerar modelos preditivos a partir de
 um conjunto de dados de treinamento cujos resultados são previamente conhecidos.
+Este capítulo visa apresentar as técnicas de aprendizado de máquina que serão utilizadas neste trabalho, ressaltando
+suas aplicações no processamento de linguagem natural.
 
 \section{Naïve Bayes} \label{sec:bayes}
 
@@ -530,7 +532,16 @@ Krogh e Hertz~\cite{krogh92} provam que o uso de regularização $L_{2}$ é capa
 \subsection{Dropout}
 % substituir neuronio por outras palavras
 
-Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o \textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento. Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neurônio, a partir desse ponto se desconectam os neurônios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma rede neural composta por um subconjunto de neurônios da rede original os quais serão treinados com \textit{Backpropagation} como habitual. Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de redes neurais durante a fase de aprendizado. \textit{Dropout} pode ser aplicado tanto em neurônios de camadas escondidas como em neurônios de entrada, valores de $p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
+Apresentado por Srivastava \textit{et al.}~\cite{srivastava14}, \textit{Dropout} é um método que propõe reduzir o
+\textit{overfitting} por meio do desligamento temporário e aleatório de neurônios durante a etapa de treinamento.
+Esse processo dá-se pela escolha de um parâmetro fixo $p$ que define a probabilidade de manutenção de cada neurônio, a
+partir desse ponto se desconectam os neurônios sorteados, efetivamente multiplicando seu pesos por 0, resultando em uma
+rede neural composta por um subconjunto de pesos da rede original os quais serão treinados com \textit{Backpropagation}
+como habitual.
+Os sorteios ocorrem a cada seleção de lote do algoritmo do gradiente, levando a se treinar um número exponencial de
+redes neurais durante a fase de aprendizado.
+\textit{Dropout} pode ser aplicado tanto em neurônios de camadas escondidas como em neurônios de entrada, valores de
+$p$ são costumeiramente escolhidos por volta de $0,5$ para camadas escondidas e $0,8$ para camadas de entrada.
 
 \textit{Dropout} se deriva de um conjunto de técnicas de combinação de modelos, também conhecidas como \textit{ensembling}. Como mostra Dietterich \textit{et al.}~\cite{dietterich00}, modelos significativamente diferentes quando combinados costumam resultar em melhoras na performance quando comparados à utilização de cada modelo isoladamente. No escopo de \textit{Deep Learning} o custo computacional do treinamento de múltiplos modelos reduz a viabilidade desse processo. Neste sentido, \textit{Dropout} aproxima-se de técnicas tradicionais de \textit{ensembling}, como \textit{bagging}, tendo como principal diferença o compartilhamento de pesos entre as redes neurais obtidas pelos desligamentos de neurônios, que permite o treinamento de um grande número de modelos sem um aumento computacional proporcional. Ressaltando-se que o apagamento de neurônios resulta em redes de tamanho reduzido, diminuindo assim seu poder de mapeamento, logo, a utilização dessa técnica exige um número superior de parâmetros para uma mesma capacidade de mapeamento.
 
