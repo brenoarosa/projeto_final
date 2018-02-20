@@ -210,86 +210,49 @@ A escolha dos hiperparâmetros foi feita de maneira a maximizar a área sob a cu
 A Tabela~\ref{tab:cnn_selection} lista os resultados obtidos por cada configuração treinada.
 
 % apos treino coletar a auc de todos modelos (nos dados de treinamento mesmo), anotar valores na tabela
-\begin{longtable}{| >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm}| c |}
-    \hline
-    \multicolumn{4}{|c|}{\textbf{Hiperparâmetros}} & \textbf{Resultado} \\ \hline
-    \textbf{Número de Camadas} & \textbf{Número Filtros Conv.} & \textbf{Tamanho Filtros Conv.} & \textbf{Tamanho Filtros Pooling} & \textbf{AUC} \\ \hline
-    \endhead
-    1 & 100 & 2 & 2 & 0.??? \\ \hline
-    1 & 100 & 2 & 3 & 0.??? \\ \hline
-    1 & 100 & 2 & 5 & 0.??? \\ \hline
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm} | >{\centering\arraybackslash}m{2.5cm}| c |}
+        \hline
+        \multicolumn{4}{|c|}{\textbf{Hiperparâmetros}} & \textbf{Resultado} \\ \hline
+        \textbf{Número de Camadas} & \textbf{Número Filtros Conv.} & \textbf{Tamanho Filtros Conv.} & \textbf{Tamanho Filtros Pooling} & \textbf{AUC} \\ \hline
+        \multirow{12}{*}{1} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
 
-    1 & 100 & 3 & 2 & 0.??? \\ \hline
-    1 & 100 & 3 & 3 & 0.??? \\ \hline
-    1 & 100 & 3 & 5 & 0.??? \\ \hline
+                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{2-5}
 
-    1 & 100 & 5 & 2 & 0.??? \\ \hline
-    1 & 100 & 5 & 3 & 0.??? \\ \hline
-    1 & 100 & 5 & 5 & 0.??? \\ \hline
+                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
 
-    1 & 200 & 2 & 2 & 0.??? \\ \hline
-    1 & 200 & 2 & 3 & 0.??? \\ \hline
-    1 & 200 & 2 & 5 & 0.??? \\ \hline
+                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{1-5}
 
-    1 & 200 & 3 & 2 & 0.??? \\ \hline
-    1 & 200 & 3 & 3 & 0.??? \\ \hline
-    1 & 200 & 3 & 5 & 0.??? \\ \hline
+        \multirow{12}{*}{2} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
 
-    1 & 200 & 5 & 2 & 0.??? \\ \hline
-    1 & 200 & 5 & 3 & 0.??? \\ \hline
-    1 & 200 & 5 & 5 & 0.??? \\ \hline
+                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{2-5}
 
-    1 & 400 & 2 & 2 & 0.??? \\ \hline
-    1 & 400 & 2 & 3 & 0.??? \\ \hline
-    1 & 400 & 2 & 5 & 0.??? \\ \hline
+                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
 
-    1 & 400 & 3 & 2 & 0.??? \\ \hline
-    1 & 400 & 3 & 3 & 0.??? \\ \hline
-    1 & 400 & 3 & 5 & 0.??? \\ \hline
+                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
+                            &                      &                    & 5 & 0.??? \\ \cline{1-5}
 
-    1 & 400 & 5 & 2 & 0.??? \\ \hline
-    1 & 400 & 5 & 3 & 0.??? \\ \hline
-    1 & 400 & 5 & 5 & 0.??? \\ \hline
-
-    2 & 100 & 2 & 2 & 0.??? \\ \hline
-    2 & 100 & 2 & 3 & 0.??? \\ \hline
-    2 & 100 & 2 & 5 & 0.??? \\ \hline
-
-    2 & 100 & 3 & 2 & 0.??? \\ \hline
-    2 & 100 & 3 & 3 & 0.??? \\ \hline
-    2 & 100 & 3 & 5 & 0.??? \\ \hline
-
-    2 & 100 & 5 & 2 & 0.??? \\ \hline
-    2 & 100 & 5 & 3 & 0.??? \\ \hline
-    2 & 100 & 5 & 5 & 0.??? \\ \hline
-
-    2 & 200 & 2 & 2 & 0.??? \\ \hline
-    2 & 200 & 2 & 3 & 0.??? \\ \hline
-    2 & 200 & 2 & 5 & 0.??? \\ \hline
-
-    2 & 200 & 3 & 2 & 0.??? \\ \hline
-    2 & 200 & 3 & 3 & 0.??? \\ \hline
-    2 & 200 & 3 & 5 & 0.??? \\ \hline
-
-    2 & 200 & 5 & 2 & 0.??? \\ \hline
-    2 & 200 & 5 & 3 & 0.??? \\ \hline
-    2 & 200 & 5 & 5 & 0.??? \\ \hline
-
-    2 & 400 & 2 & 2 & 0.??? \\ \hline
-    2 & 400 & 2 & 3 & 0.??? \\ \hline
-    2 & 400 & 2 & 5 & 0.??? \\ \hline
-
-    2 & 400 & 3 & 2 & 0.??? \\ \hline
-    2 & 400 & 3 & 3 & 0.??? \\ \hline
-    2 & 400 & 3 & 5 & 0.??? \\ \hline
-
-    2 & 400 & 5 & 2 & 0.??? \\ \hline
-    2 & 400 & 5 & 3 & 0.??? \\ \hline
-    2 & 400 & 5 & 5 & 0.??? \\ \hline
-
+        \end{tabular}
     \caption{Seleção de hiperparâmetros de CNN.}
     \label{tab:cnn_selection}
-\end{longtable}
+    \end{center}
+\end{table}
 
 De acordo com a tabela, podemos observar que o conjunto de parâmetros com melhor desempenho no conjunto de validação
 foram: X camadas compostas por Y filtros convolucionais de tamanho Z seguidas de \textit{pooling} com filtro de tamanho
@@ -304,9 +267,9 @@ fornecido pelas conferências SemEval.
 A Tabela XYZ resume os resultados destes classificadores, novamente considerando que o limiar de decisão foi selecionado
 de maneira a maximizar o índice SP.
 
-% figura NBxSVMxCNN roc
+FIGURA CURVA ROC - NB x SVM x CNN
 
-% Tabela NBxSVMxCNN auc, sp
+TABELAS RESULTADOS (AUC, SP)  NB x SVM x CNN
 
 Pode se observar que a utilização de redes neurais convolucionais em conjunto com representações obtidas por
 \textit{embeddings} propiciou resultados melhores do que os obtidos com modelos tradicionais, como Naïve Bayes e
