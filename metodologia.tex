@@ -1,4 +1,4 @@
-Este capítulo visa descrever a elaboração de um modelo de \textit{deep learning} capaz de classificar sentimento,
+Este capítulo visa descrever a elaboração de um modelo de \textit{Deep Learning} capaz de classificar sentimento,
 positivo ou negativo, de \textit{tweets}.
 A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
 fácil replicação.
@@ -137,7 +137,7 @@ Em seguida, foram treinados os algoritmos de Naïve Bayes e SVM, estes foram esc
 código aberto disponíveis e de fácil acesso.
 Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré processamento utilizado.
 Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a acurácia.
-Para treinamento do modelo por \textit{support vector machines}, dada a grande quantidade de dados e as limitações
+Para treinamento do modelo por \textit{Support Vector Machines}, dada a grande quantidade de dados e as limitações
 computacionais, foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
 Vandewalle~\cite{suykens99}.
 A função \textit{kernel} utilizada foi linear.
@@ -150,12 +150,12 @@ Findada a seleção dos modelos, se avaliou o desempenho dos classificadores com
 A segunda etapa consiste em treinar os mesmos algoritmos de Naïve Bayes e SVM utilizados anteriormente porém utilizando
 a base de dados anotada desenvolvida com supervisão distante, como elucidado na Seção~\ref{sec:data}.
 Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
-de \textit{deep learning}.
+de \textit{Deep Learning}.
 Adicionalmente, será validado o processo de captação de dados e anotação por supervisão distante.
 Nesta fase replicou-se os mesmos procedimentos práticos da etapa anterior.
 
 Entretanto, devido a base de dados coletada ser desbalanceada, durante o treinamento do modelo por
-\textit{support vector machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
+\textit{Support Vector Machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
 igualmente durante o treinamento.
 Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes,
 como descrito na Seção~\ref{sec:bayes}.

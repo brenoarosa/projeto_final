@@ -1,12 +1,12 @@
 Neste capitulo serão descritos brevemente: o problema abordado, as áreas de conhecimento que cerceiam o estudo e os
 métodos que compões a solução proposta por este trabalho.
-Serão ainda ressaltados os motivos pelos quais o projeto apresentado é importante, assim como quais seus objetivos.
+Serão ainda ressaltados os motivos pelos quais o projeto apresentado é importante, assim como seus objetivos.
 
 \section{Tema}
 
 O tema do projeto é o estudo de técnicas de aprendizado de máquina para processamento de linguagem natural de redes
 sociais.
-Em especial, procura-se avaliar o impacto da utilização de técnicas de \textit{deep learning}, recentemente
+Em especial, procura-se avaliar o impacto da utilização de técnicas de \textit{Deep Learning}, recentemente
 desenvolvidas, quando aplicadas neste contexto.
 
 O processamento de linguagem natural é o campo dentro de inteligência artificial que estuda a geração e compreensão de
@@ -42,7 +42,7 @@ As redes sociais são escolhidas como objeto de estudo por, ao longo da última 
 de seu uso.
 A medida que essas plataformas passam a ser cada vez mais relevantes, cresce a importância de se analisar o conteúdo
 que trafega pelas redes.
-Dentre essas mensagens, frequentemente se encontram opiniões sobre um assunto, evento ou produto.
+Nesse meio de comunicação se encontram opiniões sobre assuntos, eventos ou produtos.
 Neste quesito, é possível aplicar a análise de sentimento, ou mineração de opinião, que é o campo de estudo que visa a
 resgatar as informações que transitam nos textos, de maneira a agregar conhecimento sobre os tópicos falados.
 
@@ -50,7 +50,7 @@ Entretanto, o crescimento da produção de dados inviabiliza o processo de anál
 Logo, há a necessidade de técnicas, como a abordada por este trabalho, capazes de operar dados no volume em que são
 gerados atualmente.
 
-Em paralelo, observamos nos últimos anos o desenvolvimento do chamado \textit{deep learning}, que é uma família de
+Em paralelo, observamos nos últimos anos o desenvolvimento do chamado \textit{Deep Learning}, que é uma família de
 técnicas as quais tomam decisões em níveis mais altos de abstração.
 Esses níveis são alcançados através do mapeamento obtido pelos dados através de redes neurais de diversas camadas.
 Este conjunto de técnicas, viabilizadas pelo aumento de poder computacional apresentou sucesso nas mais diversas
@@ -62,7 +62,7 @@ O impacto deste avanço é notório no nosso dia a dia.
 Frequentemente utilizamos, por exemplo, serviços automatizados de atendimento ao cliente ou ferramentas de tradução
 simultânea que fazem uso desta abordagem.
 
-É necessário ressaltar que parte do sucesso atribuído ao \textit{deep learning} provém de seu maior poder de abstração
+É necessário ressaltar que parte do sucesso atribuído ao \textit{Deep Learning} provém de seu maior poder de abstração
 dos dados.
 Entretanto, essa característica faz com que haja uma dependência de grandes volumes de dados durante o treinamento
 destes algoritmos.
@@ -70,7 +70,7 @@ Por esse motivo, ressalta-se a necessidade de métodos capaz de gerar bases de t
 
 \section{Objetivos}
 
-O objetivo deste projeto, portanto, consiste em formar um método de geração de modelos de \textit{deep learning} capazes
+O objetivo deste projeto, portanto, consiste em formar um método de geração de modelos de \textit{Deep Learning} capazes
 de sistematizar a classificação de sentimento de \textit{tweets}.
 A produção destes modelos será feita de maneira a não depender de bases de dados anotadas manualmente, visto o alto
 custo destas serem reproduzidas.
@@ -80,11 +80,11 @@ custo destas serem reproduzidas.
 Para alcançar esse objetivo, o projeto foi dividido em três etapas: (1) replicar técnicas consolidadas de análise de
 sentimento para \textit{tweets} sobre dados de treinamento obtidos por anotação automática; (2) formar uma base de dados
 própria e aplicar os mesmos algoritmos utilizados anteriormente para validar o procedimento de sua elaboração; (3)
-aplicar nos \textit{tweets} técnicas de \textit{deep learning} que vêm obtendo sucesso em processamento de linguagem
+aplicar nos \textit{tweets} técnicas de \textit{Deep Learning} que vêm obtendo sucesso em processamento de linguagem
 natural e avaliar o impacto das mesmas comparado-as a classificadores menos robustos.
 
 A primeira etapa do trabalho será a replicação de estudos desenvolvidos por Go \textit{et al.}~\cite{go09}, que aplica
-técnicas de \textit{Naïve Bayes} e \textit{support vector machine} na classificação de polaridade de \textit{tweets},
+técnicas de \textit{Naïve Bayes} e \textit{Support Vector Machine} na classificação de polaridade de \textit{tweets},
 sendo seu treinamento feito em cima de uma base de dados disponibilizada por Go \textit{et al.}, formada por anotação
 automática.
 Os resultados obtidos por estas técnicas serão utilizados como patamar para comparação dos modelos posteriormente
@@ -92,8 +92,8 @@ gerados.
 
 Posteriormente, a segunda etapa consistirá em produzir uma base de treinamento gerada pelo método proposto por Go
 \textit{et al.}, anotada automaticamente.
-Para sua validação, serão replicados os mesmo algoritmos de \textit{Naïve Bayes} e \textit{support vector machine},
-os quais serão treinados com esse novo conjunto de dados e comparados seus resultados com os obtidos pelos
+Para sua validação, serão replicados os mesmo algoritmos de \textit{Naïve Bayes} e \textit{Support Vector Machine},
+os quais serão treinados com esse novo conjunto de dados e seus resultados são comparados aos obtidos pelos
 classificadores do estágio anterior.
 
 Finalmente, a terceira etapa fundamenta-se na aplicação de técnicas de \textit{Deep Learning}, como apresentadas por
@@ -101,7 +101,7 @@ Kim \cite{kim14}, em que se utiliza redes neurais convolucionais para classifica
 O treinamento continua sendo feito a partir do banco de dados produzido por anotação automática, o qual foi apresentado
 anteriormente.
 Seus resultados serão comparados os obtidos pelos classificadores que compõem a etapa anterior, para analisar-se a
-eficiência de algoritmos de \textit{deep learning} aplicados ao processamento de linguagem natural de redes sociais.
+eficiência de algoritmos de \textit{Deep Learning} aplicados ao processamento de linguagem natural de redes sociais.
 
 \section{Organização}
 

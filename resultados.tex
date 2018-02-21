@@ -33,7 +33,7 @@ ao obtido originalmente: 81,3\%.
 \end{center}
 \end{figure}
 
-A seleção do parâmetros do modelo formado por \textit{support vector machines} foi feita por processo semelhante ao
+A seleção do parâmetros do modelo formado por \textit{Support Vector Machines} foi feita por processo semelhante ao
 anterior.
 Foram variados o fator de regularização $L_{2}$, selecionando o modelo de maior percentual de acurácia.
 A Figura~\ref{fig:go_svm} apresenta os resultados obtidos, no qual o fator de $6 \times 10^{-6}$ resultou na acurácia
@@ -75,12 +75,12 @@ implementações dos algoritmos aplicados.
 A segunda etapa consiste na validação do processo de formação de base de treinamento por supervisão distante.
 A aplicação de técnicas de pré-processamento e algoritmos previamente validados neste novo conjunto de dados visa tanto
 comparar o processo de elaboração por anotação ruidosa quanto servir como referência para a aplicação de algoritmos de
-\textit{deep learning}.
+\textit{Deep Learning}.
 Nesta etapa, os modelos serão avaliados tanto pelo seu desempenho na base de teste disponibilizada por Go
 \textit{et al.} quanto quando aplicado na base de testes formada pela coletânea de \textit{tweets} oferecida pelas
 conferências SemEval, como descrito na Seção~\ref{sec:data}
 
-Assim como na fase anterior, foram treinados modelos por Naïve Bayes e \textit{support vector machines}.
+Assim como na fase anterior, foram treinados modelos por Naïve Bayes e \textit{Support Vector Machines}.
 Neste caso, a seleção dos parâmetros de regularização foi feita de maneira a maximizar a área sob a curva ROC.
 As Figuras~\ref{fig:nb_selecao} e~\ref{fig:svm_selecao} mostram a resposta dos modelos, respectivamente, Naïve Bayes e
 SVM a mudanças nos parâmetros de regularização, as linhas verticais vermelhas apontam os parâmetros que obtiveram maior
@@ -192,7 +192,7 @@ A terceira fase do projeto visa a reproduzir redes neurais convolucionais aplica
 a algoritmos de aprendizado de máquina consolidados no processamento de linguagem natural, como presentes na etapa
 anterior.
 Neste estágio, as redes serão treinadas com dados provindos da base anotada por supervisão distante, mesmos dados
-utilizados para treinamento dos algoritmos de Naïve Bayes e \textit{support vector machines} da segunda etapa.
+utilizados para treinamento dos algoritmos de Naïve Bayes e \textit{Support Vector Machines} da segunda etapa.
 Após feita a seleção dos hiperparâmetros, o modelo será avaliado aos treinados na segunda etapa com base no seu
 desempenho obtido na base de testes disponibilizada pelas conferências SemEval.
 
