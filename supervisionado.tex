@@ -5,7 +5,7 @@ suas aplicações no processamento de linguagem natural.
 
 \section{Naïve Bayes} \label{sec:bayes}
 
-\textit{Naïve Bayes} é uma das técnicas mais simples disponíveis nesse contexto.
+Naïve Bayes é uma das técnicas mais simples disponíveis nesse contexto.
 Ela se baseia no teorema de Bayes enquanto assume independência entre as características escolhidas para descrever o
 dado.
 Será demostrada sua formulação matemática, como descrita por Schütze~\cite{schutze08}.
@@ -37,7 +37,7 @@ Portanto, tem-se que o estimador ótimo $\hat{y}$ escolherá pela classe que ati
     \hat{y} = \underset{k \in \{1, \dots, K\}}{\operatorname{max}} \ p(c_k) \displaystyle\prod_{i=1}^n p(x_i \mid c_k)
 \end{equation}
 
-Vê-se então que o modelo de \textit{Naïve Bayes} depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$.
+Vê-se então que o modelo de Naïve Bayes depende apenas de $p(c_k)$ e $p(\mathbf{x} \mid c_k)$.
 Estes parâmetros serão extraídos do conjunto de treino por máxima verossimilhança.
 
 Dado um vetor $\mathbf{y}$ de tamanho $m$ que representa as classificações referentes a $\mathbf{X}$, pode-se estimar
@@ -53,7 +53,7 @@ classe $c_k$:
     \hat{p}(x_r \mid c_k) = \frac{\sum_{j=i}^{m'} \sum_{i=1}^n [x_{ji} = x_r]}{|\mathbf{X'}|}
 \end{equation}
 
-Vê-se que modelos montados a partir de \textit{Naïve Bayes} são computacionalmente baratos dado que seus parâmetros são
+Vê-se que modelos montados a partir de Naïve Bayes são computacionalmente baratos dado que seus parâmetros são
 obtidos através de contagens sobre os dados de treinamento e que sua predição utiliza apenas multiplicações.
 Embora se baseie na independência entre características, seu baixo custo operacional leva esta técnica a ser utilizada
 mesmo em problemas com notória dependência entre características como a classificação de texto~\cite{mccallum98}.
@@ -157,16 +157,17 @@ As sinapses funcionam como um ponderador linear dos neurônios da camada anterio
 Os neurônios, por sua vez, representam uma função de ativação, no caso do perceptron a função degrau, porém de maneira
 mais geral dispõem-se de funções como: tangente hiperbólica, logística etc.
 
-A utilização de perceptrons com múltiplas camadas sucessivas de neurônios formam as redes neurais multilayer perceptron
-(MLP), como exemplificado na Figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama de uma rede que conta com uma
-camada de entrada que representa os dados do problema, seguida de duas camadas intermediarias, comumente chamadas de
-escondidas, as quais são seguidas pela camada de saída, que apontará o resultado final de todo processamento da rede.
+A utilização de perceptrons com múltiplas camadas sucessivas de neurônios formam as redes neurais
+\textit{multilayer perceptron} (MLP), como exemplificado na Figura~\ref{fig:ff-neural-net}, onde apresenta-se o diagrama
+de uma rede que conta com uma camada de entrada que representa os dados do problema, seguida de duas camadas
+intermediarias, comumente chamadas de escondidas, as quais são seguidas pela camada de saída, que apontará o resultado
+final de todo processamento da rede.
 
 \begin{figure}
 \begin{center} {
     \begin{center}
     \includegraphics[scale=0.75]{ffnn.png}
-    \caption{Rede neural multilayer perceptron}
+    \caption{Rede neural \textit{multilayer perceptron}}
     \label{fig:ff-neural-net}
     \end{center}
 }
@@ -299,7 +300,7 @@ extração de informações de imagens de lesões, tais como: formato, tamanho, 
 Modelos baseados em redes neurais profundas são capaz de obter resultados superiores, eliminando completamente esta
 etapa~\cite{esteva17}.
 
-Contudo, as técnicas de \textit{deep learning} não se limitam apenas a arquitetura multilayer perceptron.
+Contudo, as técnicas de \textit{deep learning} não se limitam apenas a arquitetura \textit{multilayer perceptron}.
 Dentre as arquitetura frequentemente utilizadas temos: redes neurais recursivas (RNN)~\cite{hopfield87}, redes neurais
 convolucionais, \textit{autoencoders}~\cite{hinton06_2}, e redes neurais geradoras adversárias
 (GAN)~\cite{goodfellow14_2}.
@@ -307,8 +308,8 @@ A Seção~\ref{sec:convolucionais} apresenta detalhes das redes neurais convoluc
 
 \subsection{Redes Neurais Convolucionais} \label{sec:convolucionais}
 
-A utilização de redes neurais multilayer perceptron em imagens sofre limitações, por cada pixel estar diretamente
-ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede.
+A utilização de redes neurais \textit{multilayer perceptron} em imagens sofre limitações, por cada pixel estar
+diretamente ligado aos neurônios, rotações ou translações na imagem afetam fortemente a capacidade da rede.
 Pretendendo solucionar estes problemas, foram desenvolvidas redes neurais convolucionais, cujas conexões são baseadas
 no funcionamento do córtex visual.
 
@@ -464,7 +465,7 @@ O momento permite que, enquanto o gradiente $\mathbf{\hat{g}}$ mantiver o mesmo 
 
 Outra abordagem adotada nos algoritmos de otimização é o ajuste da taxa de aprendizado de maneira independente para cada dimensão do espaço. Duchi \textit{et al.}~\cite{duchi11} propuseram o algoritmo \textit{AdaGrad} (\textit{Adaptative Gradient}), no qual a regra de atualização dos pesos é inversamente proporcional à soma do gradiente ao quadrado em todas iterações anteriores. Dessa forma, direções que tenham grandes e frequentes atualizações serão amortecidas rapidamente, enquanto dimensões com raras atualizações mantêm seu treinamento significativo por mais iterações. Algoritmos com taxa de treinamento adaptativo, como o proposto por Duchi \textit{et al.}, atingem bons resultados em problemas com dimensões esparsas, como o exemplo de Pennington \textit{et al.}~\cite{pennington14} no treinamento de \textit{embeddings} de palavras, técnica que será apresentada na Seção~\ref{sec:w2v}.
 
-Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam}, \textit{adaptative moment estimation} baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
+Kingma e Ba~\cite{kingma14} projetaram o algoritmo \textit{Adam}, \textit{adaptative moment estimation}, baseado nos princípios do \textit{AdaGrad}. \textit{Adam} estima o primeiro e segundo momentos do gradiente, média e variância não centralizada, a partir da média móvel de ambos. A regra de atualização de pesos é controlada pela taxa de treinamento $\epsilon$, e pelas estimativas de média e variância, $\mathbf{\hat{m}}$ e $\mathbf{\hat{v}}$ respectivamente, dada a fórmula $\boldsymbol{\theta}_{t} \gets \boldsymbol{\theta}_{t-1} - \epsilon \frac{\mathbf{\hat{m}}_{t}}{\sqrt{\mathbf{\hat{v}}_{t}}} $. Portanto, gradientes grandes por seguidas iterações aumentam a média e, por consequência, o tamanho do passo. Por sua vez, altas variâncias forçam a diminuição da taxa efetiva de aprendizado.
 
 O Algoritmo~\ref{al:adam} possui a implementação de \textit{Adam} em pseudocódigo. Os valores dos decaimentos betas costumam ser escolhidos em torno de 0.9 para $\beta_{1}$ e 0.999 para $\beta_{2}$. Pelos momentos serem inicializados em zero, é necessário corrigir a tendência para se obter a verdadeira estimativa.
 

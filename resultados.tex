@@ -35,7 +35,7 @@ ao obtido originalmente: 81,3\%.
 
 A seleção do parâmetros do modelo formado por \textit{support vector machines} foi feita por processo semelhante ao
 anterior.
-Foram variados o fator de regularização L2, selecionando o modelo de maior percentual de acurácia.
+Foram variados o fator de regularização $L_{2}$, selecionando o modelo de maior percentual de acurácia.
 A Figura~\ref{fig:go_svm} apresenta os resultados obtidos, no qual o fator de $6 \times 10^{-6}$ resultou na acurácia
 média de 80.0\% sobre o conjunto de validação.
 O modelo selecionado apresenta 83,0\% de acurácia no conjunto de testes.
@@ -198,7 +198,7 @@ desempenho obtido na base de testes disponibilizada pelas conferências SemEval.
 
 Foram variados diversos hiperparâmetros, são eles: número de camadas, número de filtros convolucionais por camada,
 tamanho dos filtros convolucionais, tamanho do filtro de \textit{pooling}.
-Outros hiperparâmetros como: fator de regularização L2 e probabilidade de Dropout foram mantidos fixos em
+Outros hiperparâmetros como: fator de regularização $L_{2}$ e probabilidade de Dropout foram mantidos fixos em
 respectivamente $10^{-3}$ e $0,5$.
 Os modelos foram treinados até que o valor da função custo estabilizar, não se modificando mais do que um valor
 arbitrariamente pequeno, $\epsilon$, entre cada época de treinamento.

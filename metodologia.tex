@@ -141,7 +141,7 @@ Para treinamento do modelo por \textit{support vector machines}, dada a grande q
 computacionais, foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
 Vandewalle~\cite{suykens99}.
 A função \textit{kernel} utilizada foi linear.
-Neste caso, variou-se parâmetro de regularização L2 também visando maximizar a acurácia.
+Neste caso, variou-se parâmetro de regularização $L_{2}$ também visando maximizar a acurácia.
 Empregou-se validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
 Findada a seleção dos modelos, se avaliou o desempenho dos classificadores comparados aos resultados apresentados por Go
 \textit{et al.}
@@ -182,7 +182,7 @@ A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao Sem
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
 Compõem os hiperparâmetros variados: número de camadas, número de filtros convolucionais por camada, tamanho dos filtros
 convolucionais, tamanho do filtro de \textit{pooling}.
-Os parâmetros de regularização L2 e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
+Os parâmetros de regularização $L_{2}$ e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
 propostos por Derius \textit{et al.}
 
 Para o treinamento das redes convolucionais sortearam-se os dados anotados de maneira ruidosa em dois grupos:
