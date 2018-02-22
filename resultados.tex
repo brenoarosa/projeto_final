@@ -63,7 +63,7 @@ implementações dos algoritmos aplicados.
         \hline
         \textbf{Algoritmo} & \textbf{Original} & \textbf{Replicação} \\ \hline
         Naïve Bayes & 81,3\% & 83,3\% \\ \hline
-        SVM &  82,2\% & 83,0\% \\ \hline
+        \textit{Support Vector Machine} &  82,2\% & 83,0\% \\ \hline
         \end{tabular}
         \caption{Comparação de resultados da replicação dos classificadores do Sentiment140~\cite{go09}.}
         \label{tab:go_compara}
@@ -225,37 +225,37 @@ A Tabela~\ref{tab:cnn_selection} lista os resultados obtidos por cada configura�
         \hline
         \multicolumn{4}{|c|}{\textbf{Hiperparâmetros}} & \textbf{Resultado} \\ \hline
         \textbf{Número de Camadas} & \textbf{Número Filtros Conv.} & \textbf{Tamanho Filtros Conv.} & \textbf{Tamanho Filtros Pooling} & \textbf{AUC} \\ \hline
-        \multirow{12}{*}{1} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
+        \multirow{12}{*}{1} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0,7637 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7635 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7636 \\ \cline{3-5}
 
-                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{2-5}
+                            &                      & \multirow{3}{*}{3} & 2 & 0,7677 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7682 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7667 \\ \cline{2-5}
 
-                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
+                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0,7648 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7616 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7621 \\ \cline{3-5}
 
-                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{1-5}
+                            &                      & \multirow{3}{*}{3} & 2 & 0,7666 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7687 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7682 \\ \cline{1-5}
 
-        \multirow{12}{*}{2} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
+        \multirow{12}{*}{2} & \multirow{6}{*}{100} & \multirow{3}{*}{2} & 2 & 0,7604 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7604 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7598 \\ \cline{3-5}
 
-                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{2-5}
+                            &                      & \multirow{3}{*}{3} & 2 & 0,7677 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7678 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7680 \\ \cline{2-5}
 
-                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{3-5}
+                            & \multirow{6}{*}{200} & \multirow{3}{*}{2} & 2 & 0,7618 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7622 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7617 \\ \cline{3-5}
 
-                            &                      & \multirow{3}{*}{3} & 2 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 3 & 0.??? \\ \cline{4-5}
-                            &                      &                    & 5 & 0.??? \\ \cline{1-5}
+                            &                      & \multirow{3}{*}{3} & 2 & 0,7684 \\ \cline{4-5}
+                            &                      &                    & 3 & 0,7648 \\ \cline{4-5}
+                            &                      &                    & 5 & 0,7667 \\ \cline{1-5}
 
         \end{tabular}
     \caption{Seleção de hiperparâmetros de CNN.}
@@ -263,26 +263,40 @@ A Tabela~\ref{tab:cnn_selection} lista os resultados obtidos por cada configura�
     \end{center}
 \end{table}
 
-De acordo com a tabela, podemos observar que o conjunto de parâmetros com melhor desempenho no conjunto de validação
-foram: X camadas compostas por Y filtros convolucionais de tamanho Z seguidas de \textit{pooling} com filtro de tamanho
-W.
-A Figura XYZ mostra a curva de treinamento deste modelo.
+De acordo com a tabela, podemos observar apesar dos resultados obtidos serem muito proximos entre si, o conjunto de
+parâmetros com melhor desempenho no conjunto de validação foram: 1 camadas compostas por 200 filtros convolucionais de
+tamanho 3 seguidas de \textit{pooling} com filtro de tamanho 3.
+A Figura~\ref{fig:cnn_learning_curve} mostra a curva de treinamento do modelo com esta configuração de hiperparâmetros.
+Essa figura mostra a evolução do valor da função custo, presente no eixo vertical, tanto sob os dados de treinamento
+quanto de validação na medida em que o classificador é treinado.
+Nesta figura, se observa que o ponto de menor valor de função custo de validação é obtido na oitava época.
+Sendo assim, os pesos referentes a oitava época selecionados para compor o modelo.
 
-% TODO
-FIGURA TREINO
-% figura de treinamento com loss x val_loss, com legenda de cores e ressaltando a epoca selecionada
-
-Uma vez selecionados os hiperparâmetros da rede neural convolucional, a Figura~\ref{fig:all_roc_semeval} apresenta a
-curva ROC comparativa entre a rede e os modelos treinandos na segunda etapa quando aplicados a base de testes formada
-por \textit{tweets} fornecido pelas conferências SemEval.
-A Tabela~\ref{tab:all_compara} resume os resultados destes classificadores, novamente considerando que o limiar de
-decisão foi selecionado de maneira a maximizar o índice SP.
-
-% TODO - acertar figura
 \begin{figure}
 \begin{center} {
     \begin{center}
-    \includegraphics[scale=0.5]{linear_roc_semeval.png}
+    \includegraphics[scale=0.5]{cnn_learning_curve.png}
+    \caption{Curva de treinamento da rede neural convolucional.}
+    \label{fig:cnn_learning_curve}
+    \end{center}
+}
+\end{center}
+\end{figure}
+
+Uma vez selecionados os hiperparâmetros da rede neural convolucional, a Figura~\ref{fig:all_roc_semeval} apresenta a
+curva ROC comparativa entre os modelos que foram treinados a partir da base de dados com anotação ruidosa formada por
+este trabalho.
+Nessa figura são apresentadas as respostas dos modelos quando aplicados a base de testes formada por \textit{tweets}
+fornecido pelas conferências SemEval.
+Destaca-se na Figura~\ref{fig:all_roc_semeval} que o modelo de redes neurais convolucionais superou os resultados
+obtidos por Naïve Bayes e SVM, principalmente nos limiares de decisão que correspondem a menor taxa de falsos positivos.
+A Tabela~\ref{tab:all_compara} resume os resultados destes classificadores, novamente considerando que o limiar de
+decisão foi selecionado de maneira a maximizar o índice SP.
+
+\begin{figure}
+\begin{center} {
+    \begin{center}
+    \includegraphics[scale=0.5]{all_roc_semeval.png}
     \caption{Curva ROC comparativa dos modelos treinados por dados de supervisão distante.}
     \label{fig:all_roc_semeval}
     \end{center}
@@ -296,8 +310,8 @@ decisão foi selecionado de maneira a maximizar o índice SP.
         \hline
         \textbf{Algoritmo} & \textbf{AUC} & \textbf{SP} \\ \hline
         Naïve Bayes & 0,688 & 0,639 \\ \hline
-        SVM & 0,693 & 0,640 \\ \hline
-        CNN & 0,??? & 0,??? \\ \hline
+        \textit{Support Vector Machine} & 0,693 & 0,640 \\ \hline
+        Redes Convolucionais & 0,738 & 0,675 \\ \hline
         \end{tabular}
         \caption{Comparação dos algoritmos treinados por dados de supervisão distante.}
         \label{tab:all_compara}
@@ -305,7 +319,7 @@ decisão foi selecionado de maneira a maximizar o índice SP.
 \end{table}
 
 Pode se observar que a utilização de redes neurais convolucionais em conjunto com representações obtidas por
-\textit{embeddings} propiciou resultados melhores do que os obtidos com modelos tradicionais, como Naïve Bayes e
+Word2Vec propiciou resultados melhores do que os obtidos com modelos tradicionais, como Naïve Bayes e
 \textit{Support Vector Machines} sobre representações \textit{one-hot} dos textos.
 Ressalta-se que a representação Word2Vec utilizada foi desenvolvida a partir de notícias.
 O treinamento de modelos próprios para o meio no qual serão utilizados, neste caso, \textit{tweets}, pode melhorar o
