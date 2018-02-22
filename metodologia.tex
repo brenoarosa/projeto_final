@@ -1,4 +1,4 @@
-Este capítulo visa descrever a elaboração de um modelo de \textit{Deep Learning} capaz de classificar sentimento,
+Este capítulo visa descrever a elaboração de modelos de aprendizado de máquna capazes de classificar sentimento,
 positivo ou negativo, de \textit{tweets}.
 A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
 fácil replicação.
@@ -7,14 +7,16 @@ fácil replicação.
 
 O trabalho Sentiment140, desenvolvido por Go \textit{et al.}~\cite{go09} visa definir um sistema de classificação de
 sentimento sem a necessidade de anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
-Conjuntamente com o artigo, Go \textit{et al.} disponibilizaram um base de dados formada por anotação ruidosa composta
+Conjuntamente com o artigo, Go \textit{et al.} disponibilizaram um base de dados formada por supervisão distante composta
 de 800 mil \textit{tweets}, divididos igualmente entre as classes positivas e negativas, e uma pequena base de testes de
 360 \textit{tweets} anotados manualmente, também divididos igualmente entre as classes.
 
 A não dependência de anotação dos dados e a facilidade de coleta dos \textit{tweets}, por meio de interface programável,
 viabilizam a formação de uma grande base de treinamento.
-Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens do Twitter filtrando-as apenas pelo
-idioma inglês.
+Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens amostradas do conjunto total de
+\textit{tweets} filtrando-as apenas pelo idioma inglês.
+Essas mensagens foram coletadas entre os anos de 2015 e 2017 a partir de interface programável oferecida pelo Twitter.
+
 Posteriormente, se aplica o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
 especificado na Seção~\ref{sec:distant_supervision} nos \textit{tweets} coletados.
 Nesse método, são definidos grupos de \textit{emoticons} positivos e negativos.
@@ -23,12 +25,12 @@ caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensag
 Os \textit{emoticons} utilizados para anotação da base de dados foram removidos das mensagens para evitar introduzir
 viés ao classificador.
 
-A tabela~\ref{tab:emoticons} mostra os \textit{emoticons} escolhidos para compor a anotação ruidosa.
-Em adição aos \textit{emoticons} presentes no Sentment140, foram classificados manualmente os emoticons mais presentes
-na base de dados.
-A escolha dos \textit{emoticons} definirá quão ruidosa será a anotação automática.
-Durante este processo, observou-se um grande desbalanceamento nas classes, na qual os \textit{tweets} positivos
-compões 80\% do volume total de anotações.
+A Tabela~\ref{tab:emoticons} mostra os \textit{emoticons} escolhidos para compor a anotação ruidosa.
+Em adição aos \textit{emoticons} presentes no Sentiment140, foram classificados manualmente os emoticons mais com maior
+número de aparições nas mensagens coletadas.
+Estudos indicam que a escolha dos \textit{emoticons} pode definir quão ruidosa será a anotação automática.
+Durante este processo, observou-se um grande desbalanceamento entre classes, na qual os \textit{tweets} positivos
+compõem 80\% do volume total de anotações.
 
 % completar com todos
 \begin{table}[h]
@@ -59,49 +61,54 @@ compões 80\% do volume total de anotações.
     \end{center}
 \end{table}
 
-A base de teste por sua vez é composta de \textit{tweets} anotados manualmente.
+A base de teste, por sua vez, é composta de \textit{tweets} anotados manualmente.
 Essa base é formada pela coletânea de dados disponibilizados pela conferencia anual \textit{Semantic Evaluation}
-(SemEval)~\cite{semeval17} entre os anos de 2013 a 2017.
-Esta base é composta de cerca de 70 mil \textit{tweets} e processo de anotação destes dados foi feito manualmente
-através da plataforma CrowdFlower, mais detalhes sobre a formação da base de dados são apresentados por Rosenthal
-\textit{et al.}~\cite{rosenthal17}, organizadores do evento.
-Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa.
+(SemEval)~\cite{semeval17} entre os anos 2013 e 2017.
+Esta base é composta de cerca de 70 mil \textit{tweets} e classificados entre positivos, neutros ou negativos.
+Como este trabalho considera apenas as classes positivas e negativas, foram descartados as mensagens neutras.
+O processo de anotação destes dados foi feito manualmente através da plataforma CrowdFlower, na qual cada mensagem
+foi avaliado por pelo menos 5 pessoas e a anotação foi considerada válida se 3 ou mais participantes apresentaram a
+mesma avaliação, como descrito por Rosenthal \textit{et al.}~\cite{rosenthal17}, organizadores do evento.
+Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa para evitar introdução de tendência.
 
-\section{Métricas} \label{sec:metrics}
+\section{Figuras de Mérito} \label{sec:metrics}
 
-Uma vez definidos os dados e as técnicas de classificação, se faz necessário medir a qualidade dos modelos obtidos.
-Esta seção apresentará as métricas utilizadas para seleção de parâmetros e avaliação dos algoritmos.
+Uma vez definidos os dados, se faz definir como será avaliada a performance dos modelos a serem treinados.
+Esta seção apresentará as figuras de mérito utilizadas para seleção de parâmetros e avaliação dos algoritmos.
 
-A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia.
+A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia, que é a média aritimética das
+eficiências de cada uma das classes.
 Todavia, a presença de desbalanceamento de classes nos dados pode favorecer a acertividade da classe mais presente
 enquanto perde eficiência na classificação da classe com menos exemplos.
 
 % ROC - dissertacao fernando
 A curva ROC (\textit{receiver operating characteristic})~\cite{bradley97} é uma forma de visualizar a performance de um
 classificador binário para seleção de um ponto de operação.
-Nela se apresenta a variação da probabilidade de detecção e de falso alarme variam com a escolha do patamar de decisão.
-A área sob a curva (AUC) pode ser utilizada como métrica de eficiência para um classificador.
+Nela, a probabilidade de detecção e falso alarme variam com a escolha do patamar de decisão.
+Um classificador ideal, que atinge 100\% de probabilidade de detecção sem nenhum caso de falso alarme, é representado na
+curva ROC como um degrau.
+Desta forma, a área sob a curva (AUC) pode ser utilizada como métrica de eficiência para um classificador.
 
 % SP - dissertacao fernando
-O índice SP é outro método de avaliação de classificadores binários.
-A equação~\ref{eq:sp} descreve a formação desse índice na qual $P_c$ representa a probabilidade de detecção da classe
-positiva enquanto $P_{nc}$ caracteriza a probabilidade de não obtenção de falso alarme~\cite{ciodaro12}.
+O índice SP~\cite{ciodaro12} é outro método de avaliação de classificadores binários.
+A Equação~\ref{eq:sp} descreve a formação desse índice na qual $P_c$ representa a probabilidade de detecção da classe
+positiva enquanto $P_{nc}$ caracteriza a probabilidade de não obtenção de falso alarme.
 
 \begin{equation} \label{eq:sp}
-    SP = \sqrt{\sqrt{P_c P_{nc}}(\frac{P_c + P_{nc}}{2})}
+    SP = \sqrt{\sqrt{P_c P_{nc}} \left(\frac{P_c + P_{nc}}{2}\right)}
 \end{equation}
 
 O patamar de decisão do classificador será escolhido de maneira a maximizar o índice SP.
+Pois este será um ponto de operação que apresenta um compromisso entre a eficiência de ambas as classes.
 
 % validaçao cruzada, ver dissertação do junior
-Uma maneira de garantir que os resultados obtidos pelas métricas apresentadas sejam consistentes independente do
+Uma maneira de garantir que os resultados obtidos pelas figuras de mérito apresentadas sejam consistentes independente do
 conjunto de dados na qual será aplicado é utilizar a validação cruzada.
-Neste trabalho será utilizado o método de validação cruzada de K-partições.
-Este processo~\cite{kohavi95} consiste na separação aleatória da base de dados em $k$ conjuntos mutualmente exclusivos
-de tamanhos similares.
+Neste trabalho será utilizado o método de validação cruzada de K-partições~\cite{kohavi95}.
+Este processo consiste na separação aleatória da base de dados em $k$ conjuntos mutualmente exclusivos de tamanhos
+similares.
 Posteriormente são executadas $k$ rodadas, na qual o conjunto correspondente a cada rodada será utilizado para validação
 do modelo enquanto os outros $k-1$ conjuntos servirão para seu treinamento.
-O treinamento pode ser considerado consistente se obtiver pouca variação nos resultados das $k$ rodadas.
 
 \section{Desenvolvimento} \label{sec:desenvolvimento}
 
@@ -116,7 +123,12 @@ Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se \
 usuários; e cada token foi transformado para forma minuscula.
 Replicou-se como entrada do algoritmo de aprendizado apenas a representação dos tokens por unigrama, essa escolha foi
 feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca variação de
-resultado entre as diferentes representações como apresentado na Tabela~\ref{tab:go}.
+resultado entre as diferentes representações.
+A Tabela~\ref{tab:go} apresenta a acurácia dos classificados de Go \textit{et al}, nela são ressaltadas que a utilização
+de represenções mais complexas apesar de melhorar a acurácia quando combinada com alguns algoritmos como Naïve Bayes
+também resulta em perda de eficiência em outros, por exemplo, SVM.
+Considerando ainda o número reduzido de casos do banco de dados de teste, não foi considerada a diferença de performance
+entre as diferentes formas de representação significantes o suficiente para justificar sua utilização.
 
 \begin{table}[h]
     \begin{center}
@@ -128,37 +140,41 @@ resultado entre as diferentes representações como apresentado na Tabela~\ref{t
         Unigrama + Bigrama & 82,7\% & 83,0\% & 81,6\% \\ \hline
         Unigrama + \textit{Part of Speech} & 82,7\% & 83,0\% & 81,6\% \\ \hline
         \end{tabular}
-        \caption{Acurácia obtida pelos classificadores do Sentiment140.}
+        \caption{Acurácia obtida pelos classificadores do Sentiment140~\cite{go09}.}
         \label{tab:go}
     \end{center}
 \end{table}
 
-Em seguida, foram treinados os algoritmos de Naïve Bayes e SVM, estes foram escolhidos por existirem implementações de
-código aberto disponíveis e de fácil acesso.
-Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré processamento utilizado.
+Dos classificadores apresentados por Go \textit{et al.} foram selecionados os algoritmos de Naïve Bayes e
+\textit{Support Vector Machine} para validar as etapas de pré-processamento e as implementações dos algoritmos
+utilizadas.
+
+Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré-processamento utilizado.
 Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a acurácia.
+Neste caso, a acurácia foi otimizada dado que os dados de treinamento são balanceados
+
 Para treinamento do modelo por \textit{Support Vector Machines}, dada a grande quantidade de dados e as limitações
 computacionais, foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
 Vandewalle~\cite{suykens99}.
-A função \textit{kernel} utilizada foi linear.
+A função \textit{kernel} utilizada foi linear, assim como feito por Go \textit{et al.}
 Neste caso, variou-se parâmetro de regularização $L_{2}$ também visando maximizar a acurácia.
+
 Empregou-se validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
-Findada a seleção dos modelos, se avaliou o desempenho dos classificadores comparados aos resultados apresentados por Go
-\textit{et al.}
+Findada a seleção dos parâmetros de regularização, se avaliou o desempenho dos classificadores comparados aos resultados
+apresentados por Go \textit{et al.}
 
 % Etapa 2
 A segunda etapa consiste em treinar os mesmos algoritmos de Naïve Bayes e SVM utilizados anteriormente porém utilizando
-a base de dados anotada desenvolvida com supervisão distante, como elucidado na Seção~\ref{sec:data}.
+a base de dados anotada desenvolvida com supervisão distante.
 Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
 de \textit{Deep Learning}.
 Adicionalmente, será validado o processo de captação de dados e anotação por supervisão distante.
-Nesta fase replicou-se os mesmos procedimentos práticos da etapa anterior.
+Nesta fase replicaram-se os mesmos procedimentos práticos da etapa anterior.
 
 Entretanto, devido a base de dados coletada ser desbalanceada, durante o treinamento do modelo por
 \textit{Support Vector Machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
 igualmente durante o treinamento.
-Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes,
-como descrito na Seção~\ref{sec:bayes}.
+Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes.
 Por sua vez, a métrica utilizada para seleção do modelo neste caso será a área sob a curva ROC visto que a seleção por
 acurácia favorece modelos enviesados a classe mais presente nos dados.
 Uma vez selecionados, os modelos foram analisados com base em sua performance na classificação das bases de testes tanto
@@ -179,7 +195,7 @@ Este Word2Vec é treinado de maneira a representar cada token como um vetor de 3
 Posteriormente, geraram-se modelos de redes convolucionais nos quais a representação obtida pelo Word2Vec foi utilizada
 como entrada da rede.
 A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
-\textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado da SemEval 2016.
+\textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado na SemEval 2016.
 Compõem os hiperparâmetros variados: número de camadas, número de filtros convolucionais por camada, tamanho dos filtros
 convolucionais, tamanho do filtro de \textit{pooling}.
 Os parâmetros de regularização $L_{2}$ e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
@@ -198,7 +214,5 @@ A função custo aplicada foi a entropia cruzada e utilizou-se o otimizador por 
 
 Assim como aplicado na modelagem por SVM na segunda etapa, foi necessário compensar o desbalanceamento das classes
 através de pesos diferentes para cada classe.
-A seleção do classificador de melhor performance foi feita a partir daquele que obteve maior valor de área sob a curva
+A seleção dos hiperparâmetros de melhor performance foi feita a partir daquele que obteve maior valor de área sob a curva
 ROC.
-Por fim, se verificou se a utilização de redes convolucionais se desempenhou como o esperado na análise de sentimento
-de \textit{tweets}.

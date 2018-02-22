@@ -21,7 +21,7 @@ Cada observação $\mathbf{x}$ é um vetor de $n$ características, e ao se assu
     p(x_i \mid x_{i+1}, \dots ,x_{n}, c_k ) = p(x_i \mid c_k)
 \end{equation}
 
-Logo, pode-se reescrever a equação~\ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas
+Logo, pode-se reescrever a Equação~\ref{eq:bayes} substituindo $p(\mathbf{x} \mid c_k)$ pelo produtório de suas
 características:
 \begin{equation}
     p(c_k \mid \mathbf{x}) = \frac{p(c_k) \prod_{i=1}^n p(x_i \mid c_k)}{p(\mathbf{x})}
@@ -208,7 +208,7 @@ respectivamente; e $\mathbf{h}_i$ indica a camada escondida.
 \end{subequations}
 
 Em seguida, utiliza-se uma função custo $L$ para calcular o erro $J$ de representação obtido pela rede neural a partir
-das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, como exposto na equação~\ref{eq:nn-cost}.
+das previsões $\mathbf{\hat{y}}$ e das anotações $\mathbf{y}$, como exposto na Equação~\ref{eq:nn-cost}.
 A Seção~\ref{sec:custo} apresenta exemplos de funções custo.
 
 \begin{equation} \label{eq:nn-cost}
@@ -227,7 +227,7 @@ saída até camada de entrada utilizando-se os valores de $\mathbf{a}_i$ previam
 Dispondo do gradiente da função custo em relação a saída, $\frac{\partial{J_i}}{\partial{y_i}}$, que é dependente da
 função escolhida, calcula-se por regra da cadeia o gradiente do erro em relação aos pesos e \textit{bias} da camada de
 saída como observa-se nas equações~\cref{eq:nn-backprop-w2,eq:nn-backprop-b2}.
-Computa-se também o gradiente da camada escondida como apresentado na equação~\ref{eq:nn-backprop-h}.
+Computa-se também o gradiente da camada escondida como apresentado na Equação~\ref{eq:nn-backprop-h}.
 Uma vez apurado o gradiente da camada escondida, pode-se calcular os gradientes dos pesos e \textit{bias} desta camada
 como presentes nas equações~\cref{eq:nn-backprop-w1,eq:nn-backprop-b1}.
 
