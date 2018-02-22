@@ -20,7 +20,7 @@ A linha vertical vermelha presente na Figura~\ref{fig:go_nb} indica o parâmetro
 foi escolhido por obter maior média de acurácia na validação cruzada, 78,2\%.
 Uma vez decidido o parâmetro de regularização, o modelo foi retreinado, dessa vez utilizando todos os dados do conjunto
 de treinamento.
-Aplicando-se o modelo no conjunto de teste foi obtida acurácia de 83,3\%, este valor se aproxima ao apresentado por Go
+Aplicando-se este modelo no conjunto de teste foi obtida acurácia de 83,3\%, este valor se aproxima ao apresentado por Go
 \textit{et al.}: 81,3\%.
 
 \begin{figure}
@@ -150,7 +150,7 @@ Desta maneira, se percebe que o processo de anotação dos dados foi mais ruidos
 
 Uma hipótese a ser feita é que evoluções no idioma e na plataforma durante o intervalo entre a criação de ambas as
 bases anotadas por supervisão distante tenha dificultado este processo, visto que a desenvolvida por Go \textit{et al.}
-foi coletada em 2009, e a base de treinamento coletada por este trabalho conta com \textit{tweets} de 2017.
+foi coletada em 2009, e a base de treinamento coletada para este trabalho conta com \textit{tweets} de 2017.
 Constatou-se, por exemplo, que a base desenvolvida neste trabalho apresentou 1,1 milhões de palavras únicas após o
 processo de tokenização, enquanto os dados de treinamento do Sentiment140 contam com 330 mil palavras únicas.
 
@@ -192,8 +192,7 @@ desbalanceadas, como é o caso da base de \textit{tweets} coletados dos SemEval,
                                           & \multirow{2}{*}{Etapa 2} & NB  & 64,9\% & 0,688 & 0,639 \\ \cline{3-6}
                                           &                          & SVM & 64,2\% & 0,693 & 0,640 \\ \hline
         \end{tabular}
-        % FIX
-        \caption{Resultados obtidos pelos classificadores.}
+        \caption{Resultados obtidos pelos classificadores treinados nas diferentes bases de dados e operados com limiar de decisão escolhido de maneira a maximizar o índice SP.}
         \label{tab:linear_perf}
     \end{center}
 \end{table}
@@ -263,10 +262,16 @@ A Tabela~\ref{tab:cnn_selection} lista os resultados obtidos por cada configura�
     \end{center}
 \end{table}
 
-De acordo com a tabela, podemos observar apesar dos resultados obtidos serem muito próximos entre si, o conjunto de
-parâmetros com melhor desempenho no conjunto de validação foram: 1 camadas compostas por 200 filtros convolucionais de
-tamanho 3 seguidas de \textit{pooling} com filtro de tamanho 3.
-A Figura~\ref{fig:cnn_learning_curve} mostra a curva de treinamento do modelo com esta configuração de hiperparâmetros.
+De acordo com a Tabela~\ref{tab:cnn_selection}, podemos observar que os resultados obtidos foram muito próximos
+entre si, apresentando diferença de 0,0089 de área de curva ROC entre a melhor e a pior configuração quando aplicados
+aos dados de validação.
+O conjunto de parâmetros com melhor desempenho foram: 1 camada composta por 200 filtros
+convolucionais de tamanho 3, seguida de uma camada de \textit{pooling} com filtro de tamanho 3.
+Analisando os resultados das diferentes configurações, observamos que filtros convolucionais de tamanho 3 obtiveram
+melhores resultados.
+Dentre os outros parâmetros variados não se destacou nenhum valor consistentemente melhor dentre os valores testados.
+
+A Figura~\ref{fig:cnn_learning_curve} mostra a curva de treinamento do modelo com a melhor configuração de hiperparâmetros.
 Essa figura mostra a evolução do valor da função custo, presente no eixo vertical, tanto sob os dados de treinamento
 quanto de validação na medida em que o classificador é treinado.
 Nesta figura, se observa que o ponto de menor valor de função custo de validação é obtido na oitava época.
@@ -286,12 +291,14 @@ Sendo assim, os pesos referentes a oitava época foram selecionados para compor 
 Uma vez selecionados os hiperparâmetros da rede neural convolucional, a Figura~\ref{fig:all_roc_semeval} apresenta a
 curva ROC comparativa entre os modelos que foram treinados a partir da base de dados com anotação ruidosa formada por
 este trabalho.
-Nessa figura são apresentadas as respostas dos modelos quando aplicados a base de testes formada por \textit{tweets}
-fornecido pelas conferências SemEval.
-Destaca-se na Figura~\ref{fig:all_roc_semeval} que o modelo de redes neurais convolucionais superou os resultados
+Nessa figura são apresentadas as curvas ROC dos modelos quando aplicados a base de testes formada por \textit{tweets}
+fornecido pelas conferências SemEval e destaca-se que o modelo de redes neurais convolucionais superou os resultados
 obtidos por Naïve Bayes e SVM, principalmente nos limiares de decisão que correspondem a menor taxa de falsos positivos.
+
 A Tabela~\ref{tab:all_compara} resume os resultados destes classificadores, novamente considerando que o limiar de
 decisão foi selecionado de maneira a maximizar o índice SP.
+Assim como podemos observar na Figura~\ref{fig:all_roc_semeval} a rede convolucional apresentou maior área sob a curva
+ROC quando comparada aos modelos tradicionalmente aplicados a texto.
 
 \begin{figure}
 \begin{center} {
@@ -322,5 +329,5 @@ Pode se observar que a utilização de redes neurais convolucionais em conjunto 
 Word2Vec propiciou resultados melhores do que os obtidos com modelos tradicionais, como Naïve Bayes e
 \textit{Support Vector Machines} sobre representações \textit{one-hot} dos textos.
 Ressalta-se que a representação Word2Vec utilizada foi desenvolvida a partir de notícias.
-O treinamento de modelos próprios para o meio no qual serão utilizados, neste caso, \textit{tweets}, pode melhorar o
+O treinamento de modelos próprios para o meio no qual serão empregados, neste caso, \textit{tweets}, pode melhorar o
 desempenho do classificador a ser utilizado.

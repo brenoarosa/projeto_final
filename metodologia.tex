@@ -86,7 +86,7 @@ classificador binário para seleção de um ponto de operação.
 Nela, a probabilidade de detecção e falso alarme variam com a escolha do patamar de decisão.
 Um classificador ideal, que atinge 100\% de probabilidade de detecção sem nenhum caso de falso alarme, é representado na
 curva ROC como um degrau.
-Desta forma, a área sob a curva (AUC) pode ser utilizada como métrica de eficiência para um classificador.
+Desta forma, a área sob a curva (AUC) pode ser utilizada como valor numérico de eficiência para um classificador.
 
 % SP - dissertacao fernando
 O índice SP~\cite{ciodaro12} é outro método de avaliação de classificadores binários.
@@ -97,7 +97,7 @@ positiva enquanto $P_{nc}$ caracteriza a probabilidade de não obtenção de fal
     SP = \sqrt{\sqrt{P_c P_{nc}} \left(\frac{P_c + P_{nc}}{2}\right)}
 \end{equation}
 
-O patamar de decisão do classificador será escolhido de maneira a maximizar o índice SP.
+O patamar de decisão do classificador treinado será escolhido de maneira a maximizar o índice SP.
 Pois este será um ponto de operação que apresenta um compromisso entre a eficiência de ambas as classes.
 
 % validaçao cruzada, ver dissertação do junior
