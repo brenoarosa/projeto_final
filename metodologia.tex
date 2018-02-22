@@ -5,7 +5,7 @@ fácil replicação.
 
 \section{Bases de Dados} \label{sec:data}
 
-O trabalho Sentiment140, desenvolvido por Go \textit{et al.}~\cite{go09} visa definir um sistema de classificação de
+O trabalho Sentiment140, desenvolvido por Go \textit{et al.}~\cite{go09} visa a definir um sistema de classificação de
 sentimento sem a necessidade de anotação manual dos dados para treinamento, utilizando a técnica de supervisão distante.
 Conjuntamente com o artigo, Go \textit{et al.} disponibilizaram um base de dados formada por supervisão distante composta
 de 800 mil \textit{tweets}, divididos igualmente entre as classes positivas e negativas, e uma pequena base de testes de
@@ -14,21 +14,21 @@ de 800 mil \textit{tweets}, divididos igualmente entre as classes positivas e ne
 A não dependência de anotação dos dados e a facilidade de coleta dos \textit{tweets}, por meio de interface programável,
 viabilizam a formação de uma grande base de treinamento.
 Para a realização deste trabalho foram coletados cerca de 40 milhões de mensagens amostradas do conjunto total de
-\textit{tweets} filtrando-as apenas pelo idioma inglês.
+\textit{tweets}, filtrando-as apenas pelo idioma inglês.
 Essas mensagens foram coletadas entre os anos de 2015 e 2017 a partir de interface programável oferecida pelo Twitter.
 
-Posteriormente, se aplica o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
+Posteriormente, se aplicou o método de classificação ruidosa de sentimento desenvolvido por Read~\cite{read05} como
 especificado na Seção~\ref{sec:distant_supervision} nos \textit{tweets} coletados.
 Nesse método, são definidos grupos de \textit{emoticons} positivos e negativos.
-Mensagens que possuírem \textit{emoticons} pertencentes a algum destes grupos serão anotadas com as respectivas classes,
-caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
+Mensagens que possuíram \textit{emoticons} pertencentes a algum destes grupos foram anotadas com as respectivas classes.
+Caso \textit{emoticons} de ambos os grupos estejam presentes em uma mesma mensagem esta será descartada.
 Os \textit{emoticons} utilizados para anotação da base de dados foram removidos das mensagens para evitar introduzir
 viés ao classificador.
 
 A Tabela~\ref{tab:emoticons} mostra os \textit{emoticons} escolhidos para compor a anotação ruidosa.
-Em adição aos \textit{emoticons} presentes no Sentiment140, foram classificados manualmente os emoticons mais com maior
+Em adição aos \textit{emoticons} presentes no Sentiment140, foram classificados manualmente os emoticons com maior
 número de aparições nas mensagens coletadas.
-Estudos indicam que a escolha dos \textit{emoticons} pode definir quão ruidosa será a anotação automática.
+Estudos indicam que a escolha dos \textit{emoticons} pode definir quão ruidosa é a anotação automática.
 Durante este processo, observou-se um grande desbalanceamento entre classes, na qual os \textit{tweets} positivos
 compõem 80\% do volume total de anotações.
 
@@ -72,7 +72,7 @@ Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa 
 
 \section{Figuras de Mérito} \label{sec:metrics}
 
-Uma vez definidos os dados, se faz definir como será avaliada a performance dos modelos a serem treinados.
+Uma vez definidos os dados, se faz necessário definir como será avaliada a performance dos modelos a serem treinados.
 Esta seção apresentará as figuras de mérito utilizadas para seleção de parâmetros e avaliação dos algoritmos.
 
 A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia, que é a média aritmética das
@@ -114,13 +114,13 @@ do modelo enquanto os outros $k-1$ conjuntos servirão para seu treinamento.
 % Etapa 1
 O presente trabalho será dividido em três etapas.
 Na primeira fase se utilizará a base de dados provida por Go \textit{et al.}~\cite{go09} replicando as técnicas
-abordadas em seu artigo visando validar os pré-processamentos e algoritmos aplicados.
+abordadas em seu artigo com objetivo de validar os pré-processamentos e algoritmos aplicados.
 Para tal, serão utilizadas as bases de dados tanto de treinamento como de testes disponibilizadas no
 Sentiment140~\cite{go09}.
 
-Começou-se tokenizando os \textit{tweets}, durante esse processo removeram-se \textit{stopwords}; links; referências a
-usuários; e cada token foi transformado para forma minuscula.
-Replicou-se como entrada do algoritmo de aprendizado apenas a representação dos tokens por unigrama, essa escolha foi
+Se começará pela tokenização dos \textit{tweets}, durante esse processo serão removidos \textit{stopwords}; links;
+referências a usuários; e cada token será transformado para forma minuscula.
+Será replicado como entrada do algoritmo de aprendizado apenas a representação dos tokens por unigrama, essa escolha foi
 feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca variação de
 resultado entre as diferentes representações.
 A Tabela~\ref{tab:go} apresenta a acurácia dos classificados de Go \textit{et al}, nela são ressaltadas que a utilização
@@ -146,20 +146,20 @@ entre as diferentes formas de representação significantes o suficiente para ju
 
 Dos classificadores apresentados por Go \textit{et al.} foram selecionados os algoritmos de Naïve Bayes e
 \textit{Support Vector Machine} para validar as etapas de pré-processamento e as implementações dos algoritmos
-utilizadas.
+a serem utilizadas.
 
-Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré-processamento utilizado.
-Variou-se o parâmetro de suavização de distribuição de Laplace, de maneira a otimizar a acurácia.
-Neste caso, a acurácia foi otimizada dado que os dados de treinamento são balanceados
+Serão utilizados Naïve Bayes com distribuição multinomial, por se adequar ao pré-processamento utilizado.
+Será variado o parâmetro de suavização de distribuição de Laplace, de maneira a otimizar a acurácia.
+Neste caso, a acurácia será otimizada dado que os dados de treinamento são balanceados
 
 Para treinamento do modelo por \textit{Support Vector Machines}, dada a grande quantidade de dados e as limitações
-computacionais, foi empregado o treinamento a partir do método do gradiente como descrito por Suykens e
+computacionais, será empregado o treinamento a partir do método do gradiente como descrito por Suykens e
 Vandewalle~\cite{suykens99}.
-A função \textit{kernel} utilizada foi linear, assim como feito por Go \textit{et al.}
-Neste caso, variou-se parâmetro de regularização $L_{2}$ também visando maximizar a acurácia.
+A função \textit{kernel} utilizada será linear, assim como feito por Go \textit{et al.}
+Neste caso, será variado o parâmetro de regularização $L_{2}$ também objetivando maximizar a acurácia.
 
-Empregou-se validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
-Findada a seleção dos parâmetros de regularização, se avaliou o desempenho dos classificadores comparados aos resultados
+Será empregada a validação cruzada por K-partições, com 10 partições, no treinamento dos dois algoritmos.
+Findada a seleção dos parâmetros de regularização, será avaliado o desempenho dos classificadores comparados aos resultados
 apresentados por Go \textit{et al.}
 
 % Etapa 2
@@ -168,15 +168,15 @@ a base de dados anotada desenvolvida com supervisão distante.
 Os resultados obtidos nesta fase servirão como base de comparação entre os modelos lineares e modelos formados técnicas
 de \textit{Deep Learning}.
 Adicionalmente, será validado o processo de captação de dados e anotação por supervisão distante.
-Nesta fase replicaram-se os mesmos procedimentos práticos da etapa anterior.
+Nesta fase serão replicados os mesmos procedimentos práticos da etapa anterior.
 
 Entretanto, devido a base de dados coletada ser desbalanceada, durante o treinamento do modelo por
-\textit{Support Vector Machines} foi necessário dar pesos diferentes a cada exemplo de maneira que cada classe pesasse
+\textit{Support Vector Machines} é necessário dar pesos diferentes a cada exemplo de maneira que cada classe pese
 igualmente durante o treinamento.
 Tal correção não se faz necessária no modelo por Naïve Bayes pois este considera a probabilidade de presença das classes.
-Por sua vez, a métrica utilizada para seleção do modelo neste caso será a área sob a curva ROC visto que a seleção por
+Por sua vez, a métrica utilizada para seleção dos parâmetros neste caso será a área sob a curva ROC visto que a seleção por
 acurácia favorece modelos enviesados a classe mais presente nos dados.
-Uma vez selecionados, os modelos foram analisados com base em sua performance na classificação das bases de testes tanto
+Uma vez selecionados, os parâmetros serão analisados com base em sua performance na classificação das bases de testes tanto
 do Sentiment140 quanto do SemEval.
 
 % Etapa 3
@@ -187,31 +187,31 @@ Serão variados diferentes pré-processamentos e parâmetros das redes para anal
 modelo.
 
 Para utilização de modelos de redes convolucionais, precisa-se primeiro representar os dados por um \textit{embedding}.
-Neste sentido, utilizou-se o \textit{embedding} Word2Vec pré-treinado a partir de notícias em inglês, disponibilizado
+Neste sentido, será utilizado o \textit{embedding} Word2Vec pré-treinado a partir de notícias em inglês, disponibilizado
 pelo Google.
 Este Word2Vec é treinado de maneira a representar cada token como um vetor de 300 dimensões.
 
-Posteriormente, geraram-se modelos de redes convolucionais nos quais a representação obtida pelo Word2Vec foi utilizada
+Posteriormente, serão gerados modelos de redes convolucionais nos quais a representação obtida pelo Word2Vec será utilizada
 como entrada da rede.
 A escolha dos hiperparâmetros a serem testados foi baseada na submissão ao SemEval de Derius
 \textit{et al.}~\cite{deriu16}, a qual obteve o melhor resultado na SemEval 2016.
-Compõem os hiperparâmetros variados: número de camadas, número de filtros convolucionais por camada, tamanho dos filtros
+Compõem os hiperparâmetros a serem variados: número de camadas, número de filtros convolucionais por camada, tamanho dos filtros
 convolucionais, tamanho do filtro de \textit{pooling}.
-Os parâmetros de regularização $L_{2}$ e probabilidade de Dropout se mantiveram fixos, sendo seus valores também iguais aos
+Os parâmetros de regularização $L_{2}$ e probabilidade de Dropout se manterão fixos, sendo seus valores também iguais aos
 propostos por Derius \textit{et al.}
 
-Para o treinamento das redes convolucionais sortearam-se os dados anotados de maneira ruidosa em dois grupos:
+Para o treinamento das redes convolucionais serão sorteados os dados anotados de maneira ruidosa em dois grupos:
 treinamento, contendo 80\% do volume total, e validação com os 20\% restante.
-Não se aplicou a validação cruzada, como nas etapas anteriores, visto o alto custo computacional de treinamento de cada
+Não será aplicada a validação cruzada, como nas etapas anteriores, visto o alto custo computacional de treinamento de cada
 rede.
-O treinamento se deu até que o valor da função custo sob os dados de treinamento se estabiliza-se em um valor
+O treinamento se dará até que o valor da função custo sob os dados de treinamento se estabilize em um valor
 arbitrariamente pequeno, $\epsilon$.
-Entretanto, para reduzir o efeito do \textit{overfitting}, foi aplicado \textit{early stopping}~\cite{caruana01},
+Entretanto, para reduzir o efeito do \textit{overfitting}, será aplicado \textit{early stopping}~\cite{caruana01},
 técnica que consiste em utilizar os pesos obtidos na época de treinamento que corresponde ao menor valor de função custo
 aplicada ao conjunto de validação.
-A função custo aplicada foi a entropia cruzada e utilizou-se o otimizador por método do gradiente \textit{Adam}.
+A função custo a ser aplicada será a entropia cruzada e será utilizado o otimizador por método do gradiente \textit{Adam}.
 
-Assim como aplicado na modelagem por SVM na segunda etapa, foi necessário compensar o desbalanceamento das classes
+Assim como aplicado na modelagem por SVM na segunda etapa, será necessário compensar o desbalanceamento das classes
 através de pesos diferentes para cada classe.
-A seleção dos hiperparâmetros de melhor performance foi feita a partir daquele que obteve maior valor de área sob a curva
+A seleção dos hiperparâmetros de melhor performance será feita a partir daquele que obtiver maior valor de área sob a curva
 ROC.
