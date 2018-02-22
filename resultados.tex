@@ -155,8 +155,8 @@ Constatou-se, por exemplo, que a base desenvolvida neste trabalho apresentou 1,1
 processo de tokenização, enquanto os dados de treinamento do Sentiment140 contam com 330 mil palavras únicas.
 
 Outro fator relevante para definição de ruído no processo de anotação é a escolha dos \textit{emoticons}.
-Neste trabalho, além dos \textit{emoticons} utilizados pelo Sentiment140, os \textit{emoticons} mais presentes nos dados
-foram selecionados para classificação manual.
+Neste trabalho, além dos \textit{emoticons} utilizados pelo Sentiment140, os \textit{emoticons} mais frequentes nos
+dados foram selecionados para classificação manual.
 A escolha de \textit{emoticons} de maneira a atingir maior correlação com as classes pode ser uma solução para reduzir
 a diferença de performance dos modelos entre os resultados de treinamento e os resultados de teste.
 
@@ -295,9 +295,9 @@ decisão foi selecionado de maneira a maximizar o índice SP.
         \begin{tabular}{| l | r | r |}
         \hline
         \textbf{Algoritmo} & \textbf{AUC} & \textbf{SP} \\ \hline
-        Naïve Bayes & 0.688 & 0.639 \\ \hline
-        SVM & 0.693 & 0.640 \\ \hline
-        CNN & 0.??? & 0.??? \\ \hline
+        Naïve Bayes & 0,688 & 0,639 \\ \hline
+        SVM & 0,693 & 0,640 \\ \hline
+        CNN & 0,??? & 0,??? \\ \hline
         \end{tabular}
         \caption{Comparação dos algoritmos treinados por dados de supervisão distante.}
         \label{tab:all_compara}

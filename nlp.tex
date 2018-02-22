@@ -6,10 +6,12 @@ se observa na utilização de serviços automatizados de atendimento ao clientes
 Grande parte destas aplicações provém da utilização de técnicas de aprendizado supervisionado que serão apresentadas
 no Capítulo~\ref{supervisionado}.
 
-A Figura~\ref{fig:pipeline} apresenta o diagrama de blocos contendo todas as etapas de um classificador de análise de
-sentimento de \textit{tweets}.
+Para que textos possam ser aplicados a um classificador, é necessário submetê-los a uma etapa de pré-processamento e
+depois representá-los numericamente.
+A Figura~\ref{fig:pipeline} apresenta esse processo em um diagrama de blocos.
 As seções a seguir apresentam as transformações aplicadas a textos necessárias para viabilizar a aplicação de algoritmos
-de aprendizado, estes são os processos que formam as duas primeiras etapas do classificador como descrito na imagem.
+de aprendizado, estes são os processos que formam as duas primeiras etapas do classificador como mostrado no diagrama de
+blocos.
 
 \begin{figure}
 \begin{center} {
@@ -76,13 +78,15 @@ qual cada mensagem é representada pela soma dos vetores de seus tokens~\cite{sc
 
 Esta técnica também é chamada na literatura como \textit{term frequence} (tf), dado que a técnica é dada pela contagem
 de termos de um documento.
-Nesse caso as palavras são pesadas igualmente, outra abordagem possível é multiplicar a frequência do termo no documento
-pelo inverso do número de documentos no qual aquele termo aparece, técnica denominada \textit{term frequence-inverse
-document frequence} (TF-IDF)~\cite{salton88}.
+Nesse caso as palavras são pesadas igualmente.
+
+Outra abordagem possível é multiplicar a frequência do termo no documento pelo inverso do número de documentos no qual
+aquele termo aparece, técnica denominada \textit{term frequence-inverse document frequence} (TF-IDF)~\cite{salton88}.
 A TF-IDF permite compensar a grande presença de palavras muito frequentes, que limitariam a influência de termos pouco
 usados.
 
-É possível notar que a utilização de ambas as técnicas ignora a ordem das palavras na frase.
+É possível notar que a utilização de ambas as técnicas ignora a ordem das palavras na frase, além disso, representações
+obtidas por \textit{bag-of-words} costumam conter centenas de milhares de dimensões.
 Técnicas como Word2Vec, apresentada na Seção~\ref{sec:w2v}, permitem a utilização da posição do termo na mensagem por conter
 uma representação densa de cada token, reduzindo a dimensionalidade do problema.
 
@@ -94,9 +98,8 @@ Os resultados obtidos por Mikolov \textit{et at.}~\cite{mikolov13} mostram que a
 capturar parte do sentido semântico dos termos.
 Na prática, isso significa que, por exemplo, palavras sinônimas ficam próximas entre si no \textit{embedding} obtido.
 
-Desenvolvida por um grupo de engenheiros do Google, estes vetores são aprendidos a partir de uma janela de contexto
-ao redor de cada palavra presente nos documentos de treinamento.
-
+Desenvolvida por um grupo de engenheiros do Google, esta técnica aprende a representar vetores a partir de uma janela de
+contexto ao redor de cada palavra presente nos documentos de treinamento.
 Foram desenvolvidos dois modelos de treinamento distintos, são eles o \textit{Continuos Bag-of-Words} (CBOW) e o
 \textit{Skipgram}.
 A diferença entre ambos, além da forma de treinamento, se dá principalmente pelo tempo de convergência e pela acurácia.
