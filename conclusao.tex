@@ -11,14 +11,34 @@ Todavia, eles dependem de dados de treinamento, os quais têm produção custosa
 manual dos casos, dificultando, por exemplo, a reprodução destes classificadores para diferentes idiomas ou redes
 sociais.
 
-Com o desenvolvimento de classificadores cada vez mais complexos, como os englobados pelas técnicas de
-\textit{Deep Learning}, cresce a dependência de grandes volumes de dados de treinamento.
-O método da anotação ruidosa por supervisão distante, apesar de apresentar dificuldades decorrentes da seleção das
-características correlacionada com as classes, se mostrou eficiente na formação de bases de treinamento.
+Para abordar este problema, foram estabelecidas três etapas.
+A primeira etapa do desenvolvimento deste trabalho teve como objetivo replicar o artigo apresentado por Go
+\textit{et al.}~\cite{go09} de maneira a validar os pré-processamentos e implementações de algoritmos observados.
+Obtivemos acurácia de 83,3\% e 83,0\% pelos modelos utilizando Naïve Bayes e \textit{Support Vector Machine} respectivamente.
+Estes valores estão próximos aos apresentados por Go \textit{et al.}, que obteve 81,3\% e 82,2\% com os modelos de Naïve
+Bayes e SVM, nessa ordem.
+Portanto, foi possível validar os pré-processamentos e a implementação dos algoritmos.
 
-Observou-se que, embora algoritmos de aprendizado de máquina tradicionalmente aplicadas ao processamento de linguagem
+O segundo estágio deste projeto visou a avaliar a base de dados de anotação ruidosa formada para este trabalho
+aplicando os mesmos modelos previamente validados.
+Os resultados alcançados por modelos treinados nesta base de dados foram inferiores aos obtidos pelos modelos treinados
+pela base de dados disponibilizada por Go \textit{et al.}
+Concluímos que o processo de formação de base de dados por supervisão distante foi mais ruidoso do que o atingido por
+Go \textit{et al.}
+Entretanto, o método da anotação ruidosa por supervisão distante, apesar de apresentar dificuldades decorrentes da
+seleção das características correlacionada com as classes, se mostrou eficiente na formação de bases de treinamento.
+
+Os resultados obtidos na fase anterior serviram como base de comparação para terceira etapa.
+Nessa etapa teve como finalidade analisar o desempenho de modelos de \textit{Deep Learning} aplicados a
+análise de sentimento de \textit{tweets} e compará-los a algoritmos de aprendizado de maquina tradicionalmente aplicados
+ao processamento de linguagem natural.
+O modelo de rede neural convolucional alcançou o melhor valor de AUC, obtendo 0,738, superando Naïve Bayes e
+\textit{Support Vector Machine} obtiveram 0,688 e 0,693 respectivamente.
+Analisou-se então, que embora algoritmos de aprendizado de máquina tradicionalmente aplicadas ao processamento de linguagem
 natural atinjam resultados positivos nesta tarefa, a utilização de técnicas de \textit{Deep Learning} é capaz elevar o
 nível de desempenho obtido.
+Observou-se também que é possível utilizar representações Word2Vec treinadas em notícias mesmo quando os objetos de análise
+são mensagens de redes sociais.
 
 Portanto, foi desenvolvido um método de produção de classificadores eficazes e que não dependem de anotação manual de
 dados de treinamento.
@@ -30,9 +50,10 @@ por supervisão distante.
 
 Uma das limitações da supervisão distante para a análise de sentimento é sua incapacidade de formar dados de treinamento
 para classes neutras.
-Aponta-se como um trabalhos futuros o desenvolvimento de técnicas de anotação ruidosa capazes de lidar com esse problema.
+Aponta-se como um trabalhos futuros o desenvolvimento de técnicas de anotação ruidosa, ou novos métodos, capazes de lidar
+com esse problema.
 
-Outro fator a ser estudado é o desempenho de outros algoritmos da família de técnicas de \textit{Deep Learning} para
-realização de análise de sentimento.
-A aplicação de técnicas como \textit{Long Short Term Memory} vem obtendo sucesso em outras tarefas de processamento de
-linguagem natural e se mostra uma abordagem promissora.
+Outro fator a ser estudado é o desempenho na análise de sentimento de outros algoritmos da família de técnicas de
+\textit{Deep Learning} que vêm obtendo sucesso em outras tarefas de processamento de linguagem natural e se mostram promissoras.
+Um exemplo destas técnicas são as \textit{Long Short Term Memory}, esses modelos englobam em sua composição componentes
+de memória temporal, que são fundamentais para análise de línguas.
