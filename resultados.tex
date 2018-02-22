@@ -112,14 +112,14 @@ média de área sob a curva ROC dentre os grupos de validação quando aplicada 
 Uma vez selecionado os melhores hiperparâmetros, a Figura~\ref{fig:linear_roc_go} compara a curva ROC que caracteriza a
 performance dos modelos treinandos tanto na primeira quanto na segunda etapa sob os dados de testes disponibilizados
 por Go \textit{et al.}, a linha tracejada é utilizada como referência pois indica a performance de um classificador de
-seleçao aleatória.
+seleção aleatória.
 Observamos na Figura ~\ref{fig:linear_roc_go} que os modelos da etapa 1, treinados com os dados do Sentiment140,
 obtiveram resultados semelhantes entre si e consideravelmente superiores aos classificadores da segunda etapa, treinados
-com base coletada neste trabalho, dentre os modelos da segunda etapa SVM se sobressaiu em relaçao ao Naïve Bayes.
+com base coletada neste trabalho, dentre os modelos da segunda etapa SVM se sobressaiu em relação ao Naïve Bayes.
 
 A Figura~\ref{fig:linear_roc_semeval}, por sua vez, apresenta a curva ROC dos modelos quando aplicados nos dados
 manualmente anotados coletados do SemEval.
-O compartamento dos classificadores nesta base de dados se assemelha ao observado anteriormente, porém, neste caso a
+O comportamento dos classificadores nesta base de dados se assemelha ao observado anteriormente, porém, neste caso a
 performance dos classificadores de SVM e Naïve Bayes da segunda etapa praticamente se igualaram.
 
 \begin{figure}
@@ -168,8 +168,8 @@ custoso de anotação manual.
 A Tabela~\ref{tab:linear_perf} resume os resultados dos modelos treinados na primeira e na segunda etapas quando
 aplicados sob ambos os conjuntos de testes.
 Ressalta-se nesta tabela que os resultados dos classificadores treinados na segunda etapa foram consideravelmente
-inferiores aos da primeira fase e que os algoritmos de Naïve Bayes e SVM apresentaram ressultados semelhantes em
-práticamente todas as situações, com excessão dos classificadores da segunda etapa aplicados na pequena base de teste
+inferiores aos da primeira fase e que os algoritmos de Naïve Bayes e SVM apresentaram resultados semelhantes em
+praticamente todas as situações, com exceção dos classificadores da segunda etapa aplicados na pequena base de teste
 do Sentiment140.
 O ponto de operação dos modelos foi escolhido de maneira a maximizar o índice SP.
 É válido lembrar que a acurácia é uma métrica inconsistente quando consideras bases de testes com classes
@@ -263,7 +263,7 @@ A Tabela~\ref{tab:cnn_selection} lista os resultados obtidos por cada configura�
     \end{center}
 \end{table}
 
-De acordo com a tabela, podemos observar apesar dos resultados obtidos serem muito proximos entre si, o conjunto de
+De acordo com a tabela, podemos observar apesar dos resultados obtidos serem muito próximos entre si, o conjunto de
 parâmetros com melhor desempenho no conjunto de validação foram: 1 camadas compostas por 200 filtros convolucionais de
 tamanho 3 seguidas de \textit{pooling} com filtro de tamanho 3.
 A Figura~\ref{fig:cnn_learning_curve} mostra a curva de treinamento do modelo com esta configuração de hiperparâmetros.

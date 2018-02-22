@@ -1,4 +1,4 @@
-Este capítulo tem como objetivo descrever a elaboração de modelos de aprendizado de máquna capazes de classificar
+Este capítulo tem como objetivo descrever a elaboração de modelos de aprendizado de máquina capazes de classificar
 sentimento, positivo ou negativo, de \textit{tweets}.
 A produção desse modelo será feita a partir de base de dados anotada de maneira automatizada, permitindo a sua
 fácil replicação.
@@ -75,7 +75,7 @@ Novamente foram removidos os \textit{emoticons} presentes na anotação ruidosa 
 Uma vez definidos os dados, se faz definir como será avaliada a performance dos modelos a serem treinados.
 Esta seção apresentará as figuras de mérito utilizadas para seleção de parâmetros e avaliação dos algoritmos.
 
-A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia, que é a média aritimética das
+A forma mais direta de se medir a performance de um modelo é considerar a sua acurácia, que é a média aritmética das
 eficiências de cada uma das classes.
 Todavia, a presença de desbalanceamento de classes nos dados pode favorecer a acertividade da classe mais presente
 enquanto perde eficiência na classificação da classe com menos exemplos.
@@ -124,7 +124,7 @@ Replicou-se como entrada do algoritmo de aprendizado apenas a representação do
 feita por ser a representação mais simples e por Go \textit{et at.}~\cite{go09} mostrar que há pouca variação de
 resultado entre as diferentes representações.
 A Tabela~\ref{tab:go} apresenta a acurácia dos classificados de Go \textit{et al}, nela são ressaltadas que a utilização
-de represenções mais complexas apesar de melhorar a acurácia quando combinada com alguns algoritmos como Naïve Bayes
+de representações mais complexas apesar de melhorar a acurácia quando combinada com alguns algoritmos como Naïve Bayes
 também resulta em perda de eficiência em outros, por exemplo, SVM.
 Considerando ainda o número reduzido de casos do banco de dados de teste, não foi considerada a diferença de performance
 entre as diferentes formas de representação significantes o suficiente para justificar sua utilização.
@@ -149,7 +149,7 @@ Dos classificadores apresentados por Go \textit{et al.} foram selecionados os al
 utilizadas.
 
 Utilizou-se Naïve Bayes com distribuição multinomial, por se adequar ao pré-processamento utilizado.
-Variou-se o parâmetro de suavização de distribuição de laplace, de maneira a otimizar a acurácia.
+Variou-se o parâmetro de suavização de distribuição de Laplace, de maneira a otimizar a acurácia.
 Neste caso, a acurácia foi otimizada dado que os dados de treinamento são balanceados
 
 Para treinamento do modelo por \textit{Support Vector Machines}, dada a grande quantidade de dados e as limitações
